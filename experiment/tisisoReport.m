@@ -50,14 +50,14 @@ switch config.reportName
         %% projection control
          for k=1:length(gt)
             mask = {[2 3] 1 0 1 0 gt(k) 0 [1 2] 2 2 2 2};
-            config = expExpose(config, 't', 'step', 3, 'mask', mask, 'expand', 'projection', 'percent', 0, 'obs', 1, 'highlight', -1, 'caption', 'Control learning: +');
+%             config = expExpose(config, 't', 'step', 3, 'mask', mask, 'expand', 'projection', 'percent', 0, 'obs', 1, 'highlight', -1, 'caption', 'Control learning: +');
         end
         
         %% split
          gt = [1 4];
          for k=1:length(gt)
             mask = {[2 3] 1 0 [1 2 3 5] 2 gt(k) 1 1 2 2 2 2};
-            config = expExpose(config, 'p', 'step', 3, 'mask', mask, 'expand', 'projection', 'percent', 0, 'obs', 1, 'highlight', -1, 'caption', 'db splitting: +');
+%             config = expExpose(config, 'p', 'step', 3, 'mask', mask, 'expand', 'projection', 'percent', 0, 'obs', 1, 'highlight', -1, 'caption', 'db splitting: +');
          end
         %% frame size
         
