@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  15 FEB 2018 09:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  15 FEB 2018 11:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -129,7 +129,7 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 147.
 )
-No file lostanlenPlayingTechniques.aux.
+(./lostanlenPlayingTechniques.aux)
 \openout1 = `lostanlenPlayingTechniques.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
@@ -145,6 +145,7 @@ LaTeX Font Info:    ... okay on input line 53.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 53.
 LaTeX Font Info:    ... okay on input line 53.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 53.
+
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
@@ -278,10 +279,6 @@ LaTeX Warning: Citation `tjoa2010ismir' on page 1 undefined on input line 97.
 LaTeX Warning: Citation `lostanlen2017phd' on page 1 undefined on input line 97
 .
 
-
-Underfull \vbox (badness 1558) has occurred while \output is active []
-
-
 No file lostanlenPlayingTechniques.bbl.
 [1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
@@ -291,14 +288,11 @@ No file lostanlenPlayingTechniques.bbl.
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 2443 strings out of 492995
- 33061 string characters out of 6132704
- 101617 words of memory out of 5000000
+ 2445 strings out of 492995
+ 33123 string characters out of 6132704
+ 101625 words of memory out of 5000000
  5952 multiletter control sequences out of 15000+600000
  21015 words of font info for 45 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
@@ -309,7 +303,7 @@ live/2017/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/201
 7/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-di
 st/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/t
 ype1/urw/times/utmri8a.pfb>
-Output written on lostanlenPlayingTechniques.pdf (1 page, 63519 bytes).
+Output written on lostanlenPlayingTechniques.pdf (1 page, 63597 bytes).
 PDF statistics:
  35 PDF objects out of 1000 (max. 8388607)
  25 compressed objects within 1 object stream
