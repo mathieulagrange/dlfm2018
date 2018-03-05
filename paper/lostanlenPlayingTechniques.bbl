@@ -1,0 +1,90 @@
+\begin{thebibliography}{10}
+
+\bibitem{belongie2015pattern}
+Serge Belongie and Pietro Perona.
+\newblock Visipedia circa 2015.
+\newblock {\em Pattern Recognition Letters}, 72:15 -- 24, 2016.
+
+\bibitem{bittner2014ismir}
+Rachel~M Bittner, Justin Salamon, Mike Tierney, Matthias Mauch, Chris Cannam,
+  and Juan~Pablo Bello.
+\newblock Medleydb: A multitrack dataset for annotation-intensive mir research.
+\newblock In {\em Proc. ISMIR}, 2014.
+
+\bibitem{dianova2007phd}
+Tzenka Dianova.
+\newblock {\em John Cage's Prepared Piano: The Nuts and Bolts}.
+\newblock PhD thesis, U. Auckland, 2007.
+
+\bibitem{gemmeke2017icassp}
+Jort~F. Gemmeke, Daniel P.~W. Ellis, Dylan Freedman, Aren Jansen, Wade
+  Lawrence, R.~Channing Moore, Manoj Plakal, and Marvin Ritter.
+\newblock Audio set: An ontology and human-labeled dataset for audio events.
+\newblock In {\em Proc. IEEE ICASSP}, 2017.
+
+\bibitem{godoy2009book}
+R.I. God{\o}y and M.~Leman.
+\newblock {\em Musical Gestures: Sound, Movement, and Meaning}.
+\newblock Taylor \& Francis, 2009.
+
+\bibitem{kolozali2011ismir}
+Sefki Kolozali, Mathieu Barthet, Gy{\"o}rgy Fazekas, and Mark~B Sandler.
+\newblock Knowledge representation issues in musical instrument ontology
+  design.
+\newblock In {\em Proc. ISMIR}, pages 465--470, 2011.
+
+\bibitem{kostka2016book}
+Stefan Kostka.
+\newblock {\em Materials and Techniques of Post Tonal Music}.
+\newblock Taylor \& Francis, 2016.
+
+\bibitem{lostanlen2017phd}
+Vincent Lostanlen.
+\newblock {\em {Convolutional operators in the time-frequency domain}}.
+\newblock PhD thesis, {'{E}cole normale sup\'{e}rieure}, 2017.
+
+\bibitem{loureiro2004ismir}
+Mauricio~A Loureiro, Hugo~Bastos de~Paula, and Hani~C Yehia.
+\newblock Timbre classification of a single musical instrument.
+\newblock In {\em Proc. ISMIR}, 2004.
+
+\bibitem{martins2007ismir}
+Luis~Gustavo Martins, Juan~Jos{\'e} Burred, George Tzanetakis, and Mathieu
+  Lagrange.
+\newblock Polyphonic instrument recognition using spectral clustering.
+\newblock In {\em Proc. ISMIR}, 2007.
+
+\bibitem{sachs2012book}
+Curt Sachs.
+\newblock {\em The History of Musical Instruments}.
+\newblock Dover Books on Music. Dover Publications, 2012.
+
+\bibitem{schoenberg2010book}
+Arnold Schoenberg.
+\newblock {\em Theory of Harmony}.
+\newblock University of California, 100th anniversary edition edition, 2010.
+
+\bibitem{su2014ismir}
+Li~Su, Li-Fan Yu, and Yi-Hsuan Yang.
+\newblock Sparse cepstral, phase codes for guitar playing technique
+  classification.
+\newblock In {\em Proc. ISMIR}, 2014.
+
+\bibitem{tindale2004ismir}
+Adam~R Tindale, Ajay Kapur, George Tzanetakis, and Ichiro Fujinaga.
+\newblock Retrieval of percussion gestures using timbre classification
+  techniques.
+\newblock In {\em Proc. ISMIR}, 2004.
+
+\bibitem{tjoa2010ismir}
+Steven~K Tjoa and KJ~Ray Liu.
+\newblock Musical instrument recognition using biologically inspired filtering
+  of temporal dictionary atoms.
+\newblock In {\em Proc. ISMIR}, 2010.
+
+\bibitem{zolzer2011dafx}
+Udo Z{\"o}lzer.
+\newblock {\em DAFX: Digital Audio Effects}.
+\newblock Wiley, 2011.
+
+\end{thebibliography}
