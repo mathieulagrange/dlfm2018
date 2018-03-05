@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  15 FEB 2018 11:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  5 MAR 2018 12:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -243,40 +243,40 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
 
 
 LaTeX Warning: Citation `loureiro2004ismir' on page 1 undefined on input line 8
-8.
+9.
 
 
-LaTeX Warning: Citation `tindale2004ismir' on page 1 undefined on input line 89
+LaTeX Warning: Citation `tindale2004ismir' on page 1 undefined on input line 90
 .
 
 
-LaTeX Warning: Citation `martins2007ismir' on page 1 undefined on input line 90
+LaTeX Warning: Citation `martins2007ismir' on page 1 undefined on input line 91
 .
 
 
 LaTeX Warning: Citation `kolozali2011ismir' on page 1 undefined on input line 9
-2.
+3.
 
 
-LaTeX Warning: Citation `su2014ismir' on page 1 undefined on input line 93.
+LaTeX Warning: Citation `su2014ismir' on page 1 undefined on input line 94.
 
 
-LaTeX Warning: Citation `bittner2014ismir' on page 1 undefined on input line 94
+LaTeX Warning: Citation `bittner2014ismir' on page 1 undefined on input line 95
 .
 
 
 LaTeX Warning: Citation `gemmeke2017icassp' on page 1 undefined on input line 9
-5.
+6.
 
 
 LaTeX Warning: Citation `belongie2015pattern' on page 1 undefined on input line
- 96.
+ 97.
 
 
-LaTeX Warning: Citation `tjoa2010ismir' on page 1 undefined on input line 97.
+LaTeX Warning: Citation `tjoa2010ismir' on page 1 undefined on input line 98.
 
 
-LaTeX Warning: Citation `lostanlen2017phd' on page 1 undefined on input line 97
+LaTeX Warning: Citation `lostanlen2017phd' on page 1 undefined on input line 98
 .
 
 No file lostanlenPlayingTechniques.bbl.
@@ -296,14 +296,14 @@ Here is how much of TeX's memory you used:
  5952 multiletter control sequences out of 15000+600000
  21015 words of font info for 45 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 39i,15n,25p,256b,374s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,15n,25p,305b,374s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/tex
 live/2017/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/201
 7/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-di
 st/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/t
 ype1/urw/times/utmri8a.pfb>
-Output written on lostanlenPlayingTechniques.pdf (1 page, 63597 bytes).
+Output written on lostanlenPlayingTechniques.pdf (1 page, 63835 bytes).
 PDF statistics:
  35 PDF objects out of 1000 (max. 8388607)
  25 compressed objects within 1 object stream
