@@ -3,44 +3,44 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: lostanlenPlayingTechniques.aux
 The style file: plain.bst
 Database file #1: lostanlenPlayingTechniques.bib
-You've used 16 entries,
+You've used 17 entries,
             2118 wiz_defined-function locations,
-            567 strings with 6172 characters,
-and the built_in function-call counts, 4780 in all, are:
-= -- 422
-> -- 262
+            574 strings with 6261 characters,
+and the built_in function-call counts, 5068 in all, are:
+= -- 453
+> -- 269
 < -- 1
-+ -- 105
-- -- 88
-* -- 283
-:= -- 829
-add.period$ -- 49
-call.type$ -- 16
-change.case$ -- 86
++ -- 108
+- -- 90
+* -- 304
+:= -- 877
+add.period$ -- 52
+call.type$ -- 17
+change.case$ -- 90
 chr.to.int$ -- 0
-cite$ -- 16
-duplicate$ -- 210
-empty$ -- 402
-format.name$ -- 88
-if$ -- 996
+cite$ -- 17
+duplicate$ -- 221
+empty$ -- 428
+format.name$ -- 90
+if$ -- 1055
 int.to.chr$ -- 0
-int.to.str$ -- 16
-missing$ -- 19
-newline$ -- 83
-num.names$ -- 32
-pop$ -- 136
+int.to.str$ -- 17
+missing$ -- 20
+newline$ -- 88
+num.names$ -- 34
+pop$ -- 138
 preamble$ -- 1
-purify$ -- 76
+purify$ -- 79
 quote$ -- 0
-skip$ -- 120
+skip$ -- 127
 stack$ -- 0
-substring$ -- 134
-swap$ -- 33
+substring$ -- 161
+swap$ -- 34
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 54
+type$ -- 58
 warning$ -- 0
-while$ -- 36
-width$ -- 18
-write$ -- 168
+while$ -- 40
+width$ -- 19
+write$ -- 179
