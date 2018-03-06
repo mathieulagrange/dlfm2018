@@ -58,7 +58,9 @@ the next frontier in musical instrument recognition}
 
 %
 \maketitle
-%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ABSTRACT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
 Although the automatic recognition of a musical instrument from the recording of a single ``ordinary'' note is close to becoming solved problem, the ability of a computer to precisely identify playing technique within an extended taxonomy remains far below human accuracy.
 This article provides the first benchmark of machine listening systems for the classification of extended playing techniques in the symphonic orchestra.
@@ -67,7 +69,9 @@ We identify three necessary conditions for significantly outperforming the class
 (2) the inclusion of large temporal scales ; and
 (3) the resort to supervised metric learning.
 \end{abstract}
-%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INTRODUCTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}\label{sec:introduction}
 The progressive diversification of the timbral palette in Western classical music at the turn of the 20th century is reflected in five concurrent trends:
 the addition of new instruments to the Western symphonic instrumentarium, either by technological inventions (\eg theremin) or importation from non-Western musical cultures (\eg marimba) \cite{sachs2012book};
@@ -93,9 +97,12 @@ Instead, gestures are either framed as a spurious form of intra-class variabilit
 or, symmetrically, as a probe for the acoustical study of a given instrument, without enough emphasis onto the broader picture of orchestral diversity.
 
 One major cause of this gap in research is the difficulty of collecting and annotating data for contemporary instrumental techniques.
-Fortunately, such obstacle has recently been overcome, owing to the creation of databases of instrumental samples in the context of spectralist music orchestration \cite{maresz2013cmr}.
+Fortunately, such obstacle has recently been overcome, owing to the creation of databases of instrumental samples in a perspective of spectralist music orchestration \cite{maresz2013cmr}.
+In this article, we capitalize on the availability of data to formulate a new line of research in MIR, namely the joint retrieval of organological information (``\emph{what} instrument is being played in this recordings?'') and chironomical information (``\emph{how} is the musician producing sound?''), while remaining invariant to other factors of variability, which are deliberately regarded as contextual: where, when, why, by whom, and for whom was the music (in this recording) played.
 
-\section{related work}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  RELATED WORK  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Related work}
 
 Timbre classification of a single musical instrument (clarinet): \cite{loureiro2004ismir}.
 Retrieval of percussion gestures using timbre classification techniques: \cite{tindale2004ismir}.
@@ -108,43 +115,32 @@ Audio Set: \cite{gemmeke2017icassp}.
 Visipedia: \cite{belongie2015pattern}
 Scattering transforms in musical instrument recognition: \cite{tjoa2010ismir,lostanlen2017phd}.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TASKS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Tasks}
 
-Datasets of monophonic instrumental recordings are difficult to design, because most of the commercially available music is polyphonic.It appears that the Western tradition of solo music is essentially restricted to a narrow scope of instruments (piano, classical guitar, violin), and genres (sonatas, contemporary, free jazz, folk).
-Without a careful curation of the musical data, undesirable correlations between instrument and genre appear.
-
-
-
-\section{Task}
-
-database browsing, ranking task
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% SCATTERING TRANSFORM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Scattering transform}
+\section{Methods}
+
+\subsection{Scattering transform}
+
+\section{Large-margin nearest neighbors}
 
 
-
-\section{Lmnn}
-
-\section{Protocol}
-
-\subsection{Data}
-
-SOL, typology
-
-\subsection{Metric}
-
-p@k
-
-\subsection{Methods}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% EXPERIMENTAL RESULTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Experimental results}
 
 
-\section{Experiments}
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CONCLUSION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}
+% Every quest for information is also a quest for invariance.
 
 
 
