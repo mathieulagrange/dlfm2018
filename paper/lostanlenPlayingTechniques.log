@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  5 MAR 2018 16:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  5 MAR 2018 22:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -243,14 +243,12 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 60.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 62.
-
-Underfull \vbox (badness 4582) has occurred while \output is active []
-
  [1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 
- <./figs/cc_by.pdf>] (./lostanlenPlayingTechniques.bbl
+ <./figs/cc_by.pdf>]
+(./lostanlenPlayingTechniques.bbl
 Underfull \hbox (badness 1221) in paragraph at lines 9--13
 []\OT1/ptm/m/n/10 Rachel M Bit-tner, Justin Sala-mon, Mike Tier-ney,
  []
@@ -286,7 +284,7 @@ ic/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/co
 urier/ucrr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmb
 8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></u
 sr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on lostanlenPlayingTechniques.pdf (2 pages, 75876 bytes).
+Output written on lostanlenPlayingTechniques.pdf (2 pages, 76256 bytes).
 PDF statistics:
  38 PDF objects out of 1000 (max. 8388607)
  27 compressed objects within 1 object stream
