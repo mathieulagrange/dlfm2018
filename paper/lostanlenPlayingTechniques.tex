@@ -133,7 +133,7 @@ In this section, we distinguish taxonomies of musical instruments from taxonomie
 % Adopt the Visipedia approach.
 
 % Distinguish what the left hand does from what the right hand does?
-% Left hand: vibrato, 
+% Left hand: vibrato,
 % Right hand: tremolo
 
 % Bows and mallets are part of the gesture
@@ -141,9 +141,9 @@ In this section, we distinguish taxonomies of musical instruments from taxonomie
 
 % Out of scope are:
 % Variations in articulation: trill, slide. Unlike vibrato, they have a melodic function.
-% Variations in: artificial harmonics, subharmonics [ref Mari Kimura], 
-% Variations in phrasing: arpeggio, 
-% analog FX: 
+% Variations in: artificial harmonics, subharmonics [ref Mari Kimura],
+% Variations in phrasing: arpeggio,
+% analog FX:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  METHODS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -165,13 +165,61 @@ In this section, we apply the aforementioned methods to instrument playing techn
 
 \subsection{Studio On Line (SOL) dataset}
 
+\begin{tabular}{cc}
+nbFiles & 25444 \\
+\hline
+nbInstruments & 16 \\
+nbPT & 143 \\
+\hline
+nbFilesPerInstrument & 1590 $\pm$936 \\
+nbFilesPerPT & 178 $\pm$429 \\
+\end{tabular}
+
 
 \subsection{Musical instrument classification}
 
+Baseline choice:
+cut: keep lowest 13 over 40
+std: remove mean divide by variance
+\begin{tabular}{lllc}
+features & cut & standardize & p (\%) \\
+\hline
+mfcc & 0 & 0 & 85 \\
+mfcc & 0 & 1 & 84 \\
+mfcc & 1 & 0 & 88 \\
+mfcc & 1 & 1 & \textbf{\textcolor{red}{89}} \\
+mel &  & 0 & 53 \\
+mel &  & 1 & 50 \\
+\end{tabular}
+
+Scattering setting:
+\begin{tabular}{lllc}
+median & compress & standardize & p (\%) \\
+\hline
+0 & 0 & 0 & 64 \\
+0 & 0 & 1 & 76 \\
+0 & 1 & 0 & 84 \\
+0 & 1 & 1 & 83 \\
+1 & 0 & 0 & 77 \\
+1 & 0 & 1 & 76 \\
+1 & 1 & 0 & \textbf{\textcolor{red}{89}} \\
+1 & 1 & 1 & 89 \\
+\end{tabular}
 
 
 \subsection{Instrumental playing technique classification}
 
+Baseline choice:
+\begin{tabular}{lllc}
+features & cut & standardize & p (\%) \\
+\hline
+mfcc & 0 & 0 & 35 \\
+mfcc & 0 & 1 & 32 \\
+mfcc & 1 & 0 & \textbf{\textcolor{red}{46}} \\
+mfcc & 1 & 1 & 45 \\
+mel &  & 0 & 19 \\
+mel &  & 1 & 19 \\
+\end{tabular}
 
 
 \subsection{Discussion}
