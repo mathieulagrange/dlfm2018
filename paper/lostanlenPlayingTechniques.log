@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  6 MAR 2018 22:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  6 MAR 2018 22:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -578,7 +578,10 @@ Overfull \hbox (1.64526pt too wide) in paragraph at lines 151--152
  []
 
 
-Overfull \hbox (1.81483pt too wide) in paragraph at lines 185--190
+LaTeX Warning: Citation `anden2011dafx' on page 2 undefined on input line 156.
+
+
+Overfull \hbox (1.81483pt too wide) in paragraph at lines 186--191
 \OT1/ptm/m/n/10 scat-ter-ing trans-form; un-su-per-vised met-ric learn-ing over
  fre-
  []
@@ -606,24 +609,28 @@ Underfull \hbox (badness 1472) in paragraph at lines 57--61
 
 [2]) [3
 
-] (./lostanlenPlayingTechniques.aux) ) 
+] (./lostanlenPlayingTechniques.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 12128 strings out of 492995
- 249968 string characters out of 6132704
+ 12129 strings out of 492995
+ 249983 string characters out of 6132704
  272810 words of memory out of 5000000
- 15580 multiletter control sequences out of 15000+600000
+ 15581 multiletter control sequences out of 15000+600000
  25304 words of font info for 61 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
  39i,15n,33p,10377b,774s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2017/texmf-dist/fonts
-/enc/dvips/base/8r.enc}</usr/local/texlive/2017/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmmi10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmsy8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/courier/u
-crr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>
-</usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/loca
-l/texlive/2017/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on lostanlenPlayingTechniques.pdf (3 pages, 96936 bytes).
+{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
+exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/te
+xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texl
+ive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texliv
+e/2017/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2017/t
+exmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2017/texmf-dist/
+fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type
+1/urw/times/utmri8a.pfb>
+Output written on lostanlenPlayingTechniques.pdf (3 pages, 97510 bytes).
 PDF statistics:
  49 PDF objects out of 1000 (max. 8388607)
  35 compressed objects within 1 object stream
