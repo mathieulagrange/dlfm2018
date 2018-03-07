@@ -62,8 +62,8 @@ the next frontier in musical instrument recognition}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ABSTRACT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-Although the automatic recognition of a musical instrument from the recording of a single ``ordinary'' note is close to becoming solved problem, the ability of a computer to precisely identify playing technique within an extended taxonomy remains far below human accuracy.
-This article provides the first benchmark of machine listening systems for the classification of extended playing techniques in the symphonic orchestra.
+Although the automatic recognition of a musical instrument from the recording of a single ``ordinary'' note is close to becoming solved problem, the ability of a computer to precisely identify instrumental playing techniques (IPT) within an extended taxonomy remains far below human accuracy.
+This article provides the first benchmark of machine listening systems for the classification of instrumental playing techniques, including  in the symphonic orchestra.
 We identify three necessary conditions for significantly outperforming the classical mel-frequency cepstral coefficients (MFCC) baseline:
 (1) the inclusion of second-order scattering coefficients to account for the presence of amplitude modulations ;
 (2) the inclusion of large temporal scales ; and
@@ -100,6 +100,12 @@ One major cause of this gap in research is the difficulty of collecting and anno
 Fortunately, such obstacle has recently been overcome, owing to the creation of databases of instrumental samples in a perspective of spectralist music orchestration \cite{maresz2013cmr}.
 In this article, we capitalize on the availability of data to formulate a new line of research in MIR, namely the joint retrieval of organological information (``\emph{what} instrument is being played in this recordings?'') and chironomical information (``\emph{how} is the musician producing sound?''), while remaining invariant to other factors of variability, which are deliberately regarded as contextual: where, when, why, by whom, and for whom was the music (in this recording) played.
 
+Section 2 reviews the existing literature on the topic of retrieving information from instrumental playing techniques (IPT).
+Section 3 derives the task of IPT classification from the definition of both a taxonomy of instruments and a taxonomy of gestures.
+Section 4 describes how two topics in machine listening, namely scattering transforms and unsupervised metric learning, are relevant to address this task.
+Section 5 reports the results from an IPT classification benchmark on the Studio On Line (SOL) dataset.
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  RELATED WORK  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Related work}
@@ -122,10 +128,17 @@ Scattering transforms in musical instrument recognition: \cite{tjoa2010ismir,los
 
 
 
+% Out of scope are:
+% Variations in articulation: trill, slide. Unlike vibrato, they have a melodic function.
+% Variations in: artificial harmonics, subharmonics [ref Mari Kimura], 
+% Variations in phrasing: arpeggio, 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% SCATTERING TRANSFORM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  METHODS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methods}
+In this section, we point out the theoretical limitations of mel-frequency cepstral coefficients (MFCC) in the representation of musical sounds comprising with extended instrumental playing techniques (IPT), and describe how both the scattering transform and unsupervised metric learning may overcome such limitations.
+
+\subsection{Limitations of mel-frequency cepstral coefficients}
 
 \subsection{Scattering transform}
 
@@ -144,7 +157,8 @@ Scattering transforms in musical instrument recognition: \cite{tjoa2010ismir,los
 
 
 
-
+\section{Acknowledgments}
+% The authors wish to thank Andrew Farnsworth and (?) for fruitful discussions on Visipedia.
 
 
 
