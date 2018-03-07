@@ -15,6 +15,7 @@
 \usepackage{graphicx}
 \usepackage{color}
 \usepackage{xspace}
+\usepackage{siunitx}
 
 
 % Title.
@@ -47,7 +48,7 @@ the next frontier in musical instrument recognition}
 %\def\authorname{First author, Second author, Third author, Fourth author, Fifth author, Sixth author}
 
 
-\sloppy % please retain sloppy command for improved formatting
+%\sloppy % please retain sloppy command for improved formatting % how about no?
 
 \hyphenation{ma-rim-ba}
 \newcommand*{\eg}{e.g.\@\xspace}
@@ -78,7 +79,7 @@ the addition of new instruments to the Western symphonic instrumentarium, either
 the creation of novel instrumental associations, as epitomized by \emph{Klangfarbenmelodie} \cite{schoenberg2010book};
 the temporary alteration of resonant properties through mutes and other ``preparations'' \cite{dianova2007phd};
 a more systematic usage of extended instrumental techniques, such as artificial harmonics, \emph{col legno batutto}, or flutter tonguing \cite{kostka2016book};
-and the resort to digital audio effects \cite{zolzer2011dafx}.
+and the resort to electronic and digital audio effects \cite{zolzer2011dafx}.
 The first of these trends has somewhat stalled: to this day, most Western composers rely on an acoustic instrumentarium that is only marginally different from the one that was available in the Late Romantic period.
 Nevertheless, the latter approaches to timbral diversification were massively adopted into post-war contemporary music.
 In particular, an increased concern for the concept of musical gesture \cite{godoy2009book} has liberated many unconventional instrumental techniques from their figurativistic connotations, thus making the so-called ``ordinary'' playing style merely one of many compositional options.
@@ -126,7 +127,10 @@ Scattering transforms in musical instrument recognition: \cite{tjoa2010ismir,los
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  TASKS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Tasks}
 In this section, we distinguish taxonomies of musical instruments from taxonomies of musical gestures.
-% Adopt the Visipedia.
+
+% Disentangling factors in variability in the production of musical sounds.
+
+% Adopt the Visipedia approach.
 
 % Distinguish what the left hand does from what the right hand does?
 % Left hand: vibrato, 
@@ -139,6 +143,7 @@ In this section, we distinguish taxonomies of musical instruments from taxonomie
 % Variations in articulation: trill, slide. Unlike vibrato, they have a melodic function.
 % Variations in: artificial harmonics, subharmonics [ref Mari Kimura], 
 % Variations in phrasing: arpeggio, 
+% analog FX: 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  METHODS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -177,8 +182,11 @@ In this section, we apply the aforementioned methods to instrument playing techn
 Every quest for information is also a quest for invariance. [...]
 
 
-Our main finding is that mel-frequency cepstral coefficients (MFCC), although highly informative for musical instrument recognition in so-called ``ordinary'' notes, fail to discriminate extended instrumental techniques for at least two reasons.
-
+Our main finding is that mel-frequency cepstral coefficients (MFCC), although highly informative for musical instrument recognition in so-called ``ordinary'' notes, fail to discriminate extended instrumental techniques for at least three reasons.
+First, they summarize spectral envelope without retaining its amplitude modulations.
+Secondly, the frame rate at which they are computed ($T=\SI{25}{\milli\second}$ or so) is short enough to assume local stationarity, but not long enough to encompass all informative local correlations.
+Thirdly, the discrete cosine transform (DCT) over mel frequencies does not, contrary to a widespread belief, make them invariant to the frequency transposition of complex sounds.
+To address each of these shortcomings, we propose a simple pipeline of three elements: a time scattering transform; unsupervised metric learning over frequencies and modulation rates with large-margin nearest neighbors (LMNN); and a support vector machine (SVM) classifier.
 
 
 \section{Acknowledgments}
