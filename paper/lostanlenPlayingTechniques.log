@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  7 MAR 2018 19:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  9 MAR 2018 17:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -538,6 +538,12 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 65.
 
+Overfull \hbox (4.17499pt too wide) in paragraph at lines 66--72
+\OT1/ptm/m/n/10 in-stru-men-tal play-ing tech-niques, in-clud-ing ``ex-tended''
+ tech-
+ []
+
+
 Overfull \hbox (6.9147pt too wide) in paragraph at lines 77--86
 \OT1/ptm/m/n/10 The pro-gres-sive di-ver-si-fi-ca-tion of the tim-bral palette 
 in West-
@@ -561,45 +567,72 @@ Overfull \hbox (0.54514pt too wide) in paragraph at lines 96--99
 ven
  []
 
-
-Overfull \hbox (0.73506pt too wide) in paragraph at lines 114--124
-\OT1/ptm/m/n/10 recog-ni-tion us-ing spec-tral clus-ter-ing: [12]. Knowl-edge r
-ep-
- []
-
 [1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 
  <./figs/cc_by.pdf>]
-Overfull \hbox (1.64526pt too wide) in paragraph at lines 151--152
+Overfull \hbox (0.8651pt too wide) in paragraph at lines 116--119
+[]\OT1/ptm/m/n/10 Most of the datasets of mono-phonic in-stru-men-tal sounds
+ []
+
+
+Overfull \hbox (2.74481pt too wide) in paragraph at lines 120--126
+\OT1/ptm/m/n/10 on mu-si-cal in-stru-ment recog-ni-tion fo-cused on iso-lated n
+otes
+ []
+
+
+Overfull \hbox (7.52596pt too wide) in paragraph at lines 120--126
+\OT1/ptm/m/n/10 Peeters, and Dub-nov, 2003; Kamin-skyj and Cza-sze-jko, 2005;
+ []
+
+
+Overfull \hbox (1.69609pt too wide) in paragraph at lines 120--126
+\OT1/ptm/m/n/10 Mar-tin and Kim, 1998; Wiec-zorkowska and Zytkow, 2003).
+ []
+
+
+Overfull \hbox (5.29433pt too wide) in paragraph at lines 131--141
+[]\OT1/ptm/m/n/10 Timbre clas-si-fi-ca-tion of a sin-gle mu-si-cal in-stru-ment
+ (clar-
+ []
+
+
+Overfull \hbox (0.73506pt too wide) in paragraph at lines 131--141
+\OT1/ptm/m/n/10 recog-ni-tion us-ing spec-tral clus-ter-ing: [12]. Knowl-edge r
+ep-
+ []
+
+
+Overfull \hbox (1.64526pt too wide) in paragraph at lines 168--169
 \OT1/ptm/m/n/10 stru-men-tal play-ing tech-niques (IPT), and de-scribe how both
 
  []
 
 
-Overfull \hbox (2.71468pt too wide) in paragraph at lines 151--152
+Overfull \hbox (2.71468pt too wide) in paragraph at lines 168--169
 \OT1/ptm/m/n/10 the scat-ter-ing trans-form and su-per-vised met-ric learn-ing 
 may
  []
 
 
-Overfull \hbox (24.21529pt too wide) in paragraph at lines 181--194
+Overfull \hbox (24.21529pt too wide) in paragraph at lines 198--211
 \OT1/ptm/m/n/10 mean di-vide by vari-ance [] 
  []
 
 
-Overfull \hbox (36.62471pt too wide) in paragraph at lines 195--208
+Overfull \hbox (36.62471pt too wide) in paragraph at lines 212--225
 []\OT1/ptm/m/n/10 Scattering set-ting: [] 
  []
 
 
-Overfull \hbox (1.81483pt too wide) in paragraph at lines 234--239
+Overfull \hbox (1.81483pt too wide) in paragraph at lines 251--256
 \OT1/ptm/m/n/10 scat-ter-ing trans-form; un-su-per-vised met-ric learn-ing over
  fre-
  []
 
-(./lostanlenPlayingTechniques.bbl
+[2] (./lostanlenPlayingTechniques.bbl
 Underfull \hbox (badness 1221) in paragraph at lines 14--18
 []\OT1/ptm/m/n/10 Rachel M Bit-tner, Justin Sala-mon, Mike Tier-ney,
  []
@@ -609,7 +642,7 @@ Underfull \hbox (badness 1708) in paragraph at lines 14--18
 \OT1/ptm/m/n/10 Matthias Mauch, Chris Can-nam, and Juan Pablo
  []
 
-[2]
+
 Underfull \hbox (badness 1163) in paragraph at lines 47--50
 []\OT1/ptm/m/n/10 Vincent Lostanlen.  \OT1/ptm/m/it/10 Con-vo-lu-tional op-er-a
 -tors in the
@@ -620,27 +653,25 @@ Underfull \hbox (badness 1472) in paragraph at lines 62--66
 []\OT1/ptm/m/n/10 Luis Gus-tavo Mar-tins, Juan Jos[]e Burred, George
  []
 
-) [3
-
-] (./lostanlenPlayingTechniques.aux) ) 
+) [3] (./lostanlenPlayingTechniques.aux) ) 
 Here is how much of TeX's memory you used:
  12129 strings out of 492995
  249983 string characters out of 6132704
- 274814 words of memory out of 5000000
+ 275814 words of memory out of 5000000
  15581 multiletter control sequences out of 15000+600000
  25304 words of font info for 61 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
  39i,15n,33p,10377b,774s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2017/texmf-dist/fonts
-/enc/dvips/base/8r.enc}</usr/local/texlive/2017/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmmi10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmsy8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/courier/uc
-rr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><
-/usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local
-/texlive/2017/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on lostanlenPlayingTechniques.pdf (3 pages, 105887 bytes).
+{/usr/local/texlive/2017/texmf-dist/f
+onts/enc/dvips/base/8r.enc}</usr/local/texlive/2017/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmsy8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/courie
+r/ucrr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmb8a.p
+fb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/l
+ocal/texlive/2017/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on lostanlenPlayingTechniques.pdf (3 pages, 108536 bytes).
 PDF statistics:
  53 PDF objects out of 1000 (max. 8388607)
  38 compressed objects within 1 object stream

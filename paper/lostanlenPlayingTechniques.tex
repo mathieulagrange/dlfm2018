@@ -64,7 +64,7 @@ the next frontier in musical instrument recognition}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ABSTRACT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
 Although the automatic recognition of a musical instrument from the recording of a single ``ordinary'' note is close to becoming solved problem, the ability of a computer to precisely identify instrumental playing techniques (IPT) within an extended taxonomy remains far below human accuracy.
-This article provides the first benchmark of machine listening systems for the classification of instrumental playing techniques, including  in the symphonic orchestra.
+This article provides the first benchmark of machine listening systems for query-by-example browsing of instrumental playing techniques, including ``extended'' techniques such as reed slaps and , in the symphonic orchestra.
 We identify three necessary conditions for significantly outperforming the classical mel-frequency cepstral coefficients (MFCC) baseline:
 (1) the inclusion of second-order scattering coefficients to account for the presence of amplitude modulations ;
 (2) the inclusion of large temporal scales ; and
@@ -99,7 +99,8 @@ or, symmetrically, as a probe for the acoustical study of a given instrument, wi
 
 One major cause of this gap in research is the difficulty of collecting and annotating data for contemporary instrumental techniques.
 Fortunately, such obstacle has recently been overcome, owing to the creation of databases of instrumental samples in a perspective of spectralist music orchestration \cite{maresz2013cmr}.
-In this article, we capitalize on the availability of data to formulate a new line of research in MIR, namely the joint retrieval of organological information (``\emph{what} instrument is being played in this recordings?'') and chironomical information (``\emph{how} is the musician producing sound?''), while remaining invariant to other factors of variability, which are deliberately regarded as contextual: where, when, why, by whom, and for whom was the music (in this recording) played.
+In this article, we capitalize on the availability of data to formulate a new line of research in MIR, namely the joint retrieval of organological information (``\emph{what} instrument is being played in this recording?'') and chironomical information (``\emph{how} is the musician producing sound?''), while remaining invariant to other factors of variability, which are deliberately regarded as contextual: where, when, why, by whom, and for whom was the music (in this recording) played.
+% A high precision system would be useulf to composers, teachers, and students.
 
 Section 2 reviews the existing literature on the topic of retrieving information from instrumental playing techniques (IPT).
 Section 3 derives the task of IPT classification from the definition of both a taxonomy of instruments and a taxonomy of gestures.
@@ -110,6 +111,18 @@ Section 5 reports the results from an IPT classification benchmark on the Studio
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  RELATED WORK  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Related work}
+This section some of the recent MIR literature on the audio analysis of instrumental playing techniques.
+
+Most of the datasets of monophonic instrumental sounds consist of isolated notes, played at different pitches and nuances, in well-controlled recording conditions (Eerola and Ferrer, 2008; Goto et al., 2003).
+Notwithstanding their usefulness for acoustics, cognitive science, and music production, these datasets are of questionable interest in the realm of content-based information retrieval.
+Indeed, the classification of isolated notes is deemed to be a simpler problem than the classification of a full-length musical performance, in which the articulatory effects of interpretation bring more variability to the data.
+
+For lack of more appropriate datasets, the earliest works on musical instrument recognition focused on isolated notes (Brown, 1999; Eronen and Klapuri, 2000; Herrera-Boyer, Peeters, and Dubnov, 2003; Kaminskyj and Czaszejko, 2005; Martin and Kim, 1998; Wieczorkowskaand Zytkow, 2003).
+In this context, generalizing from the training set to the test set entails the construction of a representation of musical notes which is invariant to small variations in pitch and dynamics while remaining discriminative to qualitative timbre.
+More recently, Patil et al. (2012) have managed to classify isolated notes belonging to 11 instruments from the RWC dataset (Goto et al., 2003) with a mean accuracy of $98.7\%$.
+They used a collection of spectrotemporal receptive field (STRF) features, which are akin to time-frequency scattering features, and a support vector machine (SVM) classifier with a Gaussian kernel.Not only did they attain a near-perfect recognition rate, but they also found that the confusion matrix of the classifier was closely similar to the confusion matrix of human listeners.
+
+Drawing on these findings, it seems that the supervised classificationof musical instruments from recordings of isolated notes couldnow be considered a solved problem (Patil and Elhilali, 2015).
 
 Timbre classification of a single musical instrument (clarinet): \cite{loureiro2004ismir}.
 Retrieval of percussion gestures using timbre classification techniques: \cite{tindale2004ismir}.
@@ -229,7 +242,7 @@ mel &  & 1 & 19 \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CONCLUSION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 Every quest for information is also a quest for invariance. [...]
-
+% We have formulated the problem as query-by-example browsing. Another possible formulation would be textual description.
 
 Our main finding is that mel-frequency cepstral coefficients (MFCC), although highly informative for musical instrument recognition in so-called ``ordinary'' notes, fail to discriminate extended instrumental techniques for at least three reasons.
 First, they summarize spectral envelope without retaining its amplitude modulations.
@@ -240,6 +253,7 @@ To address each of these shortcomings, we propose a simple pipeline of three ele
 
 \section{Acknowledgments}
 % The authors wish to thank Andrew Farnsworth and (?) for fruitful discussions on Visipedia.
+% Catherine Krocker for helpful suggestions on the title of this article.
 
 
 
