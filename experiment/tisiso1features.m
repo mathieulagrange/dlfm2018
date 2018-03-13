@@ -45,14 +45,16 @@ obs.nbFamily = length(unique(family));
 obs.nbmodeFamily = length(unique(modeFamily));
 obs.nbFiles = length(fileList);
 
-[~, ~, gt] = unique(instrument);
+[instrumentNames, ~, gt] = unique(instrument);
 obs.clInstrument = hist(gt, (1:obs.nbInstrument));
-[~, ~, gt] = unique(mode);
+[modeNames, ~, gt] = unique(mode);
 obs.clMode = hist(gt, (1:obs.nbMode));
-[~, ~, gt] = unique(family);
+[familyNames, ~, gt] = unique(family);
 obs.clFamily = hist(gt, (1:obs.nbFamily));
-[~, ~, gt] = unique(modeFamily);
+[modeFamilyNames, ~, gt] = unique(modeFamily);
 obs.clmodeFamily = hist(gt, (1:obs.nbmodeFamily));
+
+save('solStats');
 
 store.instrument = instrument;
 store.mode = mode;
