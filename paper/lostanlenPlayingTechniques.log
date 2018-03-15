@@ -19,7 +19,7 @@ File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \c@paragraph=\count83
 \c@subparagraph=\count84
 \c@figure=\count85
-\c@table=\count86
+\c@table=\count86sdvodslzjc.sd,chsiludK>chDNk.
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
@@ -134,7 +134,7 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/siunitx/siunitx.sty
 (/usr/local/texlive/2017/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2017/05/13 L3 programming layer (loader) 
+Package: expl3 2017/05/13 L3 programming layer (loader)
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/l3kernel/expl3-code.tex
 Package: expl3 2017/05/13 L3 programming layer (code)
@@ -300,117 +300,117 @@ Package: l3keys2e 2017/05/13 LaTeX2e option processing using LaTeX3 keys
 \l__siunitx_table_text_align_skip=\skip57
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \DeclareBinaryPrefix with sig. 'mmm' on line 7251.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \DeclareSIPostPower with sig. 'mm' on line 7254.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \DeclareSIPrefix with sig. 'mmm' on line 7257.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \DeclareSIPrePower with sig. 'mm' on line 7260.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \DeclareSIQualifier with sig. 'mm' on line 7263.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \DeclareSIUnit with sig. 'O{}mm' on line 7266.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \DeclareSIUnitWithOptions with sig. 'mmm' on line 7269.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \ang with sig. 'o>{\SplitArgument {2}{;}}m' on line 7284.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \num with sig. 'om' on line 7293.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \numlist with sig. 'o>{\SplitList {;}}m' on line 7302.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \numrange with sig. 'omm' on line 7311.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \SIlist with sig. 'o>{\SplitList {;}}mm' on line 7323.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \SIrange with sig. 'ommm' on line 7335.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \SI with sig. 'omom' on line 7347.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \sisetup with sig. 'm' on line 7350.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \tablenum with sig. 'om' on line 7365.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \si with sig. 'om' on line 7377.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \numInBookmark with sig. 'om' on line 7424.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \numrangeInBookmark with sig. 'omm' on line 7426.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \SIInBookmark with sig. 'omom' on line 7428.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \SIlistInBookmark with sig. 'omm' on line 7430.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \SIrangeInBookmark with sig. 'ommm' on line 7432.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
-. 
+.
 . Defining command \siInBookmark with sig. 'om' on line 7433.
 .................................................
 \g__file_internal_ior=\read1
@@ -502,7 +502,7 @@ e
 ))
 (/usr/local/texlive/2017/texmf-dist/tex/latex/beamer/translator/dicts/translato
 r-basic-dictionary/translator-basic-dictionary-English.dict
-Dictionary: translator-basic-dictionary, Language: English 
+Dictionary: translator-basic-dictionary, Language: English
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/siunitx/siunitx-abbreviations.cfg
 File: siunitx-abbreviations.cfg 2017/05/19 v2.7g siunitx: Abbreviated units
@@ -518,7 +518,7 @@ LaTeX Font Info:    Try loading font information for OT1+pcr on input line 61.
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 Overfull \hbox (12.0pt too wide) in paragraph at lines 61--61
- [][] 
+ [][]
  []
 
 <figs/cc_by.pdf, id=1, 121.45375pt x 43.16125pt>
@@ -529,7 +529,7 @@ Package pdftex.def Info: figs/cc_by.pdf used on input line 61.
 LaTeX Font Info:    Try loading font information for OMS+ptm on input line 61.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/omsptm.fd
-File: omsptm.fd 
+File: omsptm.fd
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <8> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 61.
@@ -545,7 +545,7 @@ Overfull \hbox (4.17499pt too wide) in paragraph at lines 66--72
 
 
 Overfull \hbox (6.9147pt too wide) in paragraph at lines 77--86
-\OT1/ptm/m/n/10 The pro-gres-sive di-ver-si-fi-ca-tion of the tim-bral palette 
+\OT1/ptm/m/n/10 The pro-gres-sive di-ver-si-fi-ca-tion of the tim-bral palette
 in West-
  []
 
@@ -612,18 +612,18 @@ Overfull \hbox (1.64526pt too wide) in paragraph at lines 168--169
 
 
 Overfull \hbox (2.71468pt too wide) in paragraph at lines 168--169
-\OT1/ptm/m/n/10 the scat-ter-ing trans-form and su-per-vised met-ric learn-ing 
+\OT1/ptm/m/n/10 the scat-ter-ing trans-form and su-per-vised met-ric learn-ing
 may
  []
 
 
 Overfull \hbox (24.21529pt too wide) in paragraph at lines 198--211
-\OT1/ptm/m/n/10 mean di-vide by vari-ance [] 
+\OT1/ptm/m/n/10 mean di-vide by vari-ance []
  []
 
 
 Overfull \hbox (36.62471pt too wide) in paragraph at lines 212--225
-[]\OT1/ptm/m/n/10 Scattering set-ting: [] 
+[]\OT1/ptm/m/n/10 Scattering set-ting: []
  []
 
 
@@ -653,7 +653,7 @@ Underfull \hbox (badness 1472) in paragraph at lines 62--66
 []\OT1/ptm/m/n/10 Luis Gus-tavo Mar-tins, Juan Jos[]e Burred, George
  []
 
-) [3] (./lostanlenPlayingTechniques.aux) ) 
+) [3] (./lostanlenPlayingTechniques.aux) )
 Here is how much of TeX's memory you used:
  12129 strings out of 492995
  249983 string characters out of 6132704
@@ -677,4 +677,3 @@ PDF statistics:
  38 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
-
