@@ -18,6 +18,9 @@
 \usepackage{siunitx}
 
 
+\newcommand{\ml}[1]{\textcolor{blue}{ML : #1}}
+\newcommand{\vl}[1]{\textcolor{red}{VL : #1}}
+
 % Title.
 % ------
 \title{Extended playing techniques: \\
@@ -138,7 +141,7 @@ Scattering transforms in musical instrument recognition: \cite{tjoa2010ismir,los
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  TASKS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Tasks}
+\section{Task}
 In this section, we distinguish taxonomies of musical instruments from taxonomies of musical gestures.
 
 % Disentangling factors in variability in the production of musical sounds.
@@ -158,18 +161,22 @@ In this section, we distinguish taxonomies of musical instruments from taxonomie
 % Variations in phrasing: arpeggio,
 % analog FX:
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  METHODS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methods}
 In this section, we point out the theoretical limitations of mel-frequency cepstral coefficients (MFCC) in the representation of musical sounds comprising with extended instrumental playing techniques (IPT), and describe how both the scattering transform and supervised metric learning may overcome such limitations.
 
 \subsection{Limitations of mel-frequency cepstral coefficients}
 
-\subsection{Scattering transform}
+\ml{not sure we need to discuss this. We should include the mfccs as baseline but more focus on what is needed: a representation of the data that is able to reliably consider larger frame sizes than usually considered}
+
+\subsection{Representation} % Scattering transform
 \cite{anden2012dafx}
 
-\section{Large-margin nearest neighbors}
+\section{Supservised projection} % Large-margin nearest neighbors
 
+As shown in the experiments described in Section \ref{sec:exp}, it is helpful to consider a supervised projection of the scattering coefficients in order to select among the large dimensionality of the resulting feature space, which axes are relevant for the task at hand.
+
+One standard approach is the use of the linear discriminant analysis (LDA) that projects the objects...
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% EXPERIMENTAL RESULTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -178,18 +185,16 @@ In this section, we apply the aforementioned methods to instrument playing techn
 
 \subsection{Studio On Line (SOL) dataset}
 
-\begin{tabular}{cc}
-nbFiles & 25444 \\
-\hline
-nbInstruments & 16 \\
-nbPT & 143 \\
-\hline
-nbFilesPerInstrument & 1590 $\pm$936 \\
-nbFilesPerPT & 178 $\pm$429 \\
-\end{tabular}
+The Studio On Line (SOL) dataset have been recorded at Ircam and is part of the orchestration tools developed in the institute. It is composed of 25444 recordings of single tones played by 16 musical instruments: Accordion, Alto, Bass, Bassoon, Clarinet, Contrabass, Flute, Guitar, Harp, Horn, Oboe, Tenor, Trumpet, Viola, Violin, and Violoncello. The number of recordings per class of instrument is on average 1590 $\pm$936.  Each instrument is played at different nuance and pitch if relevant using 143 different playing technique. The average number of number playing techniques is 178 $\pm$429. The large variance is due to the fact that some playing techniques may be considered for many instruments such as \textit{ordinario}, whereas other are specific to some instruments such as \textit{flatterzunge}. Figure \ref{fig:pt} shows the playing techniques with the higher, lower and median number of recordings.
 
+\begin{figure}
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./figs/solStats}
+\label{fig:pt}
+\end{figure}
 
-\subsection{Musical instrument classification}
+\subsection{Musical instruments typology as reference}
+
+In this section, we report experimental results while considering the musical instruments as the reference. Thus the task aims at grouping together in the feature space, recordings that are played by the same musical instrument regardless of the nuance, pitch and playing technique.
 
 Baseline choice:
 cut: keep lowest 13 over 40
@@ -220,7 +225,7 @@ median & compress & standardize & p (\%) \\
 \end{tabular}
 
 
-\subsection{Instrumental playing technique classification}
+\subsection{Instrumental playing technique typology as reference}
 
 Baseline choice:
 \begin{tabular}{lllc}
