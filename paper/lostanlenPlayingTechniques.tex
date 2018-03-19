@@ -23,8 +23,10 @@
 
 % Title.
 % ------
-\title{Extended playing techniques: \\
-the next frontier in musical instrument recognition}
+%\title{Extended playing techniques: \\
+%the next frontier in musical instrument recognition}
+
+\title{Use of metric learning of scattering features improves extended playing techniques recognition}
 
 % Note: Please do NOT use \thanks or a \footnote in any of the author markup
 
@@ -161,6 +163,8 @@ In this section, we distinguish taxonomies of musical instruments from taxonomie
 % Variations in phrasing: arpeggio,
 % analog FX:
 
+\ml{also describe the evaluation methodology. Ranking for compositional use, query by example, etc}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  METHODS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methods}
 In this section, we point out the theoretical limitations of mel-frequency cepstral coefficients (MFCC) in the representation of musical sounds comprising with extended instrumental playing techniques (IPT), and describe how both the scattering transform and supervised metric learning may overcome such limitations.
@@ -169,14 +173,32 @@ In this section, we point out the theoretical limitations of mel-frequency cepst
 
 \ml{not sure we need to discuss this. We should include the mfccs as baseline but more focus on what is needed: a representation of the data that is able to reliably consider larger frame sizes than usually considered}
 
-\subsection{Representation} % Scattering transform
+\subsection{Scattering transform} % Scattering transform
 \cite{anden2012dafx}
 
-\section{Supservised projection} % Large-margin nearest neighbors
+\section{Metric learning} % Large-margin nearest neighbors
 
 As shown in the experiments described in Section \ref{sec:exp}, it is helpful to consider a supervised projection of the scattering coefficients in order to select among the large dimensionality of the resulting feature space, which axes are relevant for the task at hand.
 
-One standard approach is the use of the linear discriminant analysis (LDA) that projects the objects...
+May approaches can be considered to achieve such a task \cite{}. One standard approach is the use of the linear discriminant analysis (LDA) that linearly projects ($x \rarrow L x$) the input data into a features space of $C$-1 dimensions that maximizes the amount of between-class variance
+relative to the amount of within-class variance. The linear transformation $L$ is chosen to maximize the ratio of between-class to within-class variance,
+subject to the constraint that $L$ defines a projection matrix.
+
+
+A more flexible approach often taken in metric learning \cite{bellet2013survey} is to optimize a malahanobis matrix that linearly projects the input data into another feature space of the same dimensionality. In this case:
+\begin{equation}
+  M=L^T L
+\end{equation}
+and the resulting distance cane be expressed as follows:
+\begin{equation}
+  D_m(x, y) = (x_i-x_j)^T M(x_i-x_j)
+\end{equation}
+$x_i$ $x_j$ being features vectors. In this study, the large-margin nearest neighbors (LMNN) approach \cite{weinberger2006distance, weinberger2009distance} that optimizes the above described performance metric is considered. During the learning process, the following constraints are enforced: : the
+k nearest neighbors of any training instance should belong to the
+same class of the training instance ( the "pull" constraint) while keeping away instances of other classes (the "push" constraint).
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% EXPERIMENTAL RESULTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
