@@ -180,7 +180,7 @@ In this section, we point out the theoretical limitations of mel-frequency cepst
 
 As shown in the experiments described in Section \ref{sec:exp}, it is helpful to consider a supervised projection of the scattering coefficients in order to select among the large dimensionality of the resulting feature space, which axes are relevant for the task at hand.
 
-May approaches can be considered to achieve such a task \cite{}. One standard approach is the use of the linear discriminant analysis (LDA) that linearly projects ($x \rarrow L x$) the input data into a features space of $C$-1 dimensions that maximizes the amount of between-class variance
+May approaches can be considered to achieve such a task \cite{}. One standard approach is the use of the linear discriminant analysis (LDA) that linearly projects ($x \rightarrow L x$) the input data into a features space of $C$-1 dimensions that maximizes the amount of between-class variance
 relative to the amount of within-class variance. The linear transformation $L$ is chosen to maximize the ratio of between-class to within-class variance,
 subject to the constraint that $L$ defines a projection matrix.
 
@@ -202,7 +202,7 @@ same class of the training instance ( the "pull" constraint) while keeping away 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% EXPERIMENTAL RESULTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Experimental results}
+\section{Experimental results} \label{sec:exp}
 In this section, we apply the aforementioned methods to instrument playing techniques classification in the Studio On Line (SOL) dataset of musical instrument samples for spectralist orchestration.
 
 \subsection{Studio On Line (SOL) dataset}
