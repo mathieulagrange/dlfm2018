@@ -16,6 +16,8 @@
 \usepackage{color}
 \usepackage{xspace}
 \usepackage{siunitx}
+\usepackage{caption}
+\usepackage{subcaption}
 
 
 \newcommand{\ml}[1]{\textcolor{blue}{ML : #1}}
@@ -56,6 +58,9 @@ the next milestone in musical instrument recognition}
 %\sloppy % please retain sloppy command for improved formatting % how about no?
 
 \hyphenation{ma-rim-ba}
+\hyphenation{re-cog-ni-tion}
+\hyphenation{i-so-la-ted}
+
 \newcommand*{\eg}{e.g.\@\xspace}
 \newcommand*{\ie}{i.e.\@\xspace}
 \newcommand*{\resp}{resp.\@\xspace}
@@ -150,6 +155,51 @@ Scattering transforms in musical instrument recognition: \cite{tjoa2010ismir,los
 \section{Task}
 In this section, we distinguish taxonomies of musical instruments from taxonomies of musical gestures.
 
+
+\begin{figure}
+        \begin{subfigure}[b]{0.25\textwidth}
+                \centering
+                \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-ord-G4-mf_withaxes.eps}
+                \caption{Trumpet note (\emph{ordinario}).}
+                \label{fig:TpC-ord-G4-mf_withaxes}
+        \end{subfigure}%
+        \begin{subfigure}[b]{0.25\textwidth}
+                \centering
+                \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-ord-G3-mf_withaxes.eps}
+                \caption{Pitch (\emph{G3}).}
+                \label{fig:TpC-ord-G3-mf_withaxes}
+        \end{subfigure}%
+        
+        \begin{subfigure}[b]{0.25\textwidth}
+                \centering
+                \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-ord-G4-pp_withaxes.eps}
+                \caption{Intensity (\emph{pianissimo}).}
+                \label{fig:TpC-ord-G4-pp_withaxes}
+        \end{subfigure}%
+        \begin{subfigure}[b]{0.25\textwidth}
+                \centering
+                \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-sfz-G4-fp_withaxes.eps}
+                \caption{Attack (\emph{sfzorzando}).}
+                \label{fig:TpC-sfz-G4-fp_withaxes}
+        \end{subfigure}
+        
+        \begin{subfigure}[b]{0.25\textwidth}
+                \centering
+                \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-brassy-G4-ff_withaxes.eps}
+                \caption{Tone quality (\emph{brassy}).}
+                \label{fig:TpC-brassy-G4-mf_withaxes}
+        \end{subfigure}%
+        \begin{subfigure}[b]{0.25\textwidth}
+                \centering
+                \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-flatt-G4-mf_withaxes.eps}
+                \caption{Tonguing (\emph{flatterzunge}).}
+                \label{fig:TpC-flatt-G4-mf_withaxes}
+        \end{subfigure}
+        \caption{Ten variations of a musical note.}\label{fig:trumpet-variations}
+\end{figure}
+
+
+
 % Disentangling factors in variability in the production of musical sounds.
 
 % Adopt the Visipedia approach.
@@ -213,10 +263,10 @@ In this section, we apply the aforementioned methods to instrument playing techn
 
 The Studio On Line (SOL) dataset have been recorded at Ircam and is part of the orchestration tools developed in the institute. It is composed of 25444 recordings of single tones played by 16 musical instruments: Accordion, Alto, Bass, Bassoon, Clarinet, Contrabass, Flute, Guitar, Harp, Horn, Oboe, Tenor, Trumpet, Viola, Violin, and Violoncello. The number of recordings per class of instrument is on average 1590 $\pm$936.  Each instrument is played at different nuance and pitch if relevant using 143 different playing technique. The average number of number playing techniques is 178 $\pm$429. The large variance is due to the fact that some playing techniques may be considered for many instruments such as \textit{ordinario}, whereas other are specific to some instruments such as \textit{flatterzunge}. Figure \ref{fig:pt} shows the playing techniques with the higher, lower and median number of recordings.
 
-\begin{figure}
-\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./figs/solStats}
-\label{fig:pt}
-\end{figure}
+%\begin{figure}
+%\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./figs/solStats}
+%\label{fig:pt}
+%\end{figure}
 
 \subsection{Musical instruments typology as reference}
 
