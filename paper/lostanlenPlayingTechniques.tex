@@ -21,7 +21,7 @@
 % Title.
 % ------
 \title{Extended playing techniques: \\
-the next frontier in musical instrument recognition}
+the next milestone in musical instrument recognition}
 
 % Note: Please do NOT use \thanks or a \footnote in any of the author markup
 
@@ -100,7 +100,7 @@ or, symmetrically, as a probe for the acoustical study of a given instrument, wi
 One major cause of this gap in research is the difficulty of collecting and annotating data for contemporary instrumental techniques.
 Fortunately, such obstacle has recently been overcome, owing to the creation of databases of instrumental samples in a perspective of spectralist music orchestration \cite{maresz2013cmr}.
 In this article, we capitalize on the availability of data to formulate a new line of research in MIR, namely the joint retrieval of organological information (``\emph{what} instrument is being played in this recording?'') and chironomical information (``\emph{how} is the musician producing sound?''), while remaining invariant to other factors of variability, which are deliberately regarded as contextual: where, when, why, by whom, and for whom was the music (in this recording) played.
-% A high precision system would be useulf to composers, teachers, and students.
+% A high precision system would be useful to composers, teachers, and students.
 
 Section 2 reviews the existing literature on the topic of retrieving information from instrumental playing techniques (IPT).
 Section 3 derives the task of IPT classification from the definition of both a taxonomy of instruments and a taxonomy of gestures.
@@ -113,16 +113,17 @@ Section 5 reports the results from an IPT classification benchmark on the Studio
 \section{Related work}
 This section some of the recent MIR literature on the audio analysis of instrumental playing techniques.
 
-Most of the datasets of monophonic instrumental sounds consist of isolated notes, played at different pitches and nuances, in well-controlled recording conditions (Eerola and Ferrer, 2008; Goto et al., 2003).
-Notwithstanding their usefulness for acoustics, cognitive science, and music production, these datasets are of questionable interest in the realm of content-based information retrieval.
-Indeed, the classification of isolated notes is deemed to be a simpler problem than the classification of a full-length musical performance, in which the articulatory effects of interpretation bring more variability to the data.
 
-For lack of more appropriate datasets, the earliest works on musical instrument recognition focused on isolated notes (Brown, 1999; Eronen and Klapuri, 2000; Herrera-Boyer, Peeters, and Dubnov, 2003; Kaminskyj and Czaszejko, 2005; Martin and Kim, 1998; Wieczorkowskaand Zytkow, 2003).
+For lack of more appropriate datasets, the earliest works on musical instrument recognition focused on isolated notes (Brown, 1999; Eronen and Klapuri, 2000; Herrera-Boyer, Peeters, and Dubnov, 2003; Kaminskyj and Czaszejko, 2005; Martin and Kim, 1998; Wieczorkowska
+and Zytkow, 2003).
 In this context, generalizing from the training set to the test set entails the construction of a representation of musical notes which is invariant to small variations in pitch and dynamics while remaining discriminative to qualitative timbre.
 More recently, Patil et al. (2012) have managed to classify isolated notes belonging to 11 instruments from the RWC dataset (Goto et al., 2003) with a mean accuracy of $98.7\%$.
-They used a collection of spectrotemporal receptive field (STRF) features, which are akin to time-frequency scattering features, and a support vector machine (SVM) classifier with a Gaussian kernel.Not only did they attain a near-perfect recognition rate, but they also found that the confusion matrix of the classifier was closely similar to the confusion matrix of human listeners.
+They used a collection of spectrotemporal receptive field (STRF) features, which are akin to time-frequency scattering features, and a support vector machine (SVM) classifier with a Gaussian kernel.
+Not only did they attain a near-perfect recognition rate, but they also found that the confusion matrix of the classifier was closely similar to the confusion matrix of human listeners.
 
-Drawing on these findings, it seems that the supervised classificationof musical instruments from recordings of isolated notes couldnow be considered a solved problem (Patil and Elhilali, 2015).
+Drawing on these findings, it seems that the supervised classification
+of musical instruments from recordings of isolated notes could
+now be considered a solved problem (Patil and Elhilali, 2015).
 
 Timbre classification of a single musical instrument (clarinet): \cite{loureiro2004ismir}.
 Retrieval of percussion gestures using timbre classification techniques: \cite{tindale2004ismir}.
@@ -134,6 +135,9 @@ MedleyDB: \cite{bittner2014ismir}.
 Audio Set: \cite{gemmeke2017icassp}.
 Visipedia: \cite{belongie2015pattern}
 Scattering transforms in musical instrument recognition: \cite{tjoa2010ismir,lostanlen2017phd}.
+
+
+%Most of the datasets of monophonic instrumental sounds consist of isolated notes, played at different pitches and nuances, in well-controlled recording conditions (Eerola and Ferrer, 2008; Goto et al., 2003). Notwithstanding their usefulness for acoustics, cognitive science, and music production, these datasets are of questionable interest in the realm of content-based information retrieval. Indeed, the classification of isolated notes is deemed to be a simpler problem than the classification of a full-length musical performance, in which the articulatory effects of interpretation bring more variability to the data.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
