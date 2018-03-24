@@ -65,6 +65,7 @@ the next milestone in musical instrument recognition}
 \newcommand*{\ie}{i.e.\@\xspace}
 \newcommand*{\resp}{resp.\@\xspace}
 
+\sloppy 
 \begin{document}
 
 %
@@ -73,12 +74,23 @@ the next milestone in musical instrument recognition}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ABSTRACT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-Although the automatic recognition of a musical instrument from the recording of a single ``ordinary'' note is close to becoming a solved problem, the ability of a computer to precisely identify instrumental playing techniques (IPT) within an extended taxonomy remains far below human accuracy.
-This article provides the first benchmark of machine listening systems for query-by-example browsing of instrumental playing techniques, including ``extended'' techniques such as reed slaps and , in the symphonic orchestra.
-We identify three necessary conditions for significantly outperforming the classical mel-frequency cepstral coefficients (MFCC) baseline:
-(1) the inclusion of second-order scattering coefficients to account for the presence of amplitude modulations ;
-(2) the inclusion of large temporal scales ; and
-(3) the resort to supervised metric learning.
+The expressive variability in which a musical note can be produced conveys some
+essential information to the modeling of orchestration and style. Yet, although
+the automatic recognition of a musical instrument from the recording of a
+single ``ordinary'' note is now considered a solved problem, the ability of a
+computer to precisely identify instrumental playing techniques remains largely
+underdeveloped, and far below human accuracy. This article provides the first
+benchmark of machine listening systems for query-by-example browsing among
+among 143 instrumental playing techniques, including the most contemporary, for
+16 instruments in the symphonic orchestra, thus amounting to 469 triplets of
+instrument, mute, and technique. We identify and discuss three necessary
+conditions for significantly outperforming the classical mel-frequency cepstral
+coefficients (MFCC) baseline: the inclusion of second-order scattering
+coefficients to account for the presence of amplitude modulations ; the
+inclusion of long-range temporal dependencies ; and the resort to supervised
+metric learning. On the Studio On Line (SOL) dataset, we report a P@5 of $99.7\%$
+for instrument recognition (baseline at $92.5\%$) and of $61.0\%$ for playing
+technique recognition (baseline at $50.0\%$).
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
