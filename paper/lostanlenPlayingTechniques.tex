@@ -137,16 +137,21 @@ Section 5 reports the results from an IPT classification benchmark on the Studio
 This section some of the recent MIR literature on the audio analysis of instrumental playing techniques.
 
 % CITE ESLING PHD ON CAUSAL TIMBRE
-The earliest works on musical instrument recognition restricted their scope to individual notes played with an ordinary technique -- with datasets such as MUMS \cite{opolko1989dataset}, Iowa , RWC \cite{goto2003ismir}, and Philharmonia -- thus eliminating most factors of intra-class variability due to the performer  \cite{martin1998asa,brown1999jasa,eronen2000icassp,herrera2003jnmr,wieczorkowska2003jiis,kaminskyj2005jiis,benetos2006icassp}.
-These works have culminated with the development of a supervised classifier trained on spectrotemporal receptive fields (STRF), which are idealized computational models of neurophysiological responses in the central auditory system \cite{chi2005jasa}.
+The earliest works on musical instrument recognition restricted their scope to individual notes played with an ordinary technique -- with datasets such as MUMS \cite{opolko1989dataset}, Iowa, RWC \cite{goto2003ismir}, and Philharmonia -- thus eliminating most factors of intra-class variability due to the performer  \cite{martin1998asa,brown1999jasa,eronen2000icassp,herrera2003jnmr,wieczorkowska2003jiis,kaminskyj2005jiis,benetos2006icassp}.
+These works have culminated with the development of a support vector machine (SVM) classifier trained on spectrotemporal receptive fields (STRF), which are idealized computational models of neurophysiological responses in the central auditory system \cite{chi2005jasa}.
 Not only did it attain a near-perfect mean accuracy of $98.7\%$ on the RWC dataset, but the confusion matrix of its automated predictions was closely similar to the confusion matrix of human listeners \cite{patil2012plos}.
+Therefore, it seems that the supervised classification of musical instruments from recordings of ordinary notes could now be considered a solved problem; we refer to \cite{bhalke2016jiis} for a recent review of the state of the art.
 
-
+One straightforward extension of the problem above is the classification of solo phrases, encompassing some variability in melody \cite{krishna2004icassp}.
+Datasets of monophonic instrumental recordings are difficult to design, because the Western tradition of solo music is essentially limited to a narrow range of instruments (\eg{} piano, classical guitar, violin) and genres (sonatas, contemporary, free jazz, folk).
+We refer to \cite{han2017taslp} for a recent review of the state of the art.
 % \cite{livshin2003ismir} \cite{donnelly2015icdmw} \cite{bogdanov2016ismir}
 
+Without a careful curation of the musical data, uncontrolled correlations between instrumentation and other musical attributes, such as key or genre, may appear. 
 
-They used a collection of spectrotemporal receptive field (STRF) features, which are akin to time-frequency scattering features, and a support vector machine (SVM) classifier with a Gaussian kernel.
-Not only did they attain a near-perfect recognition rate, but they also found that the confusion matrix of the classifier was closely similar to the confusion matrix of human listeners.
+
+\cite{yip2017ismir}
+
 Drawing on these findings, it seems that the supervised classification
 of musical instruments from recordings of isolated notes could
 now be considered a solved problem \cite{patil2015eurasip}.
@@ -398,7 +403,7 @@ Thirdly, the discrete cosine transform (DCT) over mel frequencies does not, cont
 To address each of these shortcomings, we propose a simple pipeline of three elements: a time scattering transform; unsupervised metric learning over frequencies and modulation rates with large-margin nearest neighbors (LMNN); and a support vector machine (SVM) classifier.
 
 
-\section{Acknowledgments}
+%\section{Acknowledgments}
 % The authors wish to thank Andrew Farnsworth and (?) for fruitful discussions on Visipedia.
 % TICEL people.
 % Catherine Krocker for helpful suggestions on the title of this article.
