@@ -97,7 +97,7 @@ technique recognition (baseline at $50.0\%$).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INTRODUCTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}\label{sec:introduction}
 The progressive diversification of the timbral palette in Western classical music at the turn of the 20th century is reflected in five concurrent trends:
-the addition of new instruments to the Western symphonic instrumentarium, either by technological inventions (\eg theremin) or importation from non-Western musical cultures (\eg marimba) \cite{sachs2012book};
+the addition of new instruments to the symphonic instrumentarium, either by technological inventions (\eg theremin) or importation from non-Western musical cultures (\eg marimba) \cite{sachs2012book};
 the creation of novel instrumental associations, as epitomized by \emph{Klangfarbenmelodie} \cite{schoenberg2010book};
 the temporary alteration of resonant properties through mutes and other ``preparations'' \cite{dianova2007phd};
 a more systematic usage of extended instrumental techniques, such as artificial harmonics, \emph{col legno batutto}, or flutter tonguing \cite{kostka2016book};
@@ -114,6 +114,7 @@ the growl of the tenor saxophone in rock'n'roll,
 the shuffle stroke of the violin (``fiddle'') in Irish folklore,
 and the glissando of the clarinet in Klezmer music.
 Consequently, the mere knowledge of organology (the instrumental \emph{what?}~of music), as opposed to chironomics (its gestural \emph{how?}), is a rather weak source of information for browsing and recommending music within large audio databases.
+
 
 Yet, past research in music information retrieval (MIR), and especially machine listening, too rarely acknowledges the benefits of integrating the influence of performer gestures into a coherent taxonomy of musical instrument sounds.
 Instead, gestures are either framed as a spurious form of intra-class variability between instruments, without delving into its interdependencies with pitch and intensity;
@@ -135,21 +136,31 @@ Section 5 reports the results from an IPT classification benchmark on the Studio
 \section{Related work}
 This section some of the recent MIR literature on the audio analysis of instrumental playing techniques.
 
+% CITE ESLING PHD ON CAUSAL TIMBRE
+The earliest works on musical instrument recognition restricted their scope to datasets of individual notes played with an ordinary technique -- such as MUMS \cite{opolko1989dataset}, Iowa MIS, RWC \cite{goto2003ismir}, and Philharmonia -- thus eliminating most factors of intra-class variability due to the performer  \cite{martin1998asa,brown1999jasa,eronen2000icassp,herrera2003jnmr,wieczorkowska2003jiis,kaminskyj2005jiis,benetos2006icassp}.
+Such simplified formulation of 
 
-For lack of more appropriate datasets, the earliest works on musical instrument recognition focused on isolated notes (Brown, 1999; Eronen and Klapuri, 2000; Herrera-Boyer, Peeters, and Dubnov, 2003; Kaminskyj and Czaszejko, 2005; Martin and Kim, 1998; Wieczorkowska
-and Zytkow, 2003).
-In this context, generalizing from the training set to the test set entails the construction of a representation of musical notes which is invariant to small variations in pitch and dynamics while remaining discriminative to qualitative timbre.
-More recently, Patil et al. (2012) have managed to classify isolated notes belonging to 11 instruments from the RWC dataset (Goto et al., 2003) with a mean accuracy of $98.7\%$.
+% \cite{livshin2003ismir} \cite{donnelly2015icdmw} \cite{bogdanov2016ismir}
+A supervised classifier based on spectrotemporal receptive fields (STRF), which are idealized computational models of neurophysiological responses in the central auditory system, 
+
+In this context, generalizing from the training set to the test set entails the construction of a representation of musical notes which is invariant to variations in pitch and dynamics while remaining discriminative to qualitative timbre.
+More recently, \cite{patil2012plos} have managed to classify isolated notes belonging to 11 instruments from the RWC dataset \cite{goto2003ismir} with a mean accuracy of $98.7\%$.
 They used a collection of spectrotemporal receptive field (STRF) features, which are akin to time-frequency scattering features, and a support vector machine (SVM) classifier with a Gaussian kernel.
 Not only did they attain a near-perfect recognition rate, but they also found that the confusion matrix of the classifier was closely similar to the confusion matrix of human listeners.
-
 Drawing on these findings, it seems that the supervised classification
 of musical instruments from recordings of isolated notes could
-now be considered a solved problem (Patil and Elhilali, 2015).
+now be considered a solved problem \cite{patil2015eurasip}.
+
+
+Polyphonic mixtures.
+\cite{martins2007ismir}
+
+
+
+
 
 Timbre classification of a single musical instrument (clarinet): \cite{loureiro2004ismir}.
 Retrieval of percussion gestures using timbre classification techniques: \cite{tindale2004ismir}.
-Polyphonic instrument recognition using spectral clustering: \cite{martins2007ismir}.
 % Ref DCASE typology of acoustic events
 Knowledge representation issues in musical instrument ontology design: \cite{kolozali2011ismir}.
 Guitar playing technique classification: \cite{su2014ismir}.
@@ -302,7 +313,7 @@ and the resulting distance cane be expressed as follows:
 \begin{equation}
   D_m(x, y) = (x_i-x_j)^T M(x_i-x_j)
 \end{equation}
-$x_i$ $x_j$ being features vectors. In this study, the large-margin nearest neighbors (LMNN) approach \cite{weinberger2006distance, weinberger2009distance} that optimizes the above described performance metric is considered. During the learning process, the following constraints are enforced: : the
+$x_i$ $x_j$ being features vectors. In this study, the large-margin nearest neighbors (LMNN) approach \cite{weinberger2006nips, weinberger2009jmlr} that optimizes the above described performance metric is considered. During the learning process, the following constraints are enforced: : the
 k nearest neighbors of any training instance should belong to the
 same class of the training instance ( the "pull" constraint) while keeping away instances of other classes (the "push" constraint).
 
@@ -389,6 +400,7 @@ To address each of these shortcomings, we propose a simple pipeline of three ele
 
 \section{Acknowledgments}
 % The authors wish to thank Andrew Farnsworth and (?) for fruitful discussions on Visipedia.
+% TICEL people.
 % Catherine Krocker for helpful suggestions on the title of this article.
 
 
