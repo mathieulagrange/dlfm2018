@@ -80,7 +80,7 @@ The expressive variability in which a musical note can be produced conveys some
 essential information to the modeling of orchestration and style. Yet, although
 the automatic recognition of a musical instrument from the recording of a
 single ``ordinary'' note is now considered a solved problem, the ability of a
-computer to precisely identify instrumental playing techniques remains largely
+computer to precisely identify instrumental playing techniques (IPT) remains largely
 underdeveloped, and far below human accuracy. This article provides the first
 benchmark of machine listening systems for query-by-example browsing among
 among 143 instrumental playing techniques, including the most contemporary, for
@@ -91,8 +91,7 @@ coefficients (MFCC) baseline: the inclusion of second-order scattering
 coefficients to account for the presence of amplitude modulations ; the
 inclusion of long-range temporal dependencies ; and the resort to supervised
 metric learning. On the Studio On Line (SOL) dataset, we report a P@5 of $99.7\%$
-for instrument recognition (baseline at $92.5\%$) and of $61.0\%$ for playing
-technique recognition (baseline at $50.0\%$).
+for instrument recognition (baseline at $92.5\%$) and of $61.0\%$ for instrumental playing technique recognition (baseline at $50.0\%$).
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -121,7 +120,6 @@ technique recognition (baseline at $50.0\%$).
                 \caption{Intensity (\emph{pianissimo}).}
                 \label{fig:TpC-ord-G4-pp_withaxes}
         \end{subfigure}%
-        
         \begin{subfigure}{0.25\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-brassy-G4-ff_withaxes.eps}
@@ -134,7 +132,7 @@ technique recognition (baseline at $50.0\%$).
                 \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-sfz-G4-fp_withaxes.eps}
                 \caption{Attack (\emph{sfzorzando}).}
                 \label{fig:TpC-sfz-G4-fp_withaxes}
-        \end{subfigure}
+        \end{subfigure}%
         \begin{subfigure}{0.25\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-flatt-G4-mf_withaxes.eps}
@@ -148,14 +146,13 @@ technique recognition (baseline at $50.0\%$).
                 \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-trill-maj2-G4-mf_withaxes.eps}
                 \caption{Articulation (\emph{trill}).}
                 \label{fig:TpC-trill-maj2-G4-mf_withaxes}
-        \end{subfigure}
-        
+        \end{subfigure}%
         \begin{subfigure}[b]{0.25\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC+H-ord-G4-mf_withaxes.eps}
                 \caption{Mute (\emph{harmon}).}
                 \label{fig:TpC+H-ord-G4-mf_withaxes}
-        \end{subfigure}%
+        \end{subfigure}
         
         \begin{subfigure}[b]{0.25\textwidth}
                 \centering
@@ -166,8 +163,8 @@ technique recognition (baseline at $50.0\%$).
         \begin{subfigure}[b]{0.25\textwidth}
                 \centering
 %                \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-trill-maj2-G4-mf_withaxes.eps}
-                \caption{Instrument (\emph{guitar}).}
-                \label{fig:TpC-trill-maj2-G4-mf_withaxes}
+                \caption{Instrument (\emph{violin}).}
+                \label{fig:Vl}
         \end{subfigure}
         \caption{Ten variations of a musical note.}\label{fig:trumpet-variations}
 \end{figure}
@@ -201,10 +198,10 @@ Fortunately, such obstacle has recently been overcome, owing to the creation of 
 In this article, we capitalize on the availability of data to formulate a new line of research in MIR, namely the joint retrieval of organological information (``\emph{what} instrument is being played in this recording?'') and chironomical information (``\emph{how} is the musician producing sound?''), while remaining invariant to other factors of variability, which are deliberately regarded as contextual: where, when, why, by whom, and for whom was the music (in this recording) played.
 
 Figure \ref{fig:TpC-ord-G4-mf_withaxes} shows the constant-$Q$ wavelet transform (CQT) of a trumpet musical note, as played with an ordinary technique.
+Unlike most existing publications on instrument classification, which exclusively focus on pitch (Figure \ref{fig:TpC-ord-G3-mf_withaxes}) and intensity (Figure \ref{fig:TpC-ord-G4-pp_withaxes}) as the main factors of intra-class variability, this paper aims at accounting for the presence of instrumental playing techniques (IPT), such as changes in tone quality (Figure \ref{fig:TpC-brassy-G4-mf_withaxes}), attack (Figure \ref{fig:TpC-sfz-G4-fp_withaxes}), tonguing (Figure \ref{fig:TpC-flatt-G4-mf_withaxes}), and articulation (Figure \ref{fig:TpC+H-ord-G4-mf_withaxes}), either as intra-class variability (instrument recognition task) or as inter-class variability (IPT recognition task).
 
 
-
-Section 2 reviews the existing literature on the topic of retrieving information from instrumental playing techniques (IPT).
+Section 2 reviews the existing literature on the topic.
 Section 3 derives the task of IPT classification from the definition of both a taxonomy of instruments and a taxonomy of gestures.
 Section 4 describes how two topics in machine listening, namely scattering transforms and supervised metric learning, are relevant to address this task.
 Section 5 reports the results from an IPT classification benchmark on the Studio On Line (SOL) dataset.
