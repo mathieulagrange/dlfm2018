@@ -21,6 +21,7 @@ scat_lmnn_mode = f_lines(3).YData;
 %%
 mfcc_color = 'b';
 scat_color = 'r';
+legends = {'MFCC', 'MFCC + LMNN', 'scattering', 'scattering + LMNN'};
 
 clf();
 figure(2);
@@ -34,7 +35,14 @@ plot(log10(time_scales), scat_none_inst, '--o', ...
     'LineWidth', 2.0, 'Color', scat_color, 'MarkerSize', 6);
 plot(log10(time_scales), scat_lmnn_inst, '-o', ...
     'LineWidth', 2.0, 'Color', scat_color);
+xlim([log10(0.015), log10(1.5)]);
 ylim([75 100]);
+xticks(log10(time_scales));
+xticklabels(time_scales*1000);
+legend(legends, 'Location', 'southwest');
+xlabel('Time scale (ms)');
+ylabel('Precision @ 5 (%)');
+title('Instrument retrieval');
 hold off;
 
 subplot(122);
@@ -48,5 +56,11 @@ plot(log10(time_scales), scat_none_mode, '--o', ...
 plot(log10(time_scales), scat_lmnn_mode, '-o', ...
     'LineWidth', 2.0, 'Color', scat_color);
 hold off;
+xticks(log10(time_scales));
+xticklabels(time_scales*1000);
+xlim([log10(0.015), log10(1.5)]);
 ylim([40 65]);
+xlabel('Time scale (ms)');
+ylabel('Precision @ 5 (%)');
+title('Playing technique retrieval');
 set(gcf(), 'WindowStyle', 'docked');
