@@ -134,13 +134,16 @@ Section 5 reports the results from an IPT classification benchmark on the Studio
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  RELATED WORK  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Related work}
-This section some of the recent MIR literature on the audio analysis of instrumental playing techniques, with a focus on the available datasets afferent to each formulation of the problem.
+This section some of the recent MIR literature on the audio analysis of instrumental playing techniques, 
+with a focus on the available datasets afferent to each formulation of the problem.
 
+\subsection{Classification of ordinary isolated notes}
 The earliest works on musical instrument recognition restricted their scope to individual notes played with an ordinary technique -- with datasets such as MUMS \cite{opolko1989dataset}, MIS, RWC \cite{goto2003ismir}, and Philharmonia -- thus eliminating most factors of intra-class variability due to the performer  \cite{martin1998asa,brown1999jasa,eronen2000icassp,herrera2003jnmr,wieczorkowska2003jiis,kaminskyj2005jiis,benetos2006icassp}.
 These works have culminated with the development of a support vector machine (SVM) classifier trained on spectrotemporal receptive fields (STRF), which are idealized computational models of neurophysiological responses in the central auditory system \cite{chi2005jasa}.
 Not only did it attain a near-perfect mean accuracy of $98.7\%$ on the RWC dataset, but the confusion matrix of its automated predictions was closely similar to the confusion matrix of human listeners \cite{patil2012plos}.
 Therefore, it seems that the supervised classification of musical instruments from recordings of ordinary notes could now be considered a solved problem; we refer to \cite{bhalke2016jiis} for a recent review of the state of the art.
 
+\subsection{Classification of solo recordings}
 One straightforward extension of the problem above is the classification of solo phrases, encompassing some variability in melody \cite{krishna2004icassp}, for which the accuracy of STRF models is around $80\%$ \cite{patil2015eurasip}.
 Since the Western tradition of solo music is essentially limited to a narrow range of instruments (\eg{} piano, classical guitar, violin) and genres (sonatas, contemporary, free jazz, folk), datasets of solo phrases, such as solosDb \cite{joder2009taslp}, are particularly difficult to design.
 This issue is partially mitigated by the recent surge of multitrack datasets, such as MedleyDB \cite{bittner2014ismir}, which has spurred a renewed interest in monophonic instrumental recordings \cite{yip2017ismir}.
@@ -148,20 +151,27 @@ In addition, the cross-collection evaluation methodology \cite{livshin2003ismir}
 To this date, the best classifier of solo recordings is a spiral convolutional network \cite{lostanlen2016ismir} trained on the Medley-solos-DB dataset \cite{lostanlen2018msdb}, \ie{} a cross-collection dataset which aggregates MedleyDB and solosDB following the procedure of \cite{donnelly2015icdmw}.
 We refer to \cite{han2017taslp} for a recent review of the state of the art.
 
-
-Without a careful curation of the musical data, uncontrolled correlations between instrumentation and other musical attributes, such as key or genre, may appear. 
-\cite{mcfee2016ismir}
+\subsection{Multilabel classification in polyphonic mixtures}
+The most realistic formulation of musical instrument recognition
 Polyphonic mixtures.
 \cite{martins2007ismir}
 \cite{burred2009icassp}
 \cite{fuhrmann2010dafx}
+Without a careful curation of the musical data, uncontrolled correlations between instrumentation and other musical attributes, such as key or genre, may appear.
+The Open-MIC initiative, from the newly created Community for Open and Sustainable Music and Information Research (COSMIR), might contribute to resolving these methodological issues in the future \cite{mcfee2016ismir}.
+
+\subsection{Single-instrument playing technique classification}
+
+Lastly, there is a vast array of literature addressing the topic of the role of the performer in the acoustics of musical instruments.
+
+\cite{metcalf2014frontiers}
+
+Clarinet \cite{loureiro2004ismir}, percussion \cite{tindale2004ismir}, piano \cite{bernays2013smc}, guitar \cite{foulon2013cmmr,su2014ismir,chen2015ismir}, and erhu \cite{yang2014fma}.
 
 
+We refer to \cite{leman2017chapter} for a recent review of the state of the art.
 
-Timbre classification of a single musical instrument (clarinet): \cite{loureiro2004ismir}.
-Retrieval of percussion gestures using timbre classification techniques: \cite{tindale2004ismir}.
-Cross-cultural Comparisons of Expressivity in Recorded Erhu and Violin Music: Performer Vibrato Styles: \cite{yang2014fma}.
-ELECTRIC GUITAR PLAYING TECHNIQUE DETECTION INREAL-WORLD RECORDINGS BASED ON F0 SEQUENCE PATTERNRECOGNITION: \cite{chen2015ismir}
+
 
 % Ref DCASE typology of acoustic events
 Knowledge representation issues in musical instrument ontology design: \cite{kolozali2011ismir}.
@@ -174,9 +184,30 @@ Scattering transforms in musical instrument recognition: \cite{tjoa2010ismir,los
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  TASKS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Task}
+\section{Tasks}
 In this section, we distinguish taxonomies of musical instruments from taxonomies of musical gestures.
 
+
+\subsection{Taxonomies}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{./figs/dendrograms/instrument-dendrogram.eps}
+\caption{Taxonomy of musical instruments.}
+\label{fig:instrument-dendrogram}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{./figs/dendrograms/technique-dendrogram.eps}
+\caption{Taxonomies of playing techniques.}
+\label{fig:technique-dendrogram}
+\end{figure}
+
+
+
+\subsection{Studio On Line (SOL) dataset}
 
 \begin{figure}
         \begin{subfigure}[b]{0.25\textwidth}
@@ -249,21 +280,6 @@ In this section, we distinguish taxonomies of musical instruments from taxonomie
 \end{figure}
 
 
-\begin{figure}
-\centering
-\includegraphics[width=\linewidth]{./figs/dendrograms/instrument-dendrogram.eps}
-\caption{Taxonomy of musical instruments.}
-\label{fig:instrument-dendrogram}
-\end{figure}
-
-
-\begin{figure}
-\centering
-\includegraphics[width=\linewidth]{./figs/dendrograms/technique-dendrogram.eps}
-\caption{Taxonomies of playing techniques.}
-\label{fig:technique-dendrogram}
-\end{figure}
-
 
 % Disentangling factors in variability in the production of musical sounds.
 
@@ -284,18 +300,16 @@ In this section, we distinguish taxonomies of musical instruments from taxonomie
 
 \ml{also describe the evaluation methodology. Ranking for compositional use, query by example, etc}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  METHODS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methods}
 In this section, we point out the theoretical limitations of mel-frequency cepstral coefficients (MFCC) in the representation of musical sounds comprising with extended instrumental playing techniques (IPT), and describe how both the scattering transform and supervised metric learning may overcome such limitations.
 
-\subsection{Limitations of mel-frequency cepstral coefficients}
-
-\ml{not sure we need to discuss this. We should include the mfccs as baseline but more focus on what is needed: a representation of the data that is able to reliably consider larger frame sizes than usually considered}
 
 \subsection{Scattering transform} % Scattering transform
 \cite{anden2012dafx}
 
-\section{Metric learning} % Large-margin nearest neighbors
+\subsection{Metric learning} % Large-margin nearest neighbors
 
 As shown in the experiments described in Section \ref{sec:exp}, it is helpful to consider a supervised projection of the scattering coefficients in order to select among the large dimensionality of the resulting feature space, which axes are relevant for the task at hand.
 
@@ -304,7 +318,7 @@ relative to the amount of within-class variance. The linear transformation $L$ i
 subject to the constraint that $L$ defines a projection matrix.
 
 
-A more flexible approach often taken in metric learning \cite{bellet2013survey} is to optimize a malahanobis matrix that linearly projects the input data into another feature space of the same dimensionality. In this case:
+A more flexible approach often taken in metric learning \cite{bellet2013survey} is to optimize a Mahalanobis matrix that linearly projects the input data into another feature space of the same dimensionality. In this case:
 \begin{equation}
   M=L^T L
 \end{equation}
