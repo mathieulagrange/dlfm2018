@@ -199,7 +199,7 @@ In this article, we capitalize on the availability of data to formulate a new li
 
 Figure \ref{fig:TpC-ord-G4-mf_withaxes} shows the constant-$Q$ wavelet transform (CQT) of a trumpet musical note, as played with an ordinary technique.
 Unlike most existing publications on instrument classification, which exclusively focus on pitch (Figure \ref{fig:TpC-ord-G3-mf_withaxes}) and intensity (Figure \ref{fig:TpC-ord-G4-pp_withaxes}) as the main factors of intra-class variability, this paper aims at accounting for the presence of instrumental playing techniques (IPT), such as changes in tone quality (Figure \ref{fig:TpC-brassy-G4-mf_withaxes}), attack (Figure \ref{fig:TpC-sfz-G4-fp_withaxes}), tonguing (Figure \ref{fig:TpC-flatt-G4-mf_withaxes}), and articulation (Figure \ref{fig:TpC+H-ord-G4-mf_withaxes}), either as intra-class variability (instrument recognition task) or as inter-class variability (IPT recognition task).
-The analysis of 
+The analysis of playing techniques whose definition necessarily involve more than a single musical event, such as phrasing (Figure \ref{fig:TpC+voc-harms-G4-mf_withaxes}), is beyond the scope of this paper.
 
 
 Section 2 reviews the existing literature on the topic.
@@ -357,55 +357,24 @@ In this section, we apply the aforementioned methods to instrument playing techn
 %\label{fig:pt}
 %\end{figure}
 
-\subsection{Musical instruments typology as reference}
+\subsection{Evaluation of instrument recognition}
 
 In this section, we report experimental results while considering the musical instruments as the reference. Thus the task aims at grouping together in the feature space, recordings that are played by the same musical instrument regardless of the nuance, pitch and playing technique.
 
-Baseline choice:
-cut: keep lowest 13 over 40
-std: remove mean divide by variance
-\begin{tabular}{lllc}
-features & cut & standardize & p (\%) \\
-\hline
-mfcc & 0 & 0 & 85 \\
-mfcc & 0 & 1 & 84 \\
-mfcc & 1 & 0 & 88 \\
-mfcc & 1 & 1 & \textbf{\textcolor{red}{89}} \\
-mel &  & 0 & 53 \\
-mel &  & 1 & 50 \\
-\end{tabular}
-
-Scattering setting:
-\begin{tabular}{lllc}
-median & compress & standardize & p (\%) \\
-\hline
-0 & 0 & 0 & 64 \\
-0 & 0 & 1 & 76 \\
-0 & 1 & 0 & 84 \\
-0 & 1 & 1 & 83 \\
-1 & 0 & 0 & 77 \\
-1 & 0 & 1 & 76 \\
-1 & 1 & 0 & \textbf{\textcolor{red}{89}} \\
-1 & 1 & 1 & 89 \\
-\end{tabular}
+MFCC: $89\%$.
+Keeping all $40$ MFCC rather than the lowest $13$ degrades accuracy down to $84\%$.
 
 
-\subsection{Instrumental playing technique typology as reference}
-
-Baseline choice:
-\begin{tabular}{lllc}
-features & cut & standardize & p (\%) \\
-\hline
-mfcc & 0 & 0 & 35 \\
-mfcc & 0 & 1 & 32 \\
-mfcc & 1 & 0 & \textbf{\textcolor{red}{46}} \\
-mfcc & 1 & 1 & 45 \\
-mel &  & 0 & 19 \\
-mel &  & 1 & 19 \\
-\end{tabular}
+Scattering: $89\%$. Disabling median renormalization: $84\%$. Disabling logarithmic compression: $76\%$. These results are consistent with \cite{lostanlen2017phd}.
 
 
-\subsection{Discussion}
+\subsection{Evaluation of playing technique recognition}
+
+MFCC: $45\%$. 
+
+
+\subsection{Evaluation of playing technique recognition}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
