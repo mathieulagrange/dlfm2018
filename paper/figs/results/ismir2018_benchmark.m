@@ -1,3 +1,4 @@
+
 f = open('Fig149.fig');
 
 %%
@@ -63,4 +64,8 @@ ylim([40 65]);
 xlabel('Time scale (ms)');
 ylabel('Precision @ 5 (%)');
 title('Playing technique retrieval');
-set(gcf(), 'WindowStyle', 'docked');
+%set(gcf(), 'WindowStyle', 'docked');
+
+
+set(gcf(), 'Position', [1, 1, 445, 351]);
+export_fig results.png -m4 -transparent
