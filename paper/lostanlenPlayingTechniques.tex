@@ -387,7 +387,7 @@ Our main finding is that mel-frequency cepstral coefficients (MFCC), although hi
 First, they summarize spectral envelope without retaining its amplitude modulations.
 Secondly, the frame rate at which they are computed ($T=\SI{25}{\milli\second}$ or so) is short enough to assume local stationarity, but not long enough to encompass all informative local correlations.
 Thirdly, the discrete cosine transform (DCT) over mel frequencies does not, contrary to a widespread belief, make them invariant to the frequency transposition of complex sounds.
-To address each of these shortcomings, we propose a simple pipeline of three elements: a time scattering transform; unsupervised metric learning over frequencies and modulation rates with large-margin nearest neighbors (LMNN); and a support vector machine (SVM) classifier.
+To address each of these shortcomings, we propose a simple pipeline of three elements: a time scattering transform; an unsupervised renormalization procedure; and a supervised metric learning over frequencies and modulation rates with large-margin nearest neighbors (LMNN).
 
 
 %\section{Acknowledgments}
