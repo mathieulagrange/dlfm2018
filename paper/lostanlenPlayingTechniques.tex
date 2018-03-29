@@ -295,6 +295,8 @@ Visipedia: \cite{belongie2015pattern}.
 \cite{maresz2013cmr}
 \cite{lagrange2015jasa}
 
+\ml{also describe the evaluation methodology. Ranking for compositional use, query by example, etc}
+
 \subsection{Studio On Line (SOL) dataset}
 
 
@@ -337,7 +339,6 @@ The Studio On Line (SOL) dataset have been recorded at Ircam and is part of the 
 % Variations in phrasing: arpeggio,
 % analog FX:
 
-\ml{also describe the evaluation methodology. Ranking for compositional use, query by example, etc}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  METHODS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -350,6 +351,14 @@ In this section, we point out the theoretical limitations of mel-frequency cepst
 
 We refer to \cite{anden2014taslp} for a general introduction to scattering transforms in audio classification, and to \cite{lostanlen2017phd} for a discussion on its application to musical instrument classification in solo recordings.
 \cite{anden2012dafx}
+
+\begin{equation}
+\widetilde{\mathbf{S}} \boldsymbol{x}_n(\lambda) =
+\log \left(
+1 + \dfrac{\mathbf{S}\boldsymbol{x}_n(\lambda)}{\varepsilon \times \boldsymbol{\mu}(\lambda)}
+\right)
+\end{equation}
+where $\varepsilon = 10^{-3}$ and $\boldsymbol{\mu}(\lambda)$ is the median value of the scattering coefficient $\mathbf{S}\boldsymbol{x}_n (\lambda)$ for path $\lambda$ across samples $n$ in the training set.
 
 \subsection{Metric learning} % Large-margin nearest neighbors
 
