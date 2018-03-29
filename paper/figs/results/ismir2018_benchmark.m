@@ -81,7 +81,7 @@ xticklabels(time_scales*1000);
 xlim([log10(0.015), log10(1.5)]);
 ylim([40 65]);
 xlabel('Time scale (ms)');
-ylabel('Precision @ 5 (%)');
+%ylabel('Precision @ 5 (%)');
 title('Playing technique retrieval');
 %set(gcf(), 'WindowStyle', 'docked');
 
