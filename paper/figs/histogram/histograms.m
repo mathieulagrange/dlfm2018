@@ -35,8 +35,8 @@ export_fig -transparent -m8 histogram_instruments.png
 
 
 %%
-x_offset = 0.15; 
-x_ticks = [5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000];
+x_offset = 1/15; 
+x_ticks = [20, 50, 100, 200, 500, 1000, 2000, 5000];
 
 mfamily_values = countcats(categorical(modeFamily));
 mfamily_keys = unique(modeFamily);
@@ -64,7 +64,6 @@ yticks(mfamily_ys);
 ylim([0, n_families+2]);
 yticklabels(mfamily_keys);
 
-ylabel('Y Axis', 'FontSize',12)
 xt = get(gca, 'YTick');
 set(gca, 'FontSize', 16)
 
