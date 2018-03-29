@@ -1,4 +1,5 @@
 %%
+addpath(genpath('~/MATLAB/scattering.m'));
 clear opts;
 opts{1}.time.size = 65536;
 opts{1}.time.T = 2^10;
@@ -14,7 +15,6 @@ archs = sc_setup(opts);
 
 %%
 
-addpath(genpath('~/MATLAB/scattering.m'));
 samples = { ...
     'TpC-ord-G4-mf.wav', ...
     'TpC-ord-E4-mf.wav', ...
@@ -25,13 +25,14 @@ samples = { ...
     'TpC-flatt-G4-mf.wav', ...
     'TpC+H-ord-G4-mf.wav', ...
     'TpC-trill-maj2-G4-mf.wav', ...
-    'TpC-voc-harms-C4-mf.wav'};
+    'TpC-voc-harms-C4-mf.wav', ...
+    'Vn-ord-G4-mf-4c.wav'};
 
 nSamples = length(samples);
-shifts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+shifts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 
-for sample_index = 1:nSamples
+for sample_index = nSamples%1:nSamples
     sample_str = samples{sample_index};
     [sample_x, sr] = audioread(sample_str);
     sample_x = sample_x(1:65536) .* tukeywin(65536, 0.2);
@@ -44,3 +45,6 @@ for sample_index = 1:nSamples
     axis off;
     savefig(gcf, [sample_str(1:(end-4)), '.fig'], 'compact');
 end
+
+%%
+export_fig 
