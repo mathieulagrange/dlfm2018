@@ -268,7 +268,7 @@ The only example of node in the MedleyDB taxonomy reaching this level is \emph{t
 Unlike musical instruments, which are approximately amenable to a hierarchical taxonomy of resonating objects, playing techniques result from a complex synchronization between multiple gestures, which may involve both hands and arms, as well as diaphragm, vocal tract, and sometimes the whole body.
 As a result, there is no immediate way to interface them with H-S, or any tree-like structure of that sort \cite{kolozali2011ismir}.
 Instead, every playing technique is described by a finite collection of categories, each belonging to a different ``namespace''; Figure \ref{fig:technique-dendrogram} illustrates such namespaces in the case of the violin.
-% Folksonomy
+It therefore appears that, rather than aiming for a mere increase in granularity with respect to H-S, a coherent research program around extended playing techniques should formulate them as belonging to a meronomy, \ie{} a modular entanglement of part-whole relationships, in the fashion of the Visipedia initiative in computer vision \cite{belongie2015pattern}.
 Some music philosophy scholars have begun advocating for supplanting H-S altogether by a modular \cite{magnusson2017jnmr}
 However, such considerations are still in large part speculative, and offer no definitive procedure for training, let alone evaluating, information retrieval systems.
 
@@ -278,11 +278,9 @@ However, such considerations are still in large part speculative, and offer no d
 \caption{Namespaces of violin playing techniques.}
 \label{fig:technique-dendrogram}
 \end{figure}
-Audio Set: \cite{gemmeke2017icassp}.
-Visipedia: \cite{belongie2015pattern}.
 
-% Slow sedimentation of the name of playing techniques. Need to interact with experts of each instrument.
-In what follows, we adopt a middle ground position
+
+
 
 
 
@@ -297,7 +295,14 @@ In what follows, we adopt a middle ground position
 \cite{maresz2013cmr}
 \cite{lagrange2015jasa}
 
-\ml{also describe the evaluation methodology. Ranking for compositional use, query by example, etc}
+
+In this paper, we formulate the instrument / playing techniques recognition problem as a query by example.  We do so as we are \textit{in fine} interested in an application scenario where the user specify a seed sound, be it played by a musical instrument or not, and the system returns several items from the database that have some level of similarity with the seed.
+
+Designing such a system requires the definition of a reference similarity space where the similarity among musical tones is defined perceptually. The aquisition of thus reference is out of the scope of this paper and is left for future work. We thus aim here at numerically validating the processing pipeline considered to implement the query by example system. We would like that such architecture is able to effectively rank items of the database according to 1) the  partition of the musical instruments and 2) the partition of the playing techniques.
+
+To evaluate the performance of the alternative implementations of the query by example system, the precision at rank $k$ is considered. It is computed as the number of relevant items among the $k$ items retrieved by the system divided by $k$. Revelance here is evaluated as the seed and the retrieved item having the same label in the reference partition.
+
+When considering the whole corpus, each item of the database is considered as a seed, and the precision of the system under evaluation is computed for this seed. The precision for this system is the precision averaged over all the seeds. When considering a train /test split corpus, the seeds are taken from the test set and  items of the train corpus similar to this seed are retrieved. The precision for this seed is computed among those retrieved items and the precision for the system under evaluation is the precision averaged over all the items of the test set.
 
 \subsection{Studio On Line (SOL) dataset}
 
