@@ -241,13 +241,14 @@ We refer to \cite{leman2017chapter} for a recent review of the state of the art.
 In this section, we distinguish taxonomies of musical instruments from taxonomies of musical gestures.
 
 \subsection{Taxonomies}
+
 The Hornbostel-Sachs taxonomy (H-S) strives to organize the diversity of musical instruments according to their manufactural characteristics only, and is purposefully unaffected by sociohistorical background \cite{montagu2009muzyka}.
 Because it offers an unequivocal way of describing any acoustical instrument without any prior knowledge on its afferent playing techniques, it serves as a \emph{lingua franca} in ethnomusicology and museology, especially for ancient or rare instruments which may lack available informants.
 The location of the violin in H-S (321.321-71), as depicted in Figure \ref{fig:instrument-dendrogram}, also encompasses the viola and the cello in addition to the violin.
 This is because these three instruments, viewed as inert objects share a common morphology, despite differences in posture for the performer: both violin and viola are usually played under the jaw whereas the cello is held between the knees.
 Accounting for these differences involves refining H-S with a vernacular taxonomy.
 Most instrument taxonomies in music signal processing, including MedleyDB and AudioSet \cite{gemmeke2017icassp}, reach the vernacular level rather than conflating all instruments belonging to the same H-S node.
-In some cases, an even finer level of granularity is attained by listing of potential alterations to the instrument -- be them permanent or temporary, at the time scale of more than a single note -- that affect its resonant properties after the end of the conventional manufacturing process, \eg{} mutes and other preparations \cite{dianova2007phd}.
+In some cases, an even finer level of granularity is attained by the listing of potential alterations to the instrument -- be them permanent or temporary, at the time scale of more than a single note -- that affect its resonant properties after the end of the conventional manufacturing process, \eg{} mutes and other preparations \cite{dianova2007phd}.
 The only example of node in the MedleyDB taxonomy reaching this level is \emph{tack piano} \cite{bittner2014ismir} .
 
 \begin{figure}[t!]
@@ -280,14 +281,21 @@ Upon inspecting the $k$ nearest neighbors returned by the search engine, the com
 
 
 Faithfully evaluating such a system is a difficult procedure, and ultimately would rest on its usability, as judged by the composers themselves.
-Nevertheless,
+%Nevertheless,
 %Nevertheless,
 % Class-wise generative model
 % Robust to alterations in the "folksonomy" of playing techniques.
 % Ex: what tuba calls "blow without reed" may correspond to
 % e.g. what some instrument call a glissando, others call slide
-This methodology was \cite{lagrange2015jasa}
 
+
+\ml{We formulate here the instrument / playing techniques recognition problem as a query by example one as we are \textit{in fine} interested in an application scenario where the user specify a seed sound, be it played by a musical instrument or not, and the system returns several items from the database that have some level of similarity with the seed.
+
+Designing such a system would requires the definition of a reference similarity space where the similarity among musical tones is defined perceptually. The aquisition of such reference is out of the scope of this paper and is left for future work. We thus aim here at validating the processing pipeline considered to implement the query by example system. We would like that such architecture is able to effectively rank items of the database according to 1) the partition of the musical instruments and 2) the partition of the playing techniques.
+
+To evaluate the performance of the alternative implementations of the query by example system, the precision at rank $k$ is considered. It is computed as the number of relevant items among the $k$ items retrieved by the system divided by $k$. Revelance here is evaluated as the seed and the retrieved item having the same label in the reference partition.
+
+When considering the whole corpus, each item of the database is considered as a seed, and the precision of the system under evaluation is computed for this seed. The precision for this system is the precision averaged over all the seeds. When considering a train /test split corpus, the seeds are taken from the test set and  items of the train corpus similar to this seed are retrieved. The precision for this seed is computed among those retrieved items and the precision for the system under evaluation is the precision averaged over all the items of the test set.}
 
 \subsection{Studio On Line dataset (SOL)}
 
@@ -304,7 +312,6 @@ The SOL dataset has 143 playing techniques in total.
 \caption{Instruments in the SOL dataset.}
 \label{fig:instrument-histogram}
 \end{figure}
-
 
 \begin{figure}[h!]
 \centering
@@ -326,8 +333,8 @@ The SOL dataset has 143 playing techniques in total.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  METHODS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methods}
-In this section, we point out the theoretical limitations of mel-frequency cepstral coefficients (MFCC) in the representation of musical sounds comprising with extended instrumental playing techniques (IPT), and describe how both the scattering transform and supervised metric learning may overcome such of these limitations.
 
+In this section, we describe the scattering transform and supervised metric learning used to implement the query by example processing pipeline.
 
 \subsection{Scattering transform} % Scattering transform
 
