@@ -284,10 +284,12 @@ In recent years, some publications have attempted to lay the foundations of such
 In what follows, we adopt a middle ground position between the two aforementioned approaches: neither a supervised classifier (as in a hierarchical taxonomy), nor a caption generator (as in a meronomy), our system is a query-by-example search engine in a large database of isolated notes.
 This system is meant to provide a small number $k$ of nearest neighbors in the dataset of musical instrument samples to any user-defined audio query $\boldsymbol{x}(t)$.
 In the context of contemporary music creation, this $\boldsymbol{x}(t)$ may be an instrumental or vocal sketch; a sound event recorded from the environment; a computer-generated waveform; or any mixture of the above \cite{maresz2013cmr}.
-Upon inspecting the $k$ nearest neighbors returned by the search engine, the composer may decide one of them
+Upon inspecting the $k$ nearest neighbors returned by the search engine, the composer may decide to retain one of the retrieved notes, in which case its attributes (pitch and intensity, but also the exact playing technique) are readily available and can be included into the musical score.
 
-\cite{maresz2013cmr}
-\cite{lagrange2015jasa}
+
+Faithfully evaluating such a system is a difficult procedure, and ultimately would rest on its usability, as judged by the composers themselves.
+%Nevertheless, 
+This methodology was \cite{lagrange2015jasa}
 
 
 In this paper, we formulate the instrument / playing techniques recognition problem as a query by example.  We do so as we are \textit{in fine} interested in an application scenario where the user specify a seed sound, be it played by a musical instrument or not, and the system returns several items from the database that have some level of similarity with the seed.
@@ -321,9 +323,6 @@ The Studio On Line (SOL) dataset have been recorded at Ircam and is part of the 
 \label{fig:instrument-dendrogram}
 \end{figure}
 
-
-
-% Disentangling factors in variability in the production of musical sounds.
 
 % Adopt the Visipedia approach.
 
@@ -415,8 +414,8 @@ These results are consistent with \cite{lostanlen2018eurasip}.
 MFCC: $45\%$. 
 
 
-\subsection{Pitch-adaptive metric learning}
-A well-known rule of thumb in psychoacoustics states that the ``bandwidth for timbre invariance'', \ie{} the musical interval beyond which two notes are judged dissimilar, is of the order of one octave for untrained listeners \cite{handel2001musicperception} and up to $2.5$ octaves for trained listeners \cite{steele2006musicperception}.
+%\subsection{Pitch-adaptive metric learning}
+%A well-known rule of thumb in psychoacoustics states that the ``bandwidth for timbre invariance'', \ie{} the musical interval beyond which two notes are judged dissimilar, is of the order of one octave for untrained listeners \cite{handel2001musicperception} and up to $2.5$ octaves for trained listeners \cite{steele2006musicperception}.
 
 
 
@@ -433,6 +432,7 @@ Secondly, the frame rate at which they are computed ($T=\SI{25}{\milli\second}$ 
 Thirdly, the discrete cosine transform (DCT) over mel frequencies does not, contrary to a widespread belief, make them invariant to the frequency transposition of complex sounds.
 To address each of these shortcomings, we propose a simple pipeline of three elements: a time scattering transform; an unsupervised renormalization procedure; and a supervised metric learning over frequencies and modulation rates with large-margin nearest neighbors (LMNN).
 
+% Matching a reference similarity is left as future work.
 
 %\section{Acknowledgments}
 % The authors wish to thank Andrew Farnsworth and (?) for fruitful discussions on Visipedia.
