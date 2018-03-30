@@ -304,18 +304,15 @@ This methodology was \cite{lagrange2015jasa}
 
 The Studio On Line dataset (SOL) was recorded at Ircam in 2002 and is freely downloadable as part of the Orchids software for computer-assisted orchestration \footnote{Link to SOL dataset: \url{http://forumnet.ircam.fr/product/orchids-en/}}.
 It is composed of 25444 recordings of isolated notes as played by 16 musical instruments.
-The distribution of these notes, shown in Figure \ref{fig:instrument-histogram}, spans the whole
-Each note is played at different intensities, pitches, and preparations (mutes) when applicable.
- under all playing techniques within a global list of 143 playing techniques.
-The average number of available recordings per playing technique is 178 $\pm$429.
-This large variance is due to the fact that some playing techniques are found in many instrument (\eg{} \textit{ordinario}) whereas other are instrument-specific (\eg{} \textit{xylophonic} which is specific to the harp).
-Figure \ref{fig:technique-dendrogram}
+The distribution of these notes, shown in Figure \ref{fig:instrument-histogram}, spans the combinatorial diversity of applicable intensities, pitches, preparations (\ie{} mutes), as well as all applicable playing techniques.
+The distribution of playing techniques -- whose most common are shown in Figure \ref{fig:technique-dendrogram} -- is heavy-tailed (average 178, standard deviation 429): this is because some playing techniques are shared between many instruments (\eg{} \textit{tremolo}) whereas other are instrument-specific (\eg{} \textit{xylophonic} which is specific to the harp).
+The SOL dataset has 143 playing techniques in total.
 
 \begin{figure}[t!]
 \centering
 \includegraphics[width=\linewidth]{./figs/histogram/histogram_instruments.png}
 \caption{Instruments in the SOL dataset.}
-\label{fig:instrument-dendrogram}
+\label{fig:instrument-histogram}
 \end{figure}
 
 
@@ -323,7 +320,7 @@ Figure \ref{fig:technique-dendrogram}
 \centering
 \includegraphics[width=0.96\linewidth]{./figs/histogram/histogram_modes.png}
 \caption{Playing techniques in the SOL dataset.}
-\label{fig:technique-dendrogram}
+\label{fig:technique-histogram}
 \end{figure}
 
 
