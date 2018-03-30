@@ -288,25 +288,27 @@ Upon inspecting the $k$ nearest neighbors returned by the search engine, the com
 
 
 Faithfully evaluating such a system is a difficult procedure, and ultimately would rest on its usability, as judged by the composers themselves.
+Nevertheless, 
 %Nevertheless, 
+% Class-wise generative model
+% Robust to alterations in the "folksonomy" of playing techniques.
+% Ex: what tuba calls "blow without reed" may correspond to 
+% e.g. what some instrument call a glissando, others call slide
 This methodology was \cite{lagrange2015jasa}
 
 
-In this paper, we formulate the instrument / playing techniques recognition problem as a query by example.  We do so as we are \textit{in fine} interested in an application scenario where the user specify a seed sound, be it played by a musical instrument or not, and the system returns several items from the database that have some level of similarity with the seed.
-
-Designing such a system requires the definition of a reference similarity space where the similarity among musical tones is defined perceptually. The aquisition of thus reference is out of the scope of this paper and is left for future work. We thus aim here at numerically validating the processing pipeline considered to implement the query by example system. We would like that such architecture is able to effectively rank items of the database according to 1) the  partition of the musical instruments and 2) the partition of the playing techniques.
-
-To evaluate the performance of the alternative implementations of the query by example system, the precision at rank $k$ is considered. It is computed as the number of relevant items among the $k$ items retrieved by the system divided by $k$. Revelance here is evaluated as the seed and the retrieved item having the same label in the reference partition.
-
-When considering the whole corpus, each item of the database is considered as a seed, and the precision of the system under evaluation is computed for this seed. The precision for this system is the precision averaged over all the seeds. When considering a train /test split corpus, the seeds are taken from the test set and  items of the train corpus similar to this seed are retrieved. The precision for this seed is computed among those retrieved items and the precision for the system under evaluation is the precision averaged over all the items of the test set.
-
-\subsection{Studio On Line (SOL) dataset}
+\subsection{Studio On Line dataset (SOL)}
 
 
-The Studio On Line (SOL) dataset have been recorded at Ircam and is part of the orchestration tools developed in the institute. It is composed of 25444 recordings of single tones played by 16 musical instruments: Accordion, Alto, Bass, Bassoon, Clarinet, Contrabass, Flute, Guitar, Harp, Horn, Oboe, Tenor, Trumpet, Viola, Violin, and Violoncello. The number of recordings per class of instrument is on average 1590 $\pm$936.  Each instrument is played at different nuance and pitch if relevant using 143 different playing technique. The average number of number playing techniques is 178 $\pm$429. The large variance is due to the fact that some playing techniques may be considered for many instruments such as \textit{ordinario}, whereas other are specific to some instruments such as \textit{flatterzunge}. Figure \ref{fig:pt} shows the playing techniques with the higher, lower and median number of recordings.
-
+The Studio On Line dataset (SOL) has been recorded at Ircam as a backend for the Orchids software for computer-assisted orchestration.
+It is composed of 25444 recordings of isolated notes as played by 16 musical instruments.
+The distribution of these notes, shown in Figure \ref{fig:instrument-histogram}, spans the whole
+Each note is played at different intensities, pitches, and preparations (mutes) when applicable.
+ under all playing techniques within a global list of 143 playing techniques.
+The average number of available recordings per playing technique is 178 $\pm$429.
+This large variance is due to the fact that some playing techniques are found in many instrument (\eg{} \textit{ordinario}) whereas other are instrument-specific (\eg{} \textit{xylophonic} which is specific to the harp).
+Figure \ref{fig:technique-dendrogram}
 % YEAR ?
-% HISTOGRAM OF PLAYING TECHNIQUES
 
 \begin{figure}[t!]
 \centering
@@ -320,15 +322,9 @@ The Studio On Line (SOL) dataset have been recorded at Ircam and is part of the 
 \centering
 \includegraphics[width=0.96\linewidth]{./figs/histogram/histogram_modes.png}
 \caption{Playing techniques in the SOL dataset.}
-\label{fig:instrument-dendrogram}
+\label{fig:technique-dendrogram}
 \end{figure}
 
-
-% Adopt the Visipedia approach.
-
-% Distinguish what the left hand does from what the right hand does?
-% Left hand: vibrato,
-% Right hand: tremolo
 
 % Bows and mallets are part of the gesture
 % The use of mutes is part of the instrument BUT any gesture while holding the mute (e.g.  trombone) creates a new IPT category that is distinct from ordinary style.
@@ -337,8 +333,7 @@ The Studio On Line (SOL) dataset have been recorded at Ircam and is part of the 
 % Variations in articulation: trill, slide. Unlike vibrato, they have a melodic function.
 % Variations in: artificial harmonics, subharmonics [ref Mari Kimura],
 % Variations in phrasing: arpeggio,
-% analog FX:
-
+% analog FX
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  METHODS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -359,6 +354,7 @@ We refer to \cite{anden2014taslp} for a general introduction to scattering trans
 \right)
 \end{equation}
 where $\varepsilon = 10^{-3}$ and $\boldsymbol{\mu}(\lambda)$ is the median value of the scattering coefficient $\mathbf{S}\boldsymbol{x}_n (\lambda)$ for path $\lambda$ across samples $n$ in the training set.
+
 
 \subsection{Metric learning} % Large-margin nearest neighbors
 
@@ -381,7 +377,6 @@ $x_i$ $x_j$ being features vectors. In this study, the large-margin nearest neig
 k nearest neighbors of any training instance should belong to the
 same class of the training instance ( the "pull" constraint) while keeping away instances of other classes (the "push" constraint).
 
-% Write on the Metric Learning to Rank objection ?
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
