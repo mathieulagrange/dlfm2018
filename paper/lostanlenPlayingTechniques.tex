@@ -68,7 +68,7 @@ the next milestone in musical instrument recognition}
 \newcommand*{\ie}{i.e.\@\xspace}
 \newcommand*{\resp}{resp.\@\xspace}
 
-\sloppy 
+\sloppy
 \begin{document}
 
 %
@@ -78,22 +78,12 @@ the next milestone in musical instrument recognition}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ABSTRACT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-The expressive variability in which a musical note can be produced conveys some
-essential information to the modeling of orchestration and style. Yet, although
-the automatic recognition of a musical instrument from the recording of a
-single ``ordinary'' note is now considered a solved problem, the ability of a
-computer to precisely identify instrumental playing techniques (IPT) remains largely
-underdeveloped, and far below human accuracy. This article provides the first
-benchmark of machine listening systems for query-by-example browsing among
-among 143 instrumental playing techniques, including the most contemporary, for
-16 instruments in the symphonic orchestra, thus amounting to 469 triplets of
-instrument, mute, and technique. We identify and discuss three necessary
-conditions for significantly outperforming the classical mel-frequency cepstral
-coefficients (MFCC) baseline: the inclusion of second-order scattering
-coefficients to account for the presence of amplitude modulations ; the
-inclusion of long-range temporal dependencies ; and the resort to supervised
-metric learning. On the Studio On Line (SOL) dataset, we report a P@5 of $99.7\%$
-for instrument recognition (baseline at $92.5\%$) and of $61.0\%$ for instrumental playing technique recognition (baseline at $50.0\%$).
+  The expressive variability in which a musical note can be produced conveys some essential information to the modeling of orchestration and style. Yet, although the automatic recognition of a musical instrument from the recording of a single ``ordinary'' note is now considered a solved problem, the ability of a computer to precisely identify instrumental playing techniques remains largely underdeveloped.
+
+  In this paper, a benchmark of machine listening systems for query-by-example browsing among 143 instrumental playing techniques, including the most contemporary, for 16 instruments in the symphonic orchestra, thus amounting to 469 triplets of instrument, mute, and technique. We identify and discuss three necessary conditions for significantly outperforming the classical mel-frequency cepstral coefficients (MFCC) baseline: the inclusion of second-order scattering coefficients to account for the presence of amplitude modulations ; the inclusion of long-range temporal dependencies ; and the resort to supervised metric learning in order to boost the representativity of the scattering coefficients relevant for the task at hand.
+
+  We report a P@5 of $99.7\%$ for instrument recognition (baseline at $92.5\%$) and of $61.0\%$ for playing technique recognition (baseline at $50.0\%$).
+
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -115,7 +105,7 @@ for instrument recognition (baseline at $92.5\%$) and of $61.0\%$ for instrument
                 \caption{Pitch (G3).}
                 \label{fig:TpC-ord-G3-mf_withaxes}
         \end{subfigure}%
-        
+
         \begin{subfigure}{0.25\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-ord-G4-pp_withaxes.eps}
@@ -128,7 +118,7 @@ for instrument recognition (baseline at $92.5\%$) and of $61.0\%$ for instrument
                 \caption{Tone quality (brassy).}
                 \label{fig:TpC-brassy-G4-mf_withaxes}
         \end{subfigure}%
-        
+
         \begin{subfigure}{0.25\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-sfz-G4-fp_withaxes.eps}
@@ -141,8 +131,8 @@ for instrument recognition (baseline at $92.5\%$) and of $61.0\%$ for instrument
                 \caption{Tonguing (\emph{flatterzunge}).}
                 \label{fig:TpC-flatt-G4-mf_withaxes}
         \end{subfigure}
-        
-       
+
+
         \begin{subfigure}[b]{0.25\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-trill-maj2-G4-mf_withaxes.eps}
@@ -155,7 +145,7 @@ for instrument recognition (baseline at $92.5\%$) and of $61.0\%$ for instrument
                 \caption{Mute (\emph{harmon}).}
                 \label{fig:TpC+H-ord-G4-mf_withaxes}
         \end{subfigure}
-        
+
         \begin{subfigure}[b]{0.25\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-voc-harms-C4-mf_withaxes.eps}
@@ -179,8 +169,7 @@ a more systematic usage of extended instrumental techniques, such as artificial 
 and the resort to electronic and digital audio effects \cite{zolzer2011dafx}.
 The first of these trends has somewhat stalled: to this day, most Western composers rely on an acoustic instrumentarium that is only marginally different from the one that was available in the Late Romantic period.
 Nevertheless, the latter approaches to timbral diversification were massively adopted into post-war contemporary music.
-In particular, an increased concern for the concept of musical gesture \cite{godoy2009book} has liberated many unconventional instrumental techniques from their figurativistic connotations, thus making the so-called ``ordinary'' playing style merely one of many compositional options.
-
+In particular, an increased concern for the concept of musical gesture \cite{godoy2009book} has liberated many unconventional instrumental techniques from their figurativistic connotations, thus making the so-called ``ordinary'' playing style merely one of many compositional \ml{and interpretative ?} options.
 
 Far from being exclusive to erudite music, extended playing techniques are also commonly found in oral tradition; in some cases, they even stand out as a distinctive component of musical style.
 Four well-known examples are:
@@ -190,14 +179,13 @@ the shuffle stroke of the violin (``fiddle'') in Irish folklore,
 and the glissando of the clarinet in Klezmer music.
 Consequently, the mere knowledge of organology (the instrumental \emph{what?}~of music), as opposed to chironomics (its gestural \emph{how?}), is a rather weak source of information for browsing and recommending music within large audio databases.
 
-
-Yet, past research in music information retrieval (MIR), and especially machine listening, too rarely acknowledges the benefits of integrating the influence of performer gestures into a coherent taxonomy of musical instrument sounds.
+Yet, past research in music information retrieval (MIR), and especially machine listening, rarely acknowledges the benefits of integrating the influence of performer gestures into a coherent taxonomy of musical instrument sounds.
 Instead, gestures are either framed as a spurious form of intra-class variability between instruments, without delving into its interdependencies with pitch and intensity;
 or, symmetrically, as a probe for the acoustical study of a given instrument, without enough emphasis onto the broader picture of orchestral diversity.
 
 One major cause of this gap in research is the difficulty of collecting and annotating data for contemporary instrumental techniques.
 Fortunately, such obstacle has recently been overcome, owing to the creation of databases of instrumental samples in a perspective of spectralist music orchestration \cite{maresz2013cmr}.
-In this article, we capitalize on the availability of data to formulate a new line of research in MIR, namely the joint retrieval of organological information (``\emph{what} instrument is being played in this recording?'') and chironomical information (``\emph{how} is the musician producing sound?''), while remaining invariant to other factors of variability, which are deliberately regarded as contextual: where, when, why, by whom, and for whom was the music (in this recording) played.
+In this article, we capitalize on the availability of data to formulate a new line of research in MIR, namely the joint retrieval of organological information (``\emph{what} instrument is being played in this recording?'') and chironomical information (``\emph{how} is the musician producing sound?''), while remaining invariant to other factors of variability, which are deliberately regarded as contextual: where, when, why, by whom, and for whom was the music (in this recording) played \ml{what about pitch and nuance ?}.
 
 Figure \ref{fig:TpC-ord-G4-mf_withaxes} shows the constant-$Q$ wavelet transform (CQT) of a trumpet musical note, as played with an ordinary technique.
 Unlike most existing publications on instrument classification, which exclusively focus on pitch (Figure \ref{fig:TpC-ord-G3-mf_withaxes}) and intensity (Figure \ref{fig:TpC-ord-G4-pp_withaxes}) as the main factors of intra-class variability, this paper aims at accounting for the presence of instrumental playing techniques (IPT), such as changes in tone quality (Figure \ref{fig:TpC-brassy-G4-mf_withaxes}), attack (Figure \ref{fig:TpC-sfz-G4-fp_withaxes}), tonguing (Figure \ref{fig:TpC-flatt-G4-mf_withaxes}), and articulation (Figure \ref{fig:TpC+H-ord-G4-mf_withaxes}), either as intra-class variability (instrument recognition task) or as inter-class variability (IPT recognition task).
@@ -213,7 +201,7 @@ Section 5 reports the results from an IPT classification benchmark on the Studio
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  RELATED WORK  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Related work}
-This section some of the recent MIR literature on the audio analysis of instrumental playing techniques, 
+This section some of the recent MIR literature on the audio analysis of instrumental playing techniques,
 with a focus on the available datasets afferent to each formulation of the problem.
 
 \subsection{Classification of ordinary isolated notes}
@@ -223,9 +211,10 @@ Not only did it attain a near-perfect mean accuracy of $98.7\%$ on the RWC datas
 Therefore, it seems that the supervised classification of musical instruments from recordings of ordinary notes could now be considered a solved problem; we refer to \cite{bhalke2016jiis} for a recent review of the state of the art.
 
 \subsection{Classification of solo recordings}
+
 One straightforward extension of the problem above is the classification of solo phrases, encompassing some variability in melody \cite{krishna2004icassp}, for which the accuracy of STRF models is around $80\%$ \cite{patil2015eurasip}.
-Since the Western tradition of solo music is essentially limited to a narrow range of instruments (\eg{} piano, classical guitar, violin) and genres (sonatas, contemporary, free jazz, folk), datasets of solo phrases, such as solosDb \cite{joder2009taslp}, are particularly difficult to design.
-This issue is partially mitigated by the recent surge of multitrack datasets, such as MedleyDB \cite{bittner2014ismir}, which has spurred a renewed interest in monophonic instrumental recordings \cite{yip2017ismir}.
+Since the Western tradition of solo music is essentially limited to a narrow range of instruments (\eg{} piano, classical guitar, violin) and genres (sonatas, contemporary, free jazz, folk), datasets of solo phrases, such as solosDb \cite{joder2009taslp}, are particularly difficult to design \ml{ why ?}.
+This issue is partially mitigated by the recent surge of multitrack datasets, such as MedleyDB \cite{bittner2014ismir}, which has spurred a renewed interest in monophonic instrumental recordings \ml{datasets ?} \cite{yip2017ismir}.
 In addition, the cross-collection evaluation methodology \cite{livshin2003ismir} allows to prevent the risk of overfitting caused by the relative homogeneity of these small datasets in terms of artists and recording conditions \cite{bogdanov2016ismir}.
 To this date, the best classifier of solo recordings is a spiral convolutional network \cite{lostanlen2016ismir} trained on the Medley-solos-DB dataset \cite{lostanlen2018msdb}, \ie{} a cross-collection dataset which aggregates MedleyDB and solosDB following the procedure of \cite{donnelly2015icdmw}.
 We refer to \cite{han2017taslp} for a recent review of the state of the art.
@@ -238,10 +227,11 @@ The Open-MIC initiative, from the newly created Community for Open and Sustainab
 
 \subsection{Single-instrument playing technique classification}
 Lastly, there is a growing interest for studying the role of the performer in musical acoustics, from both perspectives of sound production and sound perception.
-Outside of audio signal processing, this topic is connected to other disciplines, such as biomechanics and gestural interfaces \cite{metcalf2014frontiers}.
-Nevertheless, the vast majority of the available literature focuses on the range of playing techniques afforded by a single instrument: recent examples include clarinet \cite{loureiro2004ismir}, percussion \cite{tindale2004ismir}, piano \cite{bernays2013smc}, guitar \cite{foulon2013cmmr,su2014ismir,chen2015ismir}, violin \cite{young2008nime}, cello \cite[chapter 6]{chudy2016phd}, and erhu \cite{yang2014fma}.
-On the other hand, the few publications which frame timbral similarity in a polyphonic setting do so according to a purely perceptual definition of timbre -- with continuous attributes such as brightness, warmth, dullness, roughness, and so forth \cite{antoine2018isma} -- yet without connecting these attributes to the discrete latent space of playing techniques.
-To the best of our knowledge, this paper is the first to formulate the retrieval of expressive parameters of musical timbre at the scale of the symphonic orchestra at large, while expliciting these parameters in terms of sound production (\ie{} through a discrete set of instructions, readily interpretable by the performer) rather than by means of perceptual epithets only.
+Besides interest in audio signal processing, this topic is connected to other disciplines, such as biomechanics and gestural interfaces \cite{metcalf2014frontiers}.
+The majority of the available literature focuses on the range of playing techniques afforded by a single instrument: recent examples include clarinet \cite{loureiro2004ismir}, percussion \cite{tindale2004ismir}, piano \cite{bernays2013smc}, guitar \cite{foulon2013cmmr,su2014ismir,chen2015ismir}, violin \cite{young2008nime}, cello \cite[chapter 6]{chudy2016phd}, and erhu \cite{yang2014fma}.
+Some publications frame timbral similarity in a polyphonic setting do so according to a purely perceptual definition of timbre -- with continuous attributes such as brightness, warmth, dullness, roughness, and so forth \cite{antoine2018isma} -- yet without connecting these attributes to the discrete latent space of playing techniques.
+
+In his paper, we formulate the retrieval of expressive parameters of musical timbre at the scale of the symphonic orchestra at large, while expliciting these parameters in terms of sound production (\ie{} through a discrete set of instructions, readily interpretable by the performer) rather than by means of perceptual epithets only.
 We refer to \cite{leman2017chapter} for a recent review of the state of the art.
 
 
@@ -290,11 +280,11 @@ Upon inspecting the $k$ nearest neighbors returned by the search engine, the com
 
 
 Faithfully evaluating such a system is a difficult procedure, and ultimately would rest on its usability, as judged by the composers themselves.
-Nevertheless, 
-%Nevertheless, 
+Nevertheless,
+%Nevertheless,
 % Class-wise generative model
 % Robust to alterations in the "folksonomy" of playing techniques.
-% Ex: what tuba calls "blow without reed" may correspond to 
+% Ex: what tuba calls "blow without reed" may correspond to
 % e.g. what some instrument call a glissando, others call slide
 This methodology was \cite{lagrange2015jasa}
 
@@ -404,7 +394,7 @@ These results are consistent with \cite{lostanlen2018eurasip}.
 
 \subsection{Evaluation of playing technique recognition}
 
-MFCC: $45\%$. 
+MFCC: $45\%$.
 
 
 %\subsection{Pitch-adaptive metric learning}
