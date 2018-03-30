@@ -274,7 +274,7 @@ In recent years, some publications have attempted to lay the foundations of such
 \end{figure}
 
 
-\subsection{Application setting and evaluation}
+\subsection{Application setting and evaluation} \label{sec:motivation}
 
 In what follows, we adopt a middle ground position between the two aforementioned approaches: neither a supervised classifier (as in a hierarchical taxonomy), nor a caption generator (as in a meronomy), our system is a query-by-example search engine in a large database of isolated notes.
 This system is meant to provide a small number $k$ of nearest neighbors in the dataset of musical instrument samples to any user-defined audio query $\boldsymbol{x}(t)$.
@@ -290,14 +290,7 @@ Faithfully evaluating such a system is a difficult procedure, and ultimately wou
 % Ex: what tuba calls "blow without reed" may correspond to
 % e.g. what some instrument call a glissando, others call slide
 
-
-\ml{We formulate here the instrument / playing techniques recognition problem as a query by example one as we are \textit{in fine} interested in an application scenario where the user specify a seed sound, be it played by a musical instrument or not, and the system returns several items from the database that have some level of similarity with the seed. \\
-Designing such a system would requires the definition of a reference similarity space where the similarity among musical tones is defined perceptually. The aquisition of such reference is out of the scope of this paper and is left for future work. We thus aim here at validating the processing pipeline considered to implement the query by example system. We would like that such architecture is able to effectively rank items of the database according to 1) the partition of the musical instruments and 2) the partition of the playing techniques. \\
-To evaluate the performance of the alternative implementations of the query by example system, the precision at rank $k$ is considered. It is computed as the number of relevant items among the $k$ items retrieved by the system divided by $k$. Revelance here is evaluated as the seed and the retrieved item having the same label in the reference partition. \\
-When considering the whole corpus, each item of the database is considered as a seed, and the precision of the system under evaluation is computed for this seed. The precision for this system is the precision averaged over all the seeds. When considering a train /test split corpus, the seeds are taken from the test set and  items of the train corpus similar to this seed are retrieved. The precision for this seed is computed among those retrieved items and the precision for the system under evaluation is the precision averaged over all the items of the test set.}
-
 \subsection{Studio On Line dataset (SOL)}
-
 
 The Studio On Line dataset (SOL) was recorded at Ircam in 2002 and is freely downloadable as part of the Orchids software for computer-assisted orchestration \footnote{Link to SOL dataset: \url{http://forumnet.ircam.fr/product/orchids-en/}}.
 It is composed of 25444 recordings of isolated notes as played by 16 musical instruments.
@@ -354,12 +347,12 @@ where $\varepsilon = 10^{-3}$ and $\boldsymbol{\mu}(\lambda)$ is the median valu
 
 As shown in the experiments described in Section \ref{sec:exp}, it is helpful to consider a supervised projection of the scattering coefficients in order to select among the large dimensionality of the resulting feature space, which axes are relevant for the task at hand.
 
-May approaches can be considered to achieve such a task \cite{}. One standard approach is the use of the linear discriminant analysis (LDA) that linearly projects ($x \rightarrow L x$) the input data into a features space of $C$-1 dimensions that maximizes the amount of between-class variance
+May approaches can be considered to achieve such a task \cite{bellet2013survey}. One standard approach is the use of the linear discriminant analysis (LDA) that linearly projects ($x \rightarrow L x$) the input data into a features space of $C$-1 dimensions that maximizes the amount of between-class variance
 relative to the amount of within-class variance. The linear transformation $L$ is chosen to maximize the ratio of between-class to within-class variance,
 subject to the constraint that $L$ defines a projection matrix.
 
 
-A more flexible approach often taken in metric learning \cite{bellet2013survey} is to optimize a Mahalanobis matrix that linearly projects the input data into another feature space of the same dimensionality. In this case:
+A more flexible approach often taken in metric learning is to optimize a Mahalanobis matrix that linearly projects the input data into another feature space of the same dimensionality. In this case:
 \begin{equation}
   M=L^T L
 \end{equation}
@@ -378,6 +371,18 @@ same class of the training instance ( the "pull" constraint) while keeping away 
 \section{Experimental results} \label{sec:exp}
 In this section, we apply the aforementioned methods to instrument classification and instrumental playing techniques classification in the Studio On Line (SOL) dataset.
 
+As explained in Section \ref{sec:motivation} we formulate here the instrument / playing techniques recognition problem as a query by example one as we are \textit{in fine} interested in an application scenario where the user specify a seed sound, be it played by a musical instrument or not, and the system returns several items from the database that have some level of similarity with the seed.
+
+Designing such a system would requires the definition of a reference similarity space where the similarity among musical tones is defined perceptually. The aquisition of such reference is out of the scope of this paper and is left for future work. We thus aim here at validating the processing pipeline considered to implement the query by example system. We would like that such architecture is able to effectively rank items of the database according to 1) the partition of the musical instruments and 2) the partition of the playing techniques.
+
+To evaluate the performance of the alternative implementations of the query by example system, the precision at rank $k$ (p@k) is considered. It is computed as the number of relevant items among the $k$ items retrieved by the system divided by $k$. Revelance here is evaluated as the seed and the retrieved item having the same label in the reference partition.
+
+When considering the whole corpus, each item of the database is considered as a seed, and the precision of the system under evaluation is computed for this seed. The precision for this system is the precision averaged over all the seeds. When considering a train /test split corpus, the seeds are taken from the test set and  items of the train corpus similar to this seed are retrieved. The precision for this seed is computed among those retrieved items and the precision for the system under evaluation is the precision averaged over all the items of the test set.
+
+For each sound, some features are computed over a given time frame, ranging from 25 ms. to 1 second. The set of frames is averaged to give one feature vector per sound recording.
+
+\ml{shall we discuss the train test split ?}
+
 \begin{figure}
 \includegraphics[width=\linewidth,keepaspectratio]{./figs/results/results.png}
 \caption{Summary of results on the SOL dataset.}
@@ -386,27 +391,26 @@ In this section, we apply the aforementioned methods to instrument classificatio
 
 \subsection{Evaluation of instrument recognition}
 
-In this section, we report experimental results while considering the musical instruments as the reference. Thus the task aims at grouping together in the feature space, recordings that are played by the same musical instrument regardless of the nuance, pitch and playing technique.
+In this section, we report experimental results while considering the musical instruments partition as the reference. Thus the task aims at grouping together in the feature space, recordings that are played by the same musical instrument regardless of the nuance, pitch and playing technique.
 
-MFCC: $89\%$.
-Keeping all $40$ MFCC rather than the lowest $13$ degrades accuracy down to $84\%$.
-
+In order to ground results of the proposed pipeline, we consider a vanilla implementation of the mel frequency cepstral coefficients (MFCCs). It which achieves a p@5 of $89\%$. Keeping all $40$ MFCCs coefficients rather than the lowest $13$ degrades accuracy down to $84\%$. This result is in line with the fact that the low frequency modulation of the spectrum are most usful to model the resonant cavity, be it the vocal tract for speech and the instrument body for musical instruments. Considering the LMNN algorithm to estimate only marginally improves the performance
 
 Scattering: $89\%$.
 Disabling median renormalization -- \ie{} setting  $84\%$.
 Disabling logarithmic compression altogether: $76\%$.
 These results are consistent with \cite{lostanlen2018eurasip}.
 
+Enlarging the frame size do not influence the peformance of the MFCC baseline. On contrary, as the scattering 
 
 \subsection{Evaluation of playing technique recognition}
 
-MFCC: $45\%$.
+When considering the playing technique partition as a reference gives a more complicated task as the  MFCC baseline achieves a p@5 of $45\%$.
 
 
 %\subsection{Pitch-adaptive metric learning}
 %A well-known rule of thumb in psychoacoustics states that the ``bandwidth for timbre invariance'', \ie{} the musical interval beyond which two notes are judged dissimilar, is of the order of one octave for untrained listeners \cite{handel2001musicperception} and up to $2.5$ octaves for trained listeners \cite{steele2006musicperception}.
 
-
+Again, enlarging the frame size do not influence the peformance of the MFCC baseline.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
