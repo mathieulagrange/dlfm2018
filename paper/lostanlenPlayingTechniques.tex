@@ -335,12 +335,12 @@ We refer to \cite{anden2014taslp} for a general introduction to scattering trans
 \cite{anden2012dafx}
 
 \begin{equation}
-\widetilde{\mathbf{S}} \boldsymbol{x}_n(\lambda) =
+\widetilde{\mathbf{S}} \boldsymbol{x}_i(\lambda) =
 \log \left(
-1 + \dfrac{\mathbf{S}\boldsymbol{x}_n(\lambda)}{\varepsilon \times \boldsymbol{\mu}(\lambda)}
+1 + \dfrac{\mathbf{S}\boldsymbol{x}_i(\lambda)}{\varepsilon \times \boldsymbol{\mu}(\lambda)}
 \right)
 \end{equation}
-where $\varepsilon = 10^{-3}$ and $\boldsymbol{\mu}(\lambda)$ is the median value of the scattering coefficient $\mathbf{S}\boldsymbol{x}_n (\lambda)$ for path $\lambda$ across samples $n$ in the training set.
+where $\varepsilon = 10^{-3}$ and $\boldsymbol{\mu}(\lambda)$ is the median value of the scattering coefficient $\mathbf{S}\boldsymbol{x}_i (\lambda)$ for path $\lambda$ across samples $i$ in the training set.
 
 
 \subsection{Metric learning} % Large-margin nearest neighbors
@@ -352,15 +352,8 @@ relative to the amount of within-class variance. The linear transformation $L$ i
 subject to the constraint that $L$ defines a projection matrix.
 
 
-A more flexible approach often taken in metric learning is to optimize a Mahalanobis matrix that linearly projects the input data into another feature space of the same dimensionality. In this case:
-\begin{equation}
-  M=L^T L
-\end{equation}
-and the resulting distance cane be expressed as follows:
-\begin{equation}
-  D_m(x, y) = (x_i-x_j)^T M(x_i-x_j)
-\end{equation}
-$x_i$ $x_j$ being features vectors. In this study, the large-margin nearest neighbors (LMNN) approach \cite{weinberger2006nips, weinberger2009jmlr} that optimizes the above described performance metric is considered. During the learning process, the following constraints are enforced: : the
+A more flexible approach often taken in metric learning is to optimize a Mahalanobis matrix that linearly projects the input data into another feature space of the same dimensionality. In this case, the resulting distance is $\mathrm{D}_\mathbf{L}(\boldsymbol{x}_i, \boldsymbol{x}_j) = (\mathbf{S}\boldsymbol{x}_i - \mathbf{S}\boldsymbol{x}_j)^{\top}  \mathbf{L}^{\top} \mathbf{L} (\mathbf{S}\boldsymbol{x}_i-\mathbf{S}\boldsymbol{x}_j)$.
+In this study, the large-margin nearest neighbors (LMNN) approach \cite{weinberger2006nips, weinberger2009jmlr} that optimizes the above described performance metric is considered. During the learning process, the following constraints are enforced: : the
 k nearest neighbors of any training instance should belong to the
 same class of the training instance ( the "pull" constraint) while keeping away instances of other classes (the "push" constraint).
 
