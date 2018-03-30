@@ -92,6 +92,8 @@ the next milestone in musical instrument recognition}
 
 \section{Introduction}\label{sec:introduction}
 
+\ml{6 pages of content, plus one of references only}
+
 \begin{figure}
         \begin{subfigure}{0.25\textwidth}
                 \centering
@@ -289,12 +291,9 @@ Faithfully evaluating such a system is a difficult procedure, and ultimately wou
 % e.g. what some instrument call a glissando, others call slide
 
 
-\ml{We formulate here the instrument / playing techniques recognition problem as a query by example one as we are \textit{in fine} interested in an application scenario where the user specify a seed sound, be it played by a musical instrument or not, and the system returns several items from the database that have some level of similarity with the seed.
-
-Designing such a system would requires the definition of a reference similarity space where the similarity among musical tones is defined perceptually. The aquisition of such reference is out of the scope of this paper and is left for future work. We thus aim here at validating the processing pipeline considered to implement the query by example system. We would like that such architecture is able to effectively rank items of the database according to 1) the partition of the musical instruments and 2) the partition of the playing techniques.
-
-To evaluate the performance of the alternative implementations of the query by example system, the precision at rank $k$ is considered. It is computed as the number of relevant items among the $k$ items retrieved by the system divided by $k$. Revelance here is evaluated as the seed and the retrieved item having the same label in the reference partition.
-
+\ml{We formulate here the instrument / playing techniques recognition problem as a query by example one as we are \textit{in fine} interested in an application scenario where the user specify a seed sound, be it played by a musical instrument or not, and the system returns several items from the database that have some level of similarity with the seed. \\
+Designing such a system would requires the definition of a reference similarity space where the similarity among musical tones is defined perceptually. The aquisition of such reference is out of the scope of this paper and is left for future work. We thus aim here at validating the processing pipeline considered to implement the query by example system. We would like that such architecture is able to effectively rank items of the database according to 1) the partition of the musical instruments and 2) the partition of the playing techniques. \\
+To evaluate the performance of the alternative implementations of the query by example system, the precision at rank $k$ is considered. It is computed as the number of relevant items among the $k$ items retrieved by the system divided by $k$. Revelance here is evaluated as the seed and the retrieved item having the same label in the reference partition. \\
 When considering the whole corpus, each item of the database is considered as a seed, and the precision of the system under evaluation is computed for this seed. The precision for this system is the precision averaged over all the seeds. When considering a train /test split corpus, the seeds are taken from the test set and  items of the train corpus similar to this seed are retrieved. The precision for this seed is computed among those retrieved items and the precision for the system under evaluation is the precision averaged over all the items of the test set.}
 
 \subsection{Studio On Line dataset (SOL)}
