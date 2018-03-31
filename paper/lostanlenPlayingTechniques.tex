@@ -387,15 +387,16 @@ Therefore, increasing the frame duration $T$ has no effect on the value of MFCC,
 
 Figure \ref{fig:results} summarizes our results.
 We find that MFCC reach a relatively high P@5 of $89\%$.
-Keeping all $40$ quefrencies rather than the lowest $13$ degrades P@5 down to $84\%$, because the cepstral coefficients of highest quefrency are the most affected by some spurious factors of intra-class variability, namely pitch and spectral flatness \cite{lostanlen2017phd}.
+Keeping all $40$ quefrencies rather than the lowest $13$ brings the P@5 down to $84\%$, because the cepstral coefficients of highest quefrency are the most affected by some spurious factors of intra-class variability, namely pitch and spectral flatness \cite{lostanlen2017phd}.
 
-
+At the smallest time scale $T=\SI{25}{\milli\second}$, the scattering transform reaches a P@5 of $89\%$, thus matching exactly the performance of MFCC.
+This is because the relatively few second-order scattering coefficients whose rate $\lambda_2$ exceeds $\SI{40}{\Hz}$ have a negligible effect on Euclidean distances, as they carry very little energy \cite{anden2013tsp}.
 Scattering: $89\%$.
 Disabling median renormalization -- \ie{} setting  $84\%$.
 Disabling logarithmic compression altogether: $76\%$.
 These results are consistent with \cite{lostanlen2018eurasip}.
 
-Enlarging the frame size do not influence the performance of the MFCC baseline. On contrary the p@5 befenit from an increase of the frame size of the scattering, see Figure \ref{fig:results}(left).
+On contrary the p@5 befenit from an increase of the frame size of the scattering, see Figure \ref{fig:results}(left).
 
 Considering the LMNN algorithm to project the features only marginally improves the performance for the MFCC baseline (p@5 of $90\%$), whereas the scattering features highly benefit from it. The gain decreases while the framesize is increased, probably due to a glass ceilling effect.
 
