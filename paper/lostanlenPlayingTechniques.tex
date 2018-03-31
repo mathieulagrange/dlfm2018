@@ -78,7 +78,7 @@ the next milestone in musical instrument recognition}
 \begin{abstract}
 The expressive variability in which a musical note can be produced conveys some essential information to the modeling of orchestration and style. Yet, although the automatic recognition of a musical instrument from the recording of a single ``ordinary'' note is now considered a solved problem, the ability of a computer to precisely identify instrumental playing techniques (IPT) remains largely underdeveloped.
 In this paper, we conduct a benchmark of machine listening systems for query-by-example browsing among 143 instrumental playing techniques, including the most contemporary, for 16 instruments in the symphonic orchestra, thus amounting to 469 triplets of instrument, mute, and technique. We identify and discuss three necessary conditions for significantly outperforming the classical mel-frequency cepstral coefficients (MFCC) baseline: the inclusion of second-order scattering coefficients to account for the presence of amplitude modulations; the inclusion of long-range temporal dependencies; and the resort to large-margin nearest neighbors (LMNN), a supervised metric learning method that reduces intra-class variability in feature space.
-We report a P@5 of $99.7\%$ for instrument recognition (baseline at $92.5\%$) and of $61.0\%$ for playing technique recognition (baseline at $50.0\%$).
+We report a P@5 of $99.7\%$ for instrument recognition (baseline at $89.0\%$) and of $61.0\%$ for playing technique recognition (baseline at $44.5\%$).
 
 \end{abstract}
 
@@ -367,12 +367,6 @@ In this section, we apply the aforementioned methods to instrument and IPT query
 
 %For each sound, some features are computed over a given time frame, ranging from 25 ms. to 1 second. The set of frames is averaged to give one feature vector per sound recording. Unless otherwise stated, discussed results are given for a frame size of 25 ms. \ml{please rephrase : While considering a short frame size increases the number of frames and thus stabilizes the averaging}, it reduces the ability of the feature to model long time range modulations.
 
-\begin{figure}
-\includegraphics[width=\linewidth,keepaspectratio]{./figs/results/results.png}
-\caption{Summary of results on the SOL dataset.}
-\label{fig:results}
-\end{figure}
-
 
 \subsection{Evaluation of instrument recognition}
 
@@ -394,48 +388,61 @@ This is because the relatively few second-order scattering coefficients whose ra
 Moreover, disabling median renormalization -- \ie{} setting $\boldsymbol{\mu}(\lambda) = 1$ for all scattering paths $\lambda$ -- degrades P@5 down to $84\%$, while disabling logarithmic compression altogether -- \ie{} the limit case $\varepsilon \rightarrow \infty$ -- degrades it to $76\%$.
 These results are consistent with another publication \cite{lostanlen2018eurasip}, which applies scattering transform to a query-by-example retrieval task among environmental acoustic scenes.
 
-On one hand, replacing the canonical Euclidean distance by a Mahalanobis distance learned by the LMNN algorithm marginally improve P@5 in the case of the MFCC baseline, from $89\%$ to $90\%$.
-On the other hand, applying LMNN on scattering features strongly enhances their performance with respect to the Euclidean distance, from $90\%$ to $98\%$.
+On one hand, replacing the canonical Euclidean distance by a Mahalanobis distance learned by the LMNN algorithm marginally improve P@5 in the case of the MFCC baseline, from $89.3\%$ to $90.0\%$.
+On the other hand, applying LMNN on scattering features strongly enhances their performance with respect to the Euclidean distance, from $89.1\%$ to $98.0\%$.
 
 The gain in precision afforded by scattering coefficients over MFCC could simply be caused by a higher number of dimensions.
 To refute this hypothesis, we supplement the $13$ coefficients resulting from a global averaging at the time scale of full musical notes by higher-order summary statistics, namely polynomial features of degrees $2$ and $3$.
 Instrument retrieval in the resulting feature space, whose dimension ($494$) is comparable to the number of scattering coefficients, has a P@5 of $91\%$, \ie{} slightly above the baseline.
 Therefore, it is more likely the multiresolution structure of scattering coefficients, rather than its dimensionality, that causes a strong boost in performance.
 
-Lastly, increasing $T$ from $\SI{25}{\milli\second}$ up to $\SI{1}{\second}$ -- that is, including all amplitude modulations between $\SI{1}{\Hz}$ and $\SI{40}{\Hz}$ -- brings LMNN to a near-perfect P@5 of $99.7\%$.
+Lastly, increasing $T$ from $\SI{25}{\milli\second}$ up to $\SI{1}{\second}$ -- that is, including all amplitude modulations between $\SI{1}{\Hz}$ and $\SI{40}{\Hz}$ -- brings LMNN to a near-perfect P@5 of $99.71\%$.
 Not only does this result confirm that well-established methods in audio signal processing (here, wavelet scattering and metric learning) are sufficient to retrieve the instrument from a single ordinary note; it also demonstrates that the results remain excellent despite large intra-class variability within instruments: in pitch and intensity, but also in the usage of mutes and extended playing techniques.
-In other words, the monophonic recognition of Western instruments is, all things considered, a solved problem. 
+In other words, the monophonic recognition of Western instruments is, all things considered, a solved problem indeed. 
+
+\begin{figure}
+\includegraphics[width=\linewidth,keepaspectratio]{./figs/results/results.png}
+\caption{Summary of results on the SOL dataset.}
+\label{fig:results}
+\end{figure}
 
 \subsection{Evaluation of playing technique recognition}
 
-As expected, considering the playing technique partition as a reference gives a harder task to perform as the  MFCC baseline achieves a p@5 of $45\%$ and the scattering a p@5 of $50\%$.
-When considering a frame size of 25 ms., the LMNN projection gives an equivalent
+The situation is different when considering IPT, rather than instrument, as reference for evaluating the reference of the query-by-example search engine.
+First, the MFCC baseline has a relatively low P@5 of $44.5\%$, which indicates that a coarse description of the short-term spectral envelope is rarely ever sufficient to model acoustic similarity in playing technique.
+
+
+
+
+
+
+
+%As expected, considering the playing technique partition as a reference gives a harder task to perform as the  MFCC baseline achieves a p@5 of $45\%$ and the scattering a p@5 of $50\%$.
+%When considering a frame size of 25 ms., the LMNN projection gives an equivalent
 
 %\subsection{Pitch-adaptive metric learning}
 %A well-known rule of thumb in psychoacoustics states that the ``bandwidth for timbre invariance'', \ie{} the musical interval beyond which two notes are judged dissimilar, is of the order of one octave for untrained listeners \cite{handel2001musicperception} and up to $2.5$ octaves for trained listeners \cite{steele2006musicperception}.
 
-Again, enlarging the frame size do not influence the performance of the MFCC baseline, see Figure \ref{fig:results}(right). More surprisingly, the performance of the scattering features stalls with respect of the frame size. In increase would have been expected, since many playing techniques involves long term modulation of energy through frequency bands which are expected to be nicely captured by the scattering features.
+%Again, enlarging the frame size do not influence the performance of the MFCC baseline, see Figure \ref{fig:results}(right). More surprisingly, the performance of the scattering features stalls with respect of the frame size. In increase would have been expected, since many playing techniques involves long term modulation of energy through frequency bands which are expected to be nicely captured by the scattering features.
 
-It is only when considering the LMNN projection that the p@5 strongly increases with respect to the frame size. We believe that the fact that the system benefit from a richer input only if a supervised projection is considered is due to the need to select \textit{a priori} among the large range of modulations modeled by the scattering features the ones that are relevant for the task at hand.
+%It is only when considering the LMNN projection that the p@5 strongly increases with respect to the frame size. We believe that the fact that the system benefit from a richer input only if a supervised projection is considered is due to the need to select \textit{a priori} among the large range of modulations modeled by the scattering features the ones that are relevant for the task at hand.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CONCLUSION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 
-playing technique is important to fully describe the interaction between a performer and a instrument.
+%playing technique is important to fully describe the interaction between a performer and a instrument.
 
-playing technique modeling
+%playing technique modeling
 
-need to capture long term modulations
+%need to capture long term modulations
 
-scattering useful for this end
+%scattering useful for this end
 
-benchmark results demonstrate the need to have a supervised step to specialize the representation
+%benchmark results demonstrate the need to have a supervised step to specialize the representation
 
-The results described in this paper validate the processing pipeline on the reference partitions of instruments and playing techniques. Future work will focus on the definition of a reference similarity among couples of instruments and playing techniques that is defined perceptually and the evaluation of the proposed processing pipeline against this perceptually defined reference.
-
-
+%The results described in this paper validate the processing pipeline on the reference partitions of instruments and playing techniques. Future work will focus on the definition of a reference similarity among couples of instruments and playing techniques that is defined perceptually and the evaluation of the proposed processing pipeline against this perceptually defined reference.
 
 %Every quest for information is also a quest for invariance. [...]
 % We have formulated the problem as query-by-example browsing. Another possible formulation would be textual description.
