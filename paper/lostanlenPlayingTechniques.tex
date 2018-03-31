@@ -361,9 +361,7 @@ In this section, we apply the aforementioned methods to instrument and IPT query
 %Designing such a system would requires the definition of a reference similarity space where the similarity among musical tones is defined perceptually. The acquisition of such reference is out of the scope of this paper and is left for future work. We thus aim here at validating the processing pipeline considered to implement the query by example system. We would like that such architecture is able to effectively rank items of the database according to 1) the partition of the musical instruments and 2) the partition of the playing techniques.
 
 
-To evaluate the performance of the alternative implementations of the query by example system, the precision at rank $k$ (p@k) is considered. It is computed as the number of relevant items among the $k$ items retrieved by the system divided by $k$. Revelance here is evaluated as the seed and the retrieved item having the same label in the reference partition. Each item of the database is considered as a seed, and the precision of the system under evaluation is computed for this seed. The precision for this system is the precision averaged over all the seeds.
-
-In all subsequent experiments, we set the number of retrieved items to $k=5$. 
+%To evaluate the performance of the alternative implementations of the query by example system, the precision at rank $k$ (p@k) is considered. It is computed as the number of relevant items among the $k$ items retrieved by the system divided by $k$. Revelance here is evaluated as the seed and the retrieved item having the same label in the reference partition. Each item of the database is considered as a seed, and the precision of the system under evaluation is computed for this seed. The precision for this system is the precision averaged over all the seeds.
 
 %When considering a train /test split corpus, the seeds are taken from the test set and  items of the train corpus similar to this seed are retrieved. The precision for this seed is computed among those retrieved items and the precision for the system under evaluation is the precision averaged over all the items of the test set.
 
@@ -379,6 +377,8 @@ In all subsequent experiments, we set the number of retrieved items to $k=5$.
 \subsection{Evaluation of instrument recognition}
 
 In the task of instrument recognition, each of the $k$ elements $\boldsymbol{x}_j$ returned by the system is considered relevant to the query $\boldsymbol{x}_i$ if and only if $\boldsymbol{x}_i$ and $\boldsymbol{x}_j$ correspond to the same instrument, regardless of pitch, intensity, mute, and playing technique.
+In all subsequent experiments, we set the number of retrieved items to $k=5$. 
+
 
 We compare scattering features to a baseline of mel-frequency cepstral coefficients (MFCC), corresponding to the $13$ lowest quefrencies after applying a discrete cosine transform (DCT) on the logarithm of the $40$-band mel-frequency spectrum.
 In addition, we vary the maximum time scale $T$ of amplitude modulation between \SI{25}{\milli\second} and  \SI{1}{\second}.
@@ -395,15 +395,16 @@ Moreover, disabling median renormalization -- \ie{} setting $\boldsymbol{\mu}(\l
 These results are consistent with another publication \cite{lostanlen2018eurasip}, which applies scattering transform to a query-by-example retrieval task among environmental acoustic scenes.
 
 On one hand, replacing the canonical Euclidean distance by a Mahalanobis distance learned by the LMNN algorithm marginally improve P@5 in the case of the MFCC baseline, from $89\%$ to $90\%$.
-On the other hand, the LMNN 
-
-Considering the LMNN algorithm to project the features only marginally improves the performance for the MFCC baseline (p@5 of $90\%$), whereas the scattering features highly benefit from it.
+On the other hand, applying LMNN on scattering features strongly enhances their performance with respect to the Euclidean distance, from $90\%$ to $98\%$.
 
 The gain in precision afforded by scattering coefficients over MFCC could simply be caused by a higher number of dimensions.
 To refute this hypothesis, we supplement the $13$ coefficients resulting from a global averaging at the time scale of full musical notes by higher-order summary statistics, namely polynomial features of degrees $2$ and $3$.
 Instrument retrieval in the resulting feature space, whose dimension ($494$) is comparable to the number of scattering coefficients, has a P@5 of $91\%$, \ie{} slightly above the baseline.
-Therefore, it is the multiresolution structure of scattering coefficients, rather than its dimensionality, which allows a strong boost in performance.
+Therefore, it is more likely the multiresolution structure of scattering coefficients, rather than its dimensionality, that causes a strong boost in performance.
 
+Lastly, increasing $T$ from $\SI{25}{\milli\second}$ up to $\SI{1}{\second}$ -- that is, including all amplitude modulations between $\SI{1}{\Hz}$ and $\SI{40}{\Hz}$ -- brings LMNN to a near-perfect P@5 of $99.7\%$.
+Not only does this result confirm that well-established methods in audio signal processing (here, wavelet scattering and metric learning) are sufficient to retrieve the instrument from a single ordinary note; it also demonstrates that the results remain excellent despite large intra-class variability within instruments: in pitch and intensity, but also in the usage of mutes and extended playing techniques.
+In other words, the monophonic recognition of Western instruments is, all things considered, a solved problem. 
 
 \subsection{Evaluation of playing technique recognition}
 
