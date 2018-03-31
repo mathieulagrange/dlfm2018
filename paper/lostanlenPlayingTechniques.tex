@@ -31,8 +31,6 @@
 \title{Extended playing techniques: \\
 the next milestone in musical instrument recognition}
 
-%\title{Use of metric learning of scattering features improves extended playing techniques recognition}
-
 % Note: Please do NOT use \thanks or a \footnote in any of the author markup
 
 % Three addresses
@@ -78,8 +76,8 @@ the next milestone in musical instrument recognition}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ABSTRACT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-The expressive variability in which a musical note can be produced conveys some essential information to the modeling of orchestration and style. Yet, although the automatic recognition of a musical instrument from the recording of a single ``ordinary'' note is now considered a solved problem, the ability of a computer to precisely identify instrumental playing techniques remains largely underdeveloped.
-In this paper, a benchmark of machine listening systems for query-by-example browsing among 143 instrumental playing techniques, including the most contemporary, for 16 instruments in the symphonic orchestra, thus amounting to 469 triplets of instrument, mute, and technique. We identify and discuss three necessary conditions for significantly outperforming the classical mel-frequency cepstral coefficients (MFCC) baseline: the inclusion of second-order scattering coefficients to account for the presence of amplitude modulations ; the inclusion of long-range temporal dependencies ; and the resort to supervised metric learning in order to boost the representativity of the scattering coefficients relevant for the task at hand.
+The expressive variability in which a musical note can be produced conveys some essential information to the modeling of orchestration and style. Yet, although the automatic recognition of a musical instrument from the recording of a single ``ordinary'' note is now considered a solved problem, the ability of a computer to precisely identify instrumental playing techniques (IPT) remains largely underdeveloped.
+In this paper, we conduct a benchmark of machine listening systems for query-by-example browsing among 143 instrumental playing techniques, including the most contemporary, for 16 instruments in the symphonic orchestra, thus amounting to 469 triplets of instrument, mute, and technique. We identify and discuss three necessary conditions for significantly outperforming the classical mel-frequency cepstral coefficients (MFCC) baseline: the inclusion of second-order scattering coefficients to account for the presence of amplitude modulations; the inclusion of long-range temporal dependencies; and the resort to large-margin nearest neighbors (LMNN), a supervised metric learning method that reduces intra-class variability in feature space.
 We report a P@5 of $99.7\%$ for instrument recognition (baseline at $92.5\%$) and of $61.0\%$ for playing technique recognition (baseline at $50.0\%$).
 
 \end{abstract}
@@ -164,10 +162,10 @@ the addition of new instruments to the symphonic instrumentarium, either by tech
 the creation of novel instrumental associations, as epitomized by \emph{Klangfarbenmelodie} \cite{schoenberg2010book};
 the temporary alteration of resonant properties through mutes and other ``preparations'' \cite{dianova2007phd};
 a more systematic usage of extended instrumental techniques, such as artificial harmonics, \emph{col legno batutto}, or flutter tonguing \cite{kostka2016book};
-and the resort to electronic and digital audio effects \cite{zolzer2011dafx}.
+and the resort to electronics and digital audio effects \cite{zolzer2011dafx}.
 The first of these trends has somewhat stalled: to this day, most Western composers rely on an acoustic instrumentarium that is only marginally different from the one that was available in the Late Romantic period.
 Nevertheless, the latter approaches to timbral diversification were massively adopted into post-war contemporary music.
-In particular, an increased concern for the concept of musical gesture \cite{godoy2009book} has liberated many unconventional instrumental techniques from their figurativistic connotations, thus making the so-called ``ordinary'' playing style merely one of many compositional -- and interpretative -- options.
+In particular, an increased concern for the concept of musical gesture \cite{godoy2009book} has liberated many unconventional instrumental techniques from their figurativistic connotations, thus making the so-called ``ordinary'' playing style merely one of many compositional -- and inmprovisational -- options.
 
 Far from being exclusive to erudite music, extended playing techniques are also commonly found in oral tradition; in some cases, they even stand out as a distinctive component of musical style.
 Four well-known examples are:
@@ -175,7 +173,7 @@ the snap pizzicato (``slap'') of the upright bass in rockabilly,
 the growl of the tenor saxophone in rock'n'roll,
 the shuffle stroke of the violin (``fiddle'') in Irish folklore,
 and the glissando of the clarinet in Klezmer music.
-Consequently, the mere knowledge of organology (the instrumental \emph{what?}~of music), as opposed to chironomics (its gestural \emph{how?}), is a rather weak source of information for browsing and recommending music within large audio databases.
+Consequently, the mere knowledge of organology (the instrumental \emph{what?}~of music), as opposed to chironomics (its gestural \emph{how?}), is a rather weak source of information for browsing and recommendation in large music databases.
 
 Yet, past research in music information retrieval (MIR), and especially machine listening, rarely acknowledges the benefits of integrating the influence of performer gestures into a coherent taxonomy of musical instrument sounds.
 Instead, gestures are either framed as a spurious form of intra-class variability between instruments, without delving into its interdependencies with pitch and intensity;
@@ -187,7 +185,7 @@ In this article, we capitalize on the availability of data to formulate a new li
 
 Figure \ref{fig:TpC-ord-G4-mf_withaxes} shows the constant-$Q$ wavelet transform (CQT) of a trumpet musical note, as played with an ordinary technique.
 Unlike most existing publications on instrument classification, which exclusively focus on pitch (Figure \ref{fig:TpC-ord-G3-mf_withaxes}) and intensity (Figure \ref{fig:TpC-ord-G4-pp_withaxes}) as the main factors of intra-class variability, this paper aims at accounting for the presence of instrumental playing techniques (IPT), such as changes in tone quality (Figure \ref{fig:TpC-brassy-G4-mf_withaxes}), attack (Figure \ref{fig:TpC-sfz-G4-fp_withaxes}), tonguing (Figure \ref{fig:TpC-flatt-G4-mf_withaxes}), and articulation (Figure \ref{fig:TpC+H-ord-G4-mf_withaxes}), either as intra-class variability (instrument recognition task) or as inter-class variability (IPT recognition task).
-The analysis of playing techniques whose definition necessarily involves more than a single musical event, such as phrasing (Figure \ref{fig:TpC+voc-harms-G4-mf_withaxes}), is beyond the scope of this paper.
+The analysis of IPTs whose definition necessarily involves more than a single musical event, such as phrasing (Figure \ref{fig:TpC+voc-harms-G4-mf_withaxes}), is beyond the scope of this paper.
 
 
 Section 2 reviews the existing literature on the topic.
@@ -206,7 +204,7 @@ with a focus on the available datasets afferent to each formulation of the probl
 The earliest works on musical instrument recognition restricted their scope to individual notes played with an ordinary technique -- with datasets such as MUMS \cite{opolko1989dataset}, MIS, RWC \cite{goto2003ismir}, and Philharmonia -- thus eliminating most factors of intra-class variability due to the performer  \cite{martin1998asa,brown1999jasa,eronen2000icassp,herrera2003jnmr,wieczorkowska2003jiis,kaminskyj2005jiis,benetos2006icassp}.
 These works have culminated with the development of a support vector machine (SVM) classifier trained on spectrotemporal receptive fields (STRF), which are idealized computational models of neurophysiological responses in the central auditory system \cite{chi2005jasa}.
 Not only did it attain a near-perfect mean accuracy of $98.7\%$ on the RWC dataset, but the confusion matrix of its automated predictions was closely similar to the confusion matrix of human listeners \cite{patil2012plos}.
-Therefore, it seems that the supervised classification of musical instruments from recordings of ordinary notes could now be considered a solved problem; we refer to \cite{bhalke2016jiis} for a recent review of the state of the art.
+Therefore, the supervised classification of musical instruments from recordings of ordinary notes could arguably be considered a solved problem; we refer to \cite{bhalke2016jiis} for a recent review of the state of the art.
 
 \subsection{Classification of solo recordings}
 
@@ -225,9 +223,9 @@ The Open-MIC initiative, from the newly created Community for Open and Sustainab
 
 \subsection{Single-instrument playing technique classification}
 Lastly, there is a growing interest for studying the role of the performer in musical acoustics, from both perspectives of sound production and sound perception.
-Besides interest in audio signal processing, this topic is connected to other disciplines, such as biomechanics and gestural interfaces \cite{metcalf2014frontiers}.
-The majority of the available literature focuses on the range of playing techniques afforded by a single instrument: recent examples include clarinet \cite{loureiro2004ismir}, percussion \cite{tindale2004ismir}, piano \cite{bernays2013smc}, guitar \cite{foulon2013cmmr,su2014ismir,chen2015ismir}, violin \cite{young2008nime}, cello \cite[chapter 6]{chudy2016phd}, and erhu \cite{yang2014fma}.
-Some publications frame timbral similarity in a polyphonic setting do so according to a purely perceptual definition of timbre -- with continuous attributes such as brightness, warmth, dullness, roughness, and so forth \cite{antoine2018isma} -- yet without connecting these attributes to the discrete latent space of playing techniques.
+Besides its interest in audio signal processing, this topic is connected to other disciplines, such as biomechanics and gestural interfaces \cite{metcalf2014frontiers}.
+The majority of the available literature focuses on the range of IPTs afforded by a single instrument: recent examples include clarinet \cite{loureiro2004ismir}, percussion \cite{tindale2004ismir}, piano \cite{bernays2013smc}, guitar \cite{foulon2013cmmr,su2014ismir,chen2015ismir}, violin \cite{young2008nime}, cello \cite[chapter 6]{chudy2016phd}, and erhu \cite{yang2014fma}.
+Some publications frame timbral similarity in a polyphonic setting, yet do so according to a purely perceptual definition of timbre -- with continuous attributes such as brightness, warmth, dullness, roughness, and so forth -- yet without connecting these attributes to the discrete latent space of IPTs \cite{antoine2018isma}.
 
 In this paper, we formulate the retrieval of expressive parameters of musical timbre at the scale of the symphonic orchestra at large, while expliciting these parameters in terms of sound production (\ie{} through a discrete set of instructions, readily interpretable by the performer) rather than by means of perceptual epithets only.
 We refer to \cite{leman2017chapter} for a recent review of the state of the art.
@@ -241,10 +239,10 @@ In this section, we distinguish taxonomies of musical instruments from taxonomie
 \subsection{Taxonomies}
 
 The Hornbostel-Sachs taxonomy (H-S) strives to organize the diversity of musical instruments according to their manufactural characteristics only, and is purposefully unaffected by sociohistorical background \cite{montagu2009muzyka}.
-Because it offers an unequivocal way of describing any acoustical instrument without any prior knowledge on its afferent playing techniques, it serves as a \emph{lingua franca} in ethnomusicology and museology, especially for ancient or rare instruments which may lack available informants.
+Because it offers an unequivocal way of describing any acoustic instrument without any prior knowledge on its afferent IPTs, it serves as a \emph{lingua franca} in ethnomusicology and museology, especially for ancient or rare instruments which may lack available informants.
 The location of the violin in H-S (321.321-71), as depicted in Figure \ref{fig:instrument-dendrogram}, also encompasses the viola and the cello in addition to the violin.
-This is because these three instruments, viewed as inert objects share a common morphology, despite differences in posture for the performer: both violin and viola are usually played under the jaw whereas the cello is held between the knees.
-Accounting for these differences involves refining H-S with a vernacular taxonomy.
+This is because these three instruments, viewed as inert objects, share a common morphology, despite differences in posture for the performer: both violin and viola are usually played under the jaw whereas the cello is held between the knees.
+Accounting for these differences begs to refine H-S by means a vernacular taxonomy.
 Most instrument taxonomies in music signal processing, including MedleyDB and AudioSet \cite{gemmeke2017icassp}, reach the vernacular level rather than conflating all instruments belonging to the same H-S node.
 In some cases, an even finer level of granularity is attained by the listing of potential alterations to the instrument -- be them permanent or temporary, at the time scale of more than a single note -- that affect its resonant properties after the end of the conventional manufacturing process, \eg{} mutes and other preparations \cite{dianova2007phd}.
 The only example of node in the MedleyDB taxonomy reaching this level is \emph{tack piano} \cite{bittner2014ismir} .
@@ -256,11 +254,11 @@ The only example of node in the MedleyDB taxonomy reaching this level is \emph{t
 \label{fig:instrument-dendrogram}
 \end{figure}
 
-Unlike musical instruments, which are approximately amenable to a hierarchical taxonomy of resonating objects, playing techniques result from a complex synchronization between multiple gestures, which may involve both hands and arms, as well as diaphragm, vocal tract, and sometimes the whole body.
-As a result, there is no immediate way to interface them with H-S, or any tree-like structure of that sort \cite{kolozali2011ismir}.
+Unlike musical instruments, which are approximately amenable to a hierarchical taxonomy of resonating objects, IPTs result from a complex synchronization between multiple gestures, which may involve both hands and arms, as well as diaphragm, vocal tract, and sometimes the whole body.
+As a result, there is no immediate way to interface them with H-S, or indeed any tree-like structure \cite{kolozali2011ismir}.
 Instead, every playing technique is described by a finite collection of categories, each belonging to a different ``namespace''; Figure \ref{fig:technique-dendrogram} illustrates such namespaces in the case of the violin.
 It therefore appears that, rather than aiming for a mere increase in granularity with respect to H-S, a coherent research program around extended playing techniques should formulate them as belonging to a meronomy, \ie{} a modular entanglement of part-whole relationships, in the fashion of the Visipedia initiative in computer vision \cite{belongie2015pattern}.
-In recent years, some publications have attempted to lay the foundations of such a modular approach, with the aim of making H-S relevant to contemporary music creation \cite{magnusson2017jnmr,weisser2011ytm} ; yet, such considerations are still in large part speculative, and offer no definitive procedure for evaluating, let alone training, information retrieval systems.
+In recent years, some publications have attempted to lay the foundations of such a modular approach, with the aim of making H-S relevant to contemporary music creation \cite{magnusson2017jnmr,weisser2011ytm}; yet, such considerations are still in large part speculative, and offer no definitive procedure for evaluating, let alone training, information retrieval systems.
 
 \begin{figure}
 \centering
@@ -275,19 +273,18 @@ In recent years, some publications have attempted to lay the foundations of such
 In what follows, we adopt a middle ground position between the two aforementioned approaches: neither a supervised classifier (as in a hierarchical taxonomy), nor a caption generator (as in a meronomy), our system is a query-by-example search engine in a large database of isolated notes.
 This system is meant to provide a small number $k$ of nearest neighbors in the dataset of musical instrument samples to any user-defined audio query $\boldsymbol{x}(t)$.
 In the context of contemporary music creation, this $\boldsymbol{x}(t)$ may be an instrumental or vocal sketch; a sound event recorded from the environment; a computer-generated waveform; or any mixture of the above \cite{maresz2013cmr}.
-Upon inspecting the $k$ nearest neighbors returned by the search engine, the composer may decide to retain one of the retrieved notes, in which case its attributes (pitch and intensity, but also the exact playing technique) are readily available and can be included into the musical score.
+Upon inspecting the $k$ nearest neighbors returned by the search engine, the composer may decide to retain one of the retrieved notes, in which case its attributes (pitch and intensity, but also the exact playing technique) are readily available and can be included into the musical score to approximate the query.
 
-
-Faithfully evaluating such a system is a difficult procedure, and ultimately would rest on its usability, as judged by the composers themselves.
+Faithfully evaluating such a system is a difficult procedure, and ultimately would rest on its practical usability, as judged by the composers themselves.
 Nevertheless, a useful quantitative metric for this task is the precision at $k$ (P@$k$) of the test set with respect to the training set, both under a instrument taxonomy and an IPT taxonomy.
 
 \subsection{Studio On Line dataset (SOL)}
 
 The Studio On Line dataset (SOL) was recorded at Ircam in 2002 and is freely downloadable as part of the Orchids software for computer-assisted orchestration\footnote{Link to SOL dataset: \url{http://forumnet.ircam.fr/product/orchids-en/}}.
-It is composed of 25444 recordings of isolated notes as played by 16 musical instruments.
-The distribution of these notes, shown in Figure \ref{fig:instrument-histogram}, spans the combinatorial diversity of applicable intensities, pitches, preparations (\ie{} mutes), as well as all applicable playing techniques.
-The distribution of playing techniques -- whose most common are shown in Figure \ref{fig:technique-dendrogram} -- is heavy-tailed (average 178, standard deviation 429): this is because some playing techniques are shared between many instruments (\eg{} \textit{tremolo}) whereas other are instrument-specific (\eg{} \textit{xylophonic} which is specific to the harp).
-The SOL dataset has 143 IPTs in total.
+It comprises 16 musical instruments playing $25444$ isolated notes in total.
+The distribution of these notes, shown in Figure \ref{fig:instrument-histogram}, spans the full combinatorial diversity of applicable intensities, pitches, preparations (\ie{} mutes), as well as all applicable playing techniques.
+The distribution of playing techniques -- whose most common are shown in Figure \ref{fig:technique-dendrogram} -- is heavy-tailed (average $178$, standard deviation $429$): this is because some playing techniques are shared between many instruments (\eg{} \textit{tremolo}) whereas other are instrument-specific (\eg{} \textit{xylophonic} which is specific to the harp).
+The SOL dataset has $143$ IPTs in total, and $469$ applicable instrument-mute-technique triplets.
 
 \begin{figure}[t!]
 \centering
@@ -317,13 +314,13 @@ The SOL dataset has 143 IPTs in total.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  METHODS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methods}
 
-In this section, we describe the scattering transform and supervised metric learning used to implement the query-by-example processing pipeline.
+In this section, we describe the scattering transform and supervised metric learning used to implement all query-by-example systems in our benchmark.
 
 \subsection{Scattering transform} % Scattering transform
 The scattering transform is a cascade of two wavelet modulus operators:
 the first layer extracts the average spectral envelope of $\boldsymbol{x}(t)$ at frequencies $\lambda_1$, whereas the second layer $\mathbf{S}_2 \boldsymbol{x} (t, \lambda_1, \lambda_2)$ extracts amplitude modulations of this spectral envelope at rates $\lambda_2$.
 The set of frequencies discretizes the auditory range according to the mel scale, with $Q_1 = 12$ bins per octave at topmost frequencies; whereas rates $\lambda_2$ follow a geometric sequence between $\lambda_1$ and some minimal rate $T^{-1}$, with $Q_2 = 1$ bin per octave.
-We refer to \cite{anden2014taslp} for a general introduction to scattering transforms in audio classification, and to \cite{lostanlen2017phd} for a discussion on its application to musical instrument classification in solo recordings. The scattering transform is theoretically suited to model extended playing techniques, since various values of the rate $\lambda_2$ provably characterize some well-known nonstationarities in sound production, such as tremolo, vibrato, and dissonance \cite{anden2012dafx}.
+We refer to \cite{anden2014taslp} for a general introduction to scattering transforms in audio classification, and to \cite{lostanlen2017phd} for a discussion on its application to musical instrument classification in solo recordings, as well as its close connections with STRF. The scattering transform is theoretically suited to model extended playing techniques, since various values of the rate $\lambda_2$ provably characterize some of the most common nonstationarities in sound production, including tremolo, vibrato, and dissonance \cite{anden2012dafx}.
 In the following, we denote by $\mathbf{S}\boldsymbol{x}(t,\lambda)$ the concatenation of all scattering coefficients, whether the generic scattering path $\lambda$ corresponds to a singleton $(\lambda_1)$ or a pair $(\lambda_1,\lambda_2)$.
 
 In order to match a decibel-like perception of loudness, we apply the path-adaptive, quasi-logarithmic compression
@@ -338,12 +335,11 @@ where $\varepsilon = 10^{-3}$ and $\boldsymbol{\mu}(\lambda)$ is the median valu
 
 \subsection{Metric learning} % Large-margin nearest neighbors
 
-As shown in the experiments described in Section \ref{sec:exp}, it is helpful to consider a supervised projection of the scattering coefficients in order to select among the large dimensionality of the resulting feature space, which axes are relevant for the task at hand.
+%As shown in the experiments described in Section \ref{sec:exp}, it is helpful to consider a supervised projection of the scattering coefficients in order to select among the large dimensionality of the resulting feature space, which axes are relevant for the task at hand.
 
-May approaches can be considered to achieve such a task \cite{bellet2013survey}. One standard approach is the use of the linear discriminant analysis (LDA) that linearly projects ($x \rightarrow L x$) the input data into a features space of $C$-1 dimensions that maximizes the amount of between-class variance
-relative to the amount of within-class variance. The linear transformation $L$ is chosen to maximize the ratio of between-class to within-class variance,
-subject to the constraint that $L$ defines a projection matrix.
+%One standard approach is the use of the linear discriminant analysis (LDA) that linearly projects ($x \rightarrow L x$) the input data into a features space of $C$-1 dimensions that maximizes the amount of between-class variance relative to the amount of within-class variance. The linear transformation $L$ is chosen to maximize the ratio of between-class to within-class variance, subject to the constraint that $L$ defines a projection matrix.
 
+May approaches can be considered to achieve such a task \cite{bellet2013survey}.
 
 A more flexible approach often taken in metric learning is to optimize a Mahalanobis matrix that linearly projects the input data into another feature space of the same dimensionality. In this case, the resulting distance is $\mathrm{D}_\mathbf{L}(\boldsymbol{x}_i, \boldsymbol{x}_j) = (\mathbf{S}\boldsymbol{x}_i - \mathbf{S}\boldsymbol{x}_j)^{\top}  \mathbf{L}^{\top} \mathbf{L} (\mathbf{S}\boldsymbol{x}_i-\mathbf{S}\boldsymbol{x}_j)$.
 In this study, the large-margin nearest neighbors (LMNN) approach \cite{weinberger2006nips, weinberger2009jmlr} that optimizes the above described performance metric is considered. During the learning process, the following constraints are enforced: : the
