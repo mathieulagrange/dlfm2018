@@ -339,18 +339,14 @@ where $\varepsilon = 10^{-3}$ and $\boldsymbol{\mu}(\lambda)$ is the median valu
 
 %One standard approach is the use of the linear discriminant analysis (LDA) that linearly projects ($x \rightarrow L x$) the input data into a features space of $C$-1 dimensions that maximizes the amount of between-class variance relative to the amount of within-class variance. The linear transformation $L$ is chosen to maximize the ratio of between-class to within-class variance, subject to the constraint that $L$ defines a projection matrix.
 
-May approaches can be considered to achieve such a task \cite{bellet2013survey}.
-
-A more flexible approach often taken in metric learning is to optimize a Mahalanobis matrix that linearly projects the input data into another feature space of the same dimensionality. In this case, the resulting distance is $\mathrm{D}_\mathbf{L}(\boldsymbol{x}_i, \boldsymbol{x}_j) = (\mathbf{S}\boldsymbol{x}_i - \mathbf{S}\boldsymbol{x}_j)^{\top}  \mathbf{L}^{\top} \mathbf{L} (\mathbf{S}\boldsymbol{x}_i-\mathbf{S}\boldsymbol{x}_j)$.
-In this study, the large-margin nearest neighbors (LMNN) approach \cite{weinberger2006nips, weinberger2009jmlr} that optimizes the above described performance metric is considered. During the learning process, the following constraints are enforced: : the
-k nearest neighbors of any training instance should belong to the
-same class of the training instance ( the "pull" constraint) while keeping away instances of other classes (the "push" constraint).
-
-%Nevertheless,
-%Nevertheless,
-% Class-wise generative model
-% Robust to alterations in the "folksonomy" of playing techniques.
-% e.g. what some instrument call a glissando, others call slide
+Linear metric learning algorithms generate a matrix $\mathbf{L}$ such that the Mahalanobis distance
+\begin{equation}
+\mathrm{D}_\mathbf{L}(\boldsymbol{x}_i, \boldsymbol{x}_j) = (\widetilde{\mathbf{S}}\boldsymbol{x}_i - \widetilde{\mathbf{S}}\boldsymbol{x}_j)^{\top}  \mathbf{L}^{\top} \mathbf{L} (\widetilde{\mathbf{S}}_i-\widetilde{\mathbf{S}})
+\end{equation}
+between all pairs of samples $(\boldsymbol{x}_i, \boldsymbol{x}_j)$ optimizes some objective function.
+Observe that the Euclidean distance is a particular case of the equation above, in which case $\mathbf{L}$ boils down to identity.
+We refer to \cite{bellet2013survey} for a review of the state of the art.
+In particular, the large-margin nearest neighbors (LMNN) algorithm aims at bringing all $k$ nearest neighbors $\boldsymbol{x}_j$ of every $\boldsymbol{x}_i$ closer than the canonical Euclidean distance $\mathrm{D}(\boldsymbol{x}_i, \boldsymbol{x}_j) = \Vert \widetilde{\mathbf{S}}\boldsymbol{x}_i - \widetilde{\mathbf{S}}\boldsymbol{x}_j \Vert$ if $\boldsymbol{x}_i$ and $\boldsymbol{x}_j$ belong to the same class, and further apart otherwise \cite{weinberger2006nips, weinberger2009jmlr}.
 
 
 
