@@ -319,10 +319,10 @@ In this section, we describe the scattering transform and supervised metric lear
 
 \subsection{Scattering transform} % Scattering transform
 The scattering transform is a cascade of two wavelet modulus operators:
-the first layer extracts the average spectral envelope of $\boldsymbol{x}(t)$ at frequencies $\lambda_1$, whereas the second layer $\mathbf{S}_2 \boldsymbol{x} (t, \lambda_1, \lambda_2)$ extracts amplitude modulations of this spectral envelope at rates $\lambda_2$.
+the first layer extracts the average spectral envelope of $\boldsymbol{x}(t)$ at frequencies $\lambda_1$, whereas the second layer $\mathbf{S}_2 \boldsymbol{x} (\lambda_1, \lambda_2)$ extracts amplitude modulations of this spectral envelope at rates $\lambda_2$.
 The set of frequencies discretizes the auditory range according to the mel scale, with $Q_1 = 12$ bins per octave at topmost frequencies; whereas rates $\lambda_2$ follow a geometric sequence between $\lambda_1$ and some minimal rate $T^{-1}$, with $Q_2 = 1$ bin per octave.
 We refer to \cite{anden2014taslp} for a general introduction to scattering transforms in audio classification, and to \cite{lostanlen2017phd} for a discussion on its application to musical instrument classification in solo recordings, as well as its close connections with STRF. The scattering transform is theoretically suited to model extended playing techniques, since various values of the rate $\lambda_2$ provably characterize some of the most common nonstationarities in sound production, including tremolo, vibrato, and dissonance \cite{anden2012dafx}.
-In the following, we denote by $\mathbf{S}\boldsymbol{x}(t,\lambda)$ the concatenation of all scattering coefficients, whether the generic scattering path $\lambda$ corresponds to a singleton $(\lambda_1)$ or a pair $(\lambda_1,\lambda_2)$.
+In the following, we denote by $\mathbf{S}\boldsymbol{x}(\lambda)$ the concatenation of all scattering coefficients, whether the generic scattering path $\lambda$ corresponds to a singleton $(\lambda_1)$ or a pair $(\lambda_1,\lambda_2)$.
 
 In order to match a decibel-like perception of loudness, we apply the path-adaptive, quasi-logarithmic compression
 \begin{equation}
@@ -342,7 +342,7 @@ where $\varepsilon = 10^{-3}$ and $\boldsymbol{\mu}(\lambda)$ is the median valu
 
 Linear metric learning algorithms generate a matrix $\mathbf{L}$ such that the Mahalanobis distance
 \begin{equation}
-\mathrm{D}_\mathbf{L}(\boldsymbol{x}_i, \boldsymbol{x}_j) = (\widetilde{\mathbf{S}}\boldsymbol{x}_i - \widetilde{\mathbf{S}}\boldsymbol{x}_j)^{\top}  \mathbf{L}^{\top} \mathbf{L} (\widetilde{\mathbf{S}}_i-\widetilde{\mathbf{S}})
+\mathrm{D}_\mathbf{L}(\boldsymbol{x}_i, \boldsymbol{x}_j) = (\widetilde{\mathbf{S}}\boldsymbol{x}_i - \widetilde{\mathbf{S}}\boldsymbol{x}_j)^{\top}  \mathbf{L}^{\top} \mathbf{L} (\widetilde{\mathbf{S}}\boldsymbol{x}_i-\widetilde{\mathbf{S}}\boldsymbol{x}_j)
 \end{equation}
 between all pairs of samples $(\boldsymbol{x}_i, \boldsymbol{x}_j)$ optimizes some objective function.
 Observe that the Euclidean distance is a particular case of the equation above, in which case $\mathbf{L}$ boils down to identity.
@@ -376,7 +376,7 @@ In the task of instrument recognition, each of the $k$ elements $\boldsymbol{x}_
 We compare scattering features to a baseline of mel-frequency cepstral coefficients (MFCC), corresponding to the $13$ lowest quefrencies after applying a discrete cosine transform (DCT) on the logarithm of the $40$-band mel-frequency spectrum.
 In addition, we vary the maximum time scale $T$ of amplitude modulation between \SI{25}{\milli\second} and  \SI{1}{\second}.
 In the case of MFCC, $T=\SI{25}{\milli\second}$ corresponds to the inverse of the lowest audible frequency ($T^{-1}=\SI{40}{\Hz}$).
-Therefore, increasing the frame duration $T$ has no effect on the value of MFCC, because the mel-spectrogram is equivalent to a local averaging of the wavelet scalogram at the time scale $T$, leaving unchanged the global averaging of $\mathbf{S}(t,\lambda)$ at the time scale of whole musical notes \cite{anden2012dafx}.
+Therefore, increasing the frame duration $T$ has no effect on the value of MFCC, because the mel-spectrogram is equivalent to a local averaging of the wavelet scalogram at the time scale $T$, leaving unchanged the global averaging of $\mathbf{S}(\lambda)$ at the time scale of whole musical notes \cite{anden2012dafx}.
 
 Figure \ref{fig:results} (left) summarizes our results.
 We find that MFCC reach a relatively high P@5 of $89\%$.
