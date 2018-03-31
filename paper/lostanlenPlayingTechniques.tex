@@ -376,11 +376,11 @@ In the task of instrument recognition, each of the $k$ elements $\boldsymbol{x}_
 We compare scattering features to a baseline of mel-frequency cepstral coefficients (MFCC), corresponding to the $13$ lowest quefrencies after applying a discrete cosine transform (DCT) on the logarithm of the $40$-band mel-frequency spectrum.
 In addition, we vary the maximum time scale $T$ of amplitude modulation between \SI{25}{\milli\second} and  \SI{1}{\second}.
 In the case of MFCC, $T=\SI{25}{\milli\second}$ corresponds to the inverse of the lowest audible frequency ($T^{-1}=\SI{40}{\Hz}$).
-Therefore, increasing the frame duration $T$ has no effect on the value of MFCC, because the mel-spectrogram is equivalent to a local averaging of the wavelet scalogram at the time scale $T$, leaving unchanged the result of the global averaging of $\mathbf{S}(t,\lambda)$ at the time scale of the whole musical note \cite{anden2012dafx}.
+Therefore, increasing the frame duration $T$ has no effect on the value of MFCC, because the mel-spectrogram is equivalent to a local averaging of the wavelet scalogram at the time scale $T$, leaving unchanged the global averaging of $\mathbf{S}(t,\lambda)$ at the time scale of whole musical notes \cite{anden2012dafx}.
 
 Figure \ref{fig:results} (left) summarizes our results.
 We find that MFCC reach a relatively high P@5 of $89\%$.
-Keeping all $40$ quefrencies rather than the lowest $13$ brings the P@5 down to $84\%$, because the cepstral coefficients of highest quefrency are the most affected by some spurious factors of intra-class variability, namely pitch and spectral flatness \cite{lostanlen2017phd}.
+Keeping all $40$ quefrencies rather than the lowest $13$ brings the P@5 down to $84\%$, because the highest quefrencies are the most affected by some spurious factors of intra-class variability, namely pitch and spectral flatness \cite{lostanlen2017phd}.
 
 At the smallest time scale $T=\SI{25}{\milli\second}$, the scattering transform reaches a P@5 of $89\%$, thus matching exactly the performance of MFCC.
 This is because the relatively few second-order scattering coefficients whose rate $\lambda_2$ exceeds $\SI{40}{\Hz}$ have a negligible effect on Euclidean distances, as they carry very little energy \cite{anden2014taslp}.
@@ -396,7 +396,7 @@ Instrument retrieval in the resulting feature space, whose dimension ($494$) is 
 Therefore, it is more likely the multiresolution structure of scattering coefficients, rather than its dimensionality, that causes a strong boost in performance.
 
 Lastly, increasing $T$ from $\SI{25}{\milli\second}$ up to $\SI{1}{\second}$ -- that is, including all amplitude modulations between $\SI{1}{\Hz}$ and $\SI{40}{\Hz}$ -- brings LMNN to a near-perfect P@5 of $99.71\%$.
-Not only does this result confirm that well-established methods in audio signal processing (here, wavelet scattering and metric learning) are sufficient to retrieve the instrument from a single ordinary note; it also demonstrates that the results remain excellent despite large intra-class variability within instruments: in pitch and intensity, but also in the usage of mutes and extended playing techniques.
+Not only does this result confirm that well-established methods in audio signal processing (here, wavelet scattering and metric learning) are sufficient to retrieve the instrument from a single ordinary note; it also demonstrates that the results remain excellent despite large intra-class variability within instruments: in pitch and intensity, but also in the usage of mutes and extended IPTs.
 In other words, the monophonic recognition of Western instruments is, all things considered, a solved problem indeed. 
 
 \begin{figure}
@@ -430,7 +430,18 @@ In addition, the dissimilarity between two different playing techniques is not a
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CONCLUSION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 
-The playing technique 
+Whereas the MIR literature abounds on the topic of musical instrument recognition in so-called ``ordinary'' isolated notes and solo performances, little is known about the problem of retrieving the instrumental playing technique (IPT) of an audio query within a fine-grained taxonomy. 
+Yet, the knowledge of IPT is a precious source of music information, not only to characterize the physical interaction between player and instrument, but also in the realm of contemporary music creation.
+In all likelihood, it also bears an interest for organizing digital libraries, as a mid-level descriptor of musical style.
+To the best of our knowledge, this paper is the first in benchmarking query-by-example MIR systems according to a large-vocabulary IPT reference (143 classes) instead of an instrument reference.
+We find that this new task is considerably more challenging than musical instrument recognition, as it amounts to characterizing spectrotemporal patterns at various scales and rates and comparing them in a highly non-Euclidean way.
+Although the combination of methods presented here -- wavelet scattering and large-margin nearest neighbors -- outperforms the MFCC baseline (even at comparable dimensionalities and number of learnable parameters), its accuracy on the SOL dataset certainly leaves some room for future improvements.
+
+The evaluation methodology presented here uses ground truth IPT labels to quantify the relevance of returned items.
+Despite the advantage of unequivocality, might be too harsh to reflect practical use.
+Indeed, as it is often the case in MIR, some pairs of labels are subjectively more similar than others: \eg{} \emph{slide} is evidently closer to \emph{glissando} than to \emph{pizzicato-bartok}.
+The collection of subjective ratings of IPT similarity, and its comparison with automated ratings, is left as future work.
+%employs a $0-1$ loss to discriminate IPTs.
 
 %playing technique is important to fully describe the interaction between a performer and a instrument.
 
