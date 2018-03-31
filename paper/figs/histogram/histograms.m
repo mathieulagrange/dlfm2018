@@ -6,11 +6,14 @@ family_values = family_values(sorting_indices);
 family_keys = family_keys(sorting_indices);
 
 family_categories = reordercats(categorical(family_keys), family_keys);
+
+%%
 bar(family_categories, family_values);
 
 n_xticks = 5;
 ax = gca();
-ax.YAxis.MinorTickValues = 0:200:3500;
+ax.FontSize = 8;
+ax.YAxis.MinorTickValues = 0:500:3500;
 ax.YAxis.TickValues = 0:1000:3000;
 
 xticks(1:length(family_keys));
@@ -24,14 +27,23 @@ ax.MinorGridLineStyle = '--';
 ax.GridLineStyle = '-';
 xtickangle(45);
 set(ax,'yminorgrid', 'on');
+set(ax, 'FontSize', 6);
 
-text(0.4, 3650, 'Quantity of data');
+text(0.4, 3650, 'Quantity of data', 'FontSize', 6);
 
 fig = gcf();
-set(fig, 'Position', [1 1 353 369]);
+set(fig, 'Position', [1 1 265 150]);
+
+scale = 0.05;
+pos = get(gca, 'Position');
+pos(2) = pos(2)+scale*pos(4);
+pos(4) = (1-scale)*pos(4);
+set(gca, 'Position', pos)
+
 addpath(genpath('~/export_fig'));
 export_fig -transparent -m8 histogram_instruments.png 
 
+%%
 
 
 %%

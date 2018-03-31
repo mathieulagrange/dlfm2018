@@ -324,7 +324,9 @@ The SOL dataset has 143 playing techniques in total.
 In this section, we describe the scattering transform and supervised metric learning used to implement the query by example processing pipeline.
 
 \subsection{Scattering transform} % Scattering transform
-
+The scattering transform is a cascade of two wavelet modulus operators:
+the first layer extracts the average spectral envelope of $\boldsymbol{x}(t)$ at frequencies $\lambda_1$, whereas the second layer $\mathbf{S}_2 \boldsymbol{x} (t, \lambda_1, \lambda_2)$ extracts amplitude modulations of this spectral envelope at rates $\lambda_2$.
+The set of frequencies discretizes the auditory range according to the mel scale, with $Q_1 = 12$ bins per octave at topmost frequencies; whereas rates $\lambda_2$ follow a geometric sequence between $\lambda_1$ and some minimal rate $T^{-1}$, with $Q_2 = 1$ bin per octave.
 
 We refer to \cite{anden2014taslp} for a general introduction to scattering transforms in audio classification, and to \cite{lostanlen2017phd} for a discussion on its application to musical instrument classification in solo recordings.
 \cite{anden2012dafx}
@@ -361,7 +363,7 @@ In this section, we apply the aforementioned methods to instrument classificatio
 
 As explained in Section \ref{sec:motivation} we formulate here the instrument / playing techniques recognition problem as a query by example one as we are \textit{in fine} interested in an application scenario where the user specify a seed sound, be it played by a musical instrument or not, and the system returns several items from the database that have some level of similarity with the seed.
 
-Designing such a system would requires the definition of a reference similarity space where the similarity among musical tones is defined perceptually. The aquisition of such reference is out of the scope of this paper and is left for future work. We thus aim here at validating the processing pipeline considered to implement the query by example system. We would like that such architecture is able to effectively rank items of the database according to 1) the partition of the musical instruments and 2) the partition of the playing techniques.
+Designing such a system would requires the definition of a reference similarity space where the similarity among musical tones is defined perceptually. The acquisition of such reference is out of the scope of this paper and is left for future work. We thus aim here at validating the processing pipeline considered to implement the query by example system. We would like that such architecture is able to effectively rank items of the database according to 1) the partition of the musical instruments and 2) the partition of the playing techniques.
 
 To evaluate the performance of the alternative implementations of the query by example system, the precision at rank $k$ (p@k) is considered. It is computed as the number of relevant items among the $k$ items retrieved by the system divided by $k$. Revelance here is evaluated as the seed and the retrieved item having the same label in the reference partition. Each item of the database is considered as a seed, and the precision of the system under evaluation is computed for this seed. The precision for this system is the precision averaged over all the seeds.
 
