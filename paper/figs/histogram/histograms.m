@@ -57,7 +57,7 @@ n_modefamilies = length(mfamily_keys);
 [x, sorting_indices] = sort(mfamily_values, 'descend');
 
 
-n_families = 75;
+n_families = 50;
 mfamily_ys = 1:n_families;
 sorting_indices = sorting_indices(mfamily_ys);
 
@@ -77,13 +77,15 @@ ylim([0, n_families+2]);
 yticklabels(mfamily_keys);
 
 xt = get(gca, 'YTick');
-set(gca, 'FontSize', 16)
+set(gca, 'FontSize', 12)
 
 %xlabel('Quantity of data');
 ax.Box = 'off';
 set(gca(), 'YDir', 'reverse');
 
 fig = gcf();
-fig.Position = [1 1 500 1650];
+fig.Position = [1 1 450 900];
+
+drawnow();
 
 export_fig  -transparent histogram_modes.png 
