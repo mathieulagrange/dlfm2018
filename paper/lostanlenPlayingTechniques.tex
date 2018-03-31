@@ -392,13 +392,18 @@ Keeping all $40$ quefrencies rather than the lowest $13$ brings the P@5 down to 
 At the smallest time scale $T=\SI{25}{\milli\second}$, the scattering transform reaches a P@5 of $89\%$, thus matching exactly the performance of MFCC.
 This is because the relatively few second-order scattering coefficients whose rate $\lambda_2$ exceeds $\SI{40}{\Hz}$ have a negligible effect on Euclidean distances, as they carry very little energy \cite{anden2014taslp}.
 Moreover, disabling median renormalization -- \ie{} setting $\boldsymbol{\mu}(\lambda) = 1$ for all scattering paths $\lambda$ -- degrades P@5 down to $84\%$, while disabling logarithmic compression altogether -- \ie{} the limit case $\varepsilon \rightarrow \infty$ -- degrades it to $76\%$.
-These results are consistent with a previous publication \cite{lostanlen2018eurasip}, which applied scattering transform to a query-by-example retrieval task among environmental acoustic scenes.
+These results are consistent with another publication \cite{lostanlen2018eurasip}, which applies scattering transform to a query-by-example retrieval task among environmental acoustic scenes.
 
-On contrary the p@5 befenit from an increase of the frame size of the scattering, see Figure \ref{fig:results}(left).
+On one hand, replacing the canonical Euclidean distance by a Mahalanobis distance learned by the LMNN algorithm marginally improve P@5 in the case of the MFCC baseline, from $89\%$ to $90\%$.
+On the other hand, the LMNN 
 
-Considering the LMNN algorithm to project the features only marginally improves the performance for the MFCC baseline (p@5 of $90\%$), whereas the scattering features highly benefit from it. The gain decreases while the framesize is increased, probably due to a glass ceilling effect.
+Considering the LMNN algorithm to project the features only marginally improves the performance for the MFCC baseline (p@5 of $90\%$), whereas the scattering features highly benefit from it.
 
-In order to control if the LMNN artificially benefits from the higher degree of freedom provided by the higher dimensionality of the scattering features (494 for the 25 ms. frame size), another set of baseline features based on monomials of the MFCCs with the same dimensionality (494) is considered. Considering the LMNN over this new set of features gives a slight increase of performance (p@5 of $91\%$), we thus assume that the better performance is due to the higher level of expressivity of the scattering features.
+The gain in precision afforded by scattering coefficients over MFCC could simply be caused by a higher number of dimensions.
+To refute this hypothesis, we supplement the $13$ coefficients resulting from a global averaging at the time scale of full musical notes by higher-order summary statistics, namely polynomial features of degrees $2$ and $3$.
+Instrument retrieval in the resulting feature space, whose dimension ($494$) is comparable to the number of scattering coefficients, has a P@5 of $91\%$, \ie{} slightly above the baseline.
+Therefore, it is the multiresolution structure of scattering coefficients, rather than its dimensionality, which allows a strong boost in performance.
+
 
 \subsection{Evaluation of playing technique recognition}
 
