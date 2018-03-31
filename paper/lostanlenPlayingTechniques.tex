@@ -390,11 +390,9 @@ We find that MFCC reach a relatively high P@5 of $89\%$.
 Keeping all $40$ quefrencies rather than the lowest $13$ brings the P@5 down to $84\%$, because the cepstral coefficients of highest quefrency are the most affected by some spurious factors of intra-class variability, namely pitch and spectral flatness \cite{lostanlen2017phd}.
 
 At the smallest time scale $T=\SI{25}{\milli\second}$, the scattering transform reaches a P@5 of $89\%$, thus matching exactly the performance of MFCC.
-This is because the relatively few second-order scattering coefficients whose rate $\lambda_2$ exceeds $\SI{40}{\Hz}$ have a negligible effect on Euclidean distances, as they carry very little energy \cite{anden2013tsp}.
-Scattering: $89\%$.
-Disabling median renormalization -- \ie{} setting  $84\%$.
-Disabling logarithmic compression altogether: $76\%$.
-These results are consistent with \cite{lostanlen2018eurasip}.
+This is because the relatively few second-order scattering coefficients whose rate $\lambda_2$ exceeds $\SI{40}{\Hz}$ have a negligible effect on Euclidean distances, as they carry very little energy \cite{anden2014taslp}.
+Moreover, disabling median renormalization -- \ie{} setting $\boldsymbol{\mu}(\lambda) = 1$ for all scattering paths $\lambda$ -- degrades P@5 down to $84\%$, while disabling logarithmic compression altogether -- \ie{} the limit case $\varepsilon \rightarrow \infty$ -- degrades it to $76\%$.
+These results are consistent with a previous publication \cite{lostanlen2018eurasip}, which applied scattering transform to a query-by-example retrieval task among environmental acoustic scenes.
 
 On contrary the p@5 befenit from an increase of the frame size of the scattering, see Figure \ref{fig:results}(left).
 
