@@ -381,15 +381,13 @@ In all subsequent experiments, we set the number of retrieved items to $k=5$.
 In the task of instrument recognition, each of the $k$ elements $\boldsymbol{x}_j$ returned by the system is considered relevant to the query $\boldsymbol{x}_i$ if and only if $\boldsymbol{x}_i$ and $\boldsymbol{x}_j$ correspond to the same instrument, regardless of pitch, intensity, mute, and playing technique.
 
 We compare scattering features to a baseline of mel-frequency cepstral coefficients (MFCC), corresponding to the $13$ lowest quefrencies after applying a discrete cosine transform (DCT) on the logarithm of the $40$-band mel-frequency spectrum.
-We evaluate the influence of LMNN on both MFCC and scattering coefficients/
 In addition, we vary the maximum time scale $T$ of amplitude modulation between \SI{25}{\milli\second} and  \SI{1}{\second}.
-In the case of MFCC, $T=\SI{25}{\milli\second}$ corresponds to the inverse of the lowest audible frequency ($T=\SI{40}{\Hz}$).
-Therefore, increasing the frame duration $T$ has no effect on the value of MFCC, because the mel-spectrogram is equivalent to a local averaging of the wavelet scalogram at the time scale $T$, leaving unchanged the result of the global averaging of $\mathbf{S}(t,\lambda)$ at the time scale of the whole musical note.
+In the case of MFCC, $T=\SI{25}{\milli\second}$ corresponds to the inverse of the lowest audible frequency ($T^{-1}=\SI{40}{\Hz}$).
+Therefore, increasing the frame duration $T$ has no effect on the value of MFCC, because the mel-spectrogram is equivalent to a local averaging of the wavelet scalogram at the time scale $T$, leaving unchanged the result of the global averaging of $\mathbf{S}(t,\lambda)$ at the time scale of the whole musical note \cite{anden2012dafx}.
 
 Figure \ref{fig:results} summarizes our results.
-We find that MFCC reach a relatively P@5
-
-It which achieves a p@5 of $89\%$. Keeping all $40$ MFCCs coefficients rather than the lowest $13$ degrades accuracy down to $84\%$. This result is in line with the fact that the low frequency modulation of the spectrum are most useful to model the resonant cavity, be it the vocal tract for speech and the instrument body for musical instruments.
+We find that MFCC reach a relatively high P@5 of $89\%$.
+Keeping all $40$ quefrencies rather than the lowest $13$ degrades P@5 down to $84\%$, because the cepstral coefficients of highest quefrency are the most affected by some spurious factors of intra-class variability, namely pitch and spectral flatness \cite{lostanlen2017phd}.
 
 
 Scattering: $89\%$.
