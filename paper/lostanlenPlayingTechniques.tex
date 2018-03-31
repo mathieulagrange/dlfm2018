@@ -279,11 +279,7 @@ Upon inspecting the $k$ nearest neighbors returned by the search engine, the com
 
 
 Faithfully evaluating such a system is a difficult procedure, and ultimately would rest on its usability, as judged by the composers themselves.
-%Nevertheless,
-%Nevertheless,
-% Class-wise generative model
-% Robust to alterations in the "folksonomy" of playing techniques.
-% e.g. what some instrument call a glissando, others call slide
+Nevertheless, a useful quantitative metric for this task is the precision at $k$ (P@$k$) of the test set with respect to the training set, both under a instrument taxonomy and an IPT taxonomy.
 
 \subsection{Studio On Line dataset (SOL)}
 
@@ -291,7 +287,7 @@ The Studio On Line dataset (SOL) was recorded at Ircam in 2002 and is freely dow
 It is composed of 25444 recordings of isolated notes as played by 16 musical instruments.
 The distribution of these notes, shown in Figure \ref{fig:instrument-histogram}, spans the combinatorial diversity of applicable intensities, pitches, preparations (\ie{} mutes), as well as all applicable playing techniques.
 The distribution of playing techniques -- whose most common are shown in Figure \ref{fig:technique-dendrogram} -- is heavy-tailed (average 178, standard deviation 429): this is because some playing techniques are shared between many instruments (\eg{} \textit{tremolo}) whereas other are instrument-specific (\eg{} \textit{xylophonic} which is specific to the harp).
-The SOL dataset has 143 playing techniques in total.
+The SOL dataset has 143 IPTs in total.
 
 \begin{figure}[t!]
 \centering
@@ -321,7 +317,7 @@ The SOL dataset has 143 playing techniques in total.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  METHODS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methods}
 
-In this section, we describe the scattering transform and supervised metric learning used to implement the query by example processing pipeline.
+In this section, we describe the scattering transform and supervised metric learning used to implement the query-by-example processing pipeline.
 
 \subsection{Scattering transform} % Scattering transform
 The scattering transform is a cascade of two wavelet modulus operators:
@@ -330,13 +326,14 @@ The set of frequencies discretizes the auditory range according to the mel scale
 We refer to \cite{anden2014taslp} for a general introduction to scattering transforms in audio classification, and to \cite{lostanlen2017phd} for a discussion on its application to musical instrument classification in solo recordings. The scattering transform is theoretically suited to model extended playing techniques, since various values of the rate $\lambda_2$ provably characterize some well-known nonstationarities in sound production, such as tremolo, vibrato, and dissonance \cite{anden2012dafx}.
 In the following, we denote by $\mathbf{S}\boldsymbol{x}(t,\lambda)$ the concatenation of all scattering coefficients, whether the generic scattering path $\lambda$ corresponds to a singleton $(\lambda_1)$ or a pair $(\lambda_1,\lambda_2)$.
 
+In order to match a decibel-like perception of loudness, we apply the path-adaptive, quasi-logarithmic compression
 \begin{equation}
 \widetilde{\mathbf{S}} \boldsymbol{x}_i(\lambda) =
 \log \left(
 1 + \dfrac{\mathbf{S}\boldsymbol{x}_i(\lambda)}{\varepsilon \times \boldsymbol{\mu}(\lambda)}
 \right)
 \end{equation}
-where $\varepsilon = 10^{-3}$ and $\boldsymbol{\mu}(\lambda)$ is the median value of the scattering coefficient $\mathbf{S}\boldsymbol{x}_i (\lambda)$ for path $\lambda$ across samples $i$ in the training set.
+where $\varepsilon = 10^{-3}$ and $\boldsymbol{\mu}(\lambda)$ is the median value of the scattering coefficient $\mathbf{S}\boldsymbol{x}_i (\lambda)$ for path $\lambda$ across samples $i$.
 
 
 \subsection{Metric learning} % Large-margin nearest neighbors
@@ -352,6 +349,12 @@ A more flexible approach often taken in metric learning is to optimize a Mahalan
 In this study, the large-margin nearest neighbors (LMNN) approach \cite{weinberger2006nips, weinberger2009jmlr} that optimizes the above described performance metric is considered. During the learning process, the following constraints are enforced: : the
 k nearest neighbors of any training instance should belong to the
 same class of the training instance ( the "pull" constraint) while keeping away instances of other classes (the "push" constraint).
+
+%Nevertheless,
+%Nevertheless,
+% Class-wise generative model
+% Robust to alterations in the "folksonomy" of playing techniques.
+% e.g. what some instrument call a glissando, others call slide
 
 
 
