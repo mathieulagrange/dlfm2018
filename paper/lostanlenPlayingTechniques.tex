@@ -348,7 +348,9 @@ Observe that the Euclidean distance is a particular case of the equation above, 
 We refer to \cite{bellet2013survey} for a review of the state of the art.
 In particular, the large-margin nearest neighbors (LMNN) algorithm aims at bringing all $k$ nearest neighbors $\boldsymbol{x}_j$ of every $\boldsymbol{x}_i$ closer than the canonical Euclidean distance $\mathrm{D}(\boldsymbol{x}_i, \boldsymbol{x}_j) = \Vert \widetilde{\mathbf{S}}\boldsymbol{x}_i - \widetilde{\mathbf{S}}\boldsymbol{x}_j \Vert$ if $\boldsymbol{x}_i$ and $\boldsymbol{x}_j$ belong to the same class, and further apart otherwise \cite{weinberger2006nips, weinberger2009jmlr}.
 
-
+As compared to a class-wise generative model (such as Gaussian mixtures), a global linear model ensures some robustness to minor alterations of the taxonomy, which is important in the context of IPT: \eg{} what some instrumentists may call $\emph{slide}$, others will call $\emph{glissando}$.
+Although one of its major drawback relies on its strong dependency on the Euclidean neighbors to learn $\mathbf{L}$ \cite{mcfee2010icml}
+The linearity of LMNN provides some robustness to 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% EXPERIMENTAL RESULTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
