@@ -165,7 +165,7 @@ a more systematic usage of extended instrumental techniques, such as artificial 
 and the resort to electronics and digital audio effects \cite{zolzer2011dafx}.
 The first of these trends has somewhat stalled: to this day, most Western composers rely on an acoustic instrumentarium that is only marginally different from the one that was available in the Late Romantic period.
 Nevertheless, the latter approaches to timbral diversification were massively adopted into post-war contemporary music.
-In particular, an increased concern for the concept of musical gesture \cite{godoy2009book} has liberated many unconventional instrumental techniques from their figurativistic connotations, thus making the so-called ``ordinary'' playing style merely one of many compositional -- and inmprovisational -- options.
+In particular, an increased concern for the concept of musical gesture \cite{godoy2009book} has liberated many unconventional instrumental techniques from their figurativistic connotations, thus making the so-called ``ordinary'' playing style merely one of many compositional -- and improvisational -- options.
 
 Far from being exclusive to erudite music, extended playing techniques are also commonly found in oral tradition; in some cases, they even stand out as a distinctive component of musical style.
 Four well-known examples are:
@@ -350,7 +350,7 @@ We refer to \cite{bellet2013survey} for a review of the state of the art.
 In particular, the large-margin nearest neighbors (LMNN) algorithm aims at bringing all $k$ nearest neighbors $\boldsymbol{x}_j$ of every $\boldsymbol{x}_i$ closer than the canonical Euclidean distance $\mathrm{D}(\boldsymbol{x}_i, \boldsymbol{x}_j) = \Vert \widetilde{\mathbf{S}}\boldsymbol{x}_i - \widetilde{\mathbf{S}}\boldsymbol{x}_j \Vert$ if $\boldsymbol{x}_i$ and $\boldsymbol{x}_j$ belong to the same class, and further apart otherwise \cite{weinberger2009jmlr}.
 
 As compared to a class-wise generative model (such as Gaussian mixtures), a global linear model ensures some robustness to minor alterations of the taxonomy, which is important in the context of IPT: \eg{} what some instrumentists may call $\emph{slide}$, others will call $\emph{glissando}$.
-Furthermore, although one of its major drawback relies on its strong dependency on the Euclidean neighbors determine intra-class variability \cite{mcfee2010icml}, this drawback is alleviated in the case of a feture space based on scattering transform coefficients, whose Euclidean metric provably approximates the extent of elastic deformation needed to shear $\boldsymbol{x}_i(t)$ into $\boldsymbol{x}_j(t)$ in the time-frequency domain \cite[Theorem 2.16]{mallat2012cpam}.
+Furthermore, although one of its major drawback relies on its strong dependency on the Euclidean neighbors determine intra-class variability \cite{mcfee2010icml}, this drawback is alleviated in the case of a feature space based on scattering transform coefficients, whose Euclidean metric provably approximates the extent of elastic deformation needed to shear $\boldsymbol{x}_i(t)$ into $\boldsymbol{x}_j(t)$ in the time-frequency domain \cite[Theorem 2.16]{mallat2012cpam}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% EXPERIMENTAL RESULTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -412,7 +412,7 @@ The MFCC baseline has a relatively low P@5 of $44.5\%$, which indicates that a c
 Perhaps more surprisingly, we find that only the system combining all presented improvements, \ie{} log-scattering coefficients with median renormalization, $T=\SI{500}{\milli\second}$, and LMNN, strongly outperforms the MFCC baseline, with a state-of-the-art P@5 of $63.0\%$.
 Indeed, an ablation study of that system reveals that, all other things being equal: reducing $T$ to $\SI{25}{\milli\second}$ brings the P@5 to $53.3\%$; disabling LMNN, $50.0\%$; and replacing scattering coefficients by MFCC, to $48.4\%$.
 
-What stems from these observations is that, unlike instrument similarity, IPT similarity results from long-range temporal dependences in the audio signal.
+What stems from these observations is that, unlike instrument similarity, IPT similarity results from long-range temporal dependencies in the audio signal.
 In addition, the dissimilarity between two different playing techniques is not a matter of elastic deformation in the time-frequency domain -- as approximated by Euclidean distance in the feature space of scattering coefficients -- but also involves an adaptive process which combines the saliences of various acoustic frequencies and modulation rates in several nonuniform ways, thus producing a metric that favors certain factors of acoustic variability while mitigating others.
 
 %As expected, considering the playing technique partition as a reference gives a harder task to perform as the  MFCC baseline achieves a p@5 of $45\%$ and the scattering a p@5 of $50\%$.
