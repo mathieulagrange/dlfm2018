@@ -256,7 +256,7 @@ The only example of node in the MedleyDB taxonomy reaching this level is \emph{t
 
 Unlike musical instruments, which are approximately amenable to a hierarchical taxonomy of resonating objects, IPTs result from a complex synchronization between multiple gestures, which may involve both hands and arms, as well as diaphragm, vocal tract, and sometimes the whole body.
 As a result, there is no immediate way to interface them with H-S, or indeed any tree-like structure \cite{kolozali2011ismir}.
-Instead, every playing technique is described by a finite collection of categories, each belonging to a different ``namespace''; Figure \ref{fig:technique-dendrogram} illustrates such namespaces in the case of the violin.
+Instead, every playing technique is described by a finite collection of categories, each belonging to a different ``name\-space''; Figure \ref{fig:technique-dendrogram} illustrates such namespaces in the case of the violin.
 It therefore appears that, rather than aiming for a mere increase in granularity with respect to H-S, a coherent research program around extended playing techniques should formulate them as belonging to a meronomy, \ie{} a modular entanglement of part-whole relationships, in the fashion of the Visipedia initiative in computer vision \cite{belongie2015pattern}.
 In recent years, some publications have attempted to lay the foundations of such a modular approach, with the aim of making H-S relevant to contemporary music creation \cite{magnusson2017jnmr,weisser2011ytm}; yet, such considerations are still in large part speculative, and offer no definitive procedure for evaluating, let alone training, information retrieval systems.
 
@@ -277,7 +277,7 @@ Upon inspecting the $k$ nearest neighbors returned by the search engine, the com
 
 Faithfully evaluating such a system is a difficult procedure, and ultimately would rest on its practical usability, as judged by the composers themselves.
 Nevertheless, a useful quantitative metric for this task is the precision at $k$ (P@$k$) of the test set with respect to the training set, both under a instrument taxonomy and an IPT taxonomy.
-In all subsequent experiments, we report $P@k$ after setting the number of retrieved items to $k=5$. 
+In all subsequent experiments, we report $P@k$ after setting the number of retrieved items to $k=5$.
 
 \subsection{Studio On Line dataset (SOL)}
 
@@ -397,7 +397,7 @@ Therefore, it is more likely the multiresolution structure of scattering coeffic
 
 Lastly, increasing $T$ from $\SI{25}{\milli\second}$ up to $\SI{1}{\second}$ -- that is, including all amplitude modulations between $\SI{1}{\Hz}$ and $\SI{40}{\Hz}$ -- brings LMNN to a near-perfect P@5 of $99.71\%$.
 Not only does this result confirm that well-established methods in audio signal processing (here, wavelet scattering and metric learning) are sufficient to retrieve the instrument from a single ordinary note; it also demonstrates that the results remain excellent despite large intra-class variability within instruments: in pitch and intensity, but also in the usage of mutes and extended IPTs.
-In other words, the monophonic recognition of Western instruments is, all things considered, a solved problem indeed. 
+In other words, the monophonic recognition of Western instruments is, all things considered, a solved problem indeed.
 
 \begin{figure}
 \includegraphics[width=\linewidth,keepaspectratio]{./figs/results/results.png}
@@ -430,7 +430,7 @@ In addition, the dissimilarity between two different playing techniques is not a
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CONCLUSION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 
-Whereas the MIR literature abounds on the topic of musical instrument recognition in so-called ``ordinary'' isolated notes and solo performances, little is known about the problem of retrieving the instrumental playing technique (IPT) of an audio query within a fine-grained taxonomy. 
+Whereas the MIR literature abounds on the topic of musical instrument recognition in so-called ``ordinary'' isolated notes and solo performances, little is known about the problem of retrieving the instrumental playing technique (IPT) of an audio query within a fine-grained taxonomy.
 Yet, the knowledge of IPT is a precious source of music information, not only to characterize the physical interaction between player and instrument, but also in the realm of contemporary music creation.
 In all likelihood, it also bears an interest for organizing digital libraries, as a mid-level descriptor of musical style.
 To the best of our knowledge, this paper is the first in benchmarking query-by-example MIR systems according to a large-vocabulary IPT reference (143 classes) instead of an instrument reference.
