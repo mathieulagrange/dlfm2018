@@ -225,9 +225,9 @@ The Open-MIC initiative, from the newly created Community for Open and Sustainab
 Lastly, there is a growing interest for studying the role of the performer in musical acoustics, from both perspectives of sound production and sound perception.
 Besides its interest in audio signal processing, this topic is connected to other disciplines, such as biomechanics and gestural interfaces \cite{metcalf2014frontiers}.
 The majority of the available literature focuses on the range of IPTs afforded by a single instrument: recent examples include clarinet \cite{loureiro2004ismir}, percussion \cite{tindale2004ismir}, piano \cite{bernays2013smc}, guitar \cite{foulon2013cmmr,su2014ismir,chen2015ismir}, violin \cite{young2008nime}, cello \cite[chapter 6]{chudy2016phd}, and erhu \cite{yang2014fma}.
-Some publications frame timbral similarity in a polyphonic setting, yet do so according to a purely perceptual definition of timbre -- with continuous attributes such as brightness, warmth, dullness, roughness, and so forth -- yet without connecting these attributes to the discrete latent space of IPTs \cite{antoine2018isma}.
+Some publications frame timbral similarity in a polyphonic setting, yet do so according to a purely perceptual definition of timbre -- with continuous attributes such as brightness, warmth, dullness, roughness, and so forth -- without connecting these attributes to the discrete latent space of IPTs \cite{antoine2018isma}.
 
-In this paper, we formulate the retrieval of expressive parameters of musical timbre at the scale of the symphonic orchestra at large, while expliciting these parameters in terms of sound production (\ie{} through a discrete set of instructions, readily interpretable by the performer) rather than by means of perceptual epithets only.
+In this paper, we formulate the retrieval of expressive parameters of musical timbre at the scale of the symphonic orchestra at large, while expliciting these parameters in terms of sound production (\ie{} through a finite set of instructions, readily interpretable by the performer) rather than by means of perceptual epithets only.
 We refer to \cite{leman2017chapter} for a recent review of the state of the art.
 
 
@@ -376,7 +376,7 @@ In the task of instrument recognition, each of the $k$ elements $\boldsymbol{x}_
 We compare scattering features to a baseline of mel-frequency cepstral coefficients (MFCC), corresponding to the $13$ lowest quefrencies after applying a discrete cosine transform (DCT) on the logarithm of the $40$-band mel-frequency spectrum.
 In addition, we vary the maximum time scale $T$ of amplitude modulation between \SI{25}{\milli\second} and  \SI{1}{\second}.
 In the case of MFCC, $T=\SI{25}{\milli\second}$ corresponds to the inverse of the lowest audible frequency ($T^{-1}=\SI{40}{\Hz}$).
-Therefore, increasing the frame duration $T$ has no effect on the value of MFCC, because the mel-spectrogram is equivalent to a local averaging of the wavelet scalogram at the time scale $T$, leaving unchanged the global averaging of $\mathbf{S}(\lambda)$ at the time scale of whole musical notes \cite{anden2012dafx}.
+Therefore, increasing the frame duration $T$ has no effect on the value of MFCC, because the mel-spectrogram is equivalent to a local averaging of the wavelet scalogram at the time scale $T$, leaving unchanged the global averaging of $\mathbf{S}\boldsymbol{x}(\lambda)$ at the time scale of whole musical notes \cite{anden2012dafx}.
 
 Figure \ref{fig:results} (left) summarizes our results.
 We find that MFCC reach a relatively high P@5 of $89\%$.
