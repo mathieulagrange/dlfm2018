@@ -382,7 +382,7 @@ Therefore, increasing the frame duration $T$ has no effect on the value of MFCC,
 
 Figure \ref{fig:results} (left) summarizes our results.
 We find that MFCC reach a relatively high P@5 of $89\%$.
-Keeping all $40$ quefrencies rather than the lowest $13$ brings the P@5 down to $84\%$, because the highest quefrencies are the most affected by some spurious factors of intra-class variability, namely pitch and spectral flatness \cite{lostanlen2017phd}.
+Keeping all $40$ quefrencies rather than the lowest $13$ brings the P@5 down to $84\%$, because the highest quefrencies are the most affected by some spurious factors of intra-class variability, namely pitch and spectral flatness \cite[subsection 2.3.3]{lostanlen2017phd}.
 
 At the smallest time scale $T=\SI{25}{\milli\second}$, the scattering transform reaches a P@5 of $89\%$, thus matching exactly the performance of MFCC.
 This is because the relatively few second-order scattering coefficients whose rate $\lambda_2$ exceeds $\SI{40}{\Hz}$ have a negligible effect on Euclidean distances, as they carry very little energy \cite{anden2014taslp}.
