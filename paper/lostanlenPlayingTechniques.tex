@@ -342,7 +342,8 @@ where $\varepsilon = 10^{-3}$ and $\boldsymbol{\mu}(\lambda)$ is the median valu
 
 Linear metric learning algorithms generate a matrix $\mathbf{L}$ such that the Mahalanobis distance
 \begin{equation}
-\mathrm{D}_\mathbf{L}(\boldsymbol{x}_i, \boldsymbol{x}_j) = (\widetilde{\mathbf{S}}\boldsymbol{x}_i - \widetilde{\mathbf{S}}\boldsymbol{x}_j)^{\top}  \mathbf{L}^{\top} \mathbf{L} (\widetilde{\mathbf{S}}\boldsymbol{x}_i-\widetilde{\mathbf{S}}\boldsymbol{x}_j)
+%\mathrm{D}_\mathbf{L}(\boldsymbol{x}_i, \boldsymbol{x}_j) = (\widetilde{\mathbf{S}}\boldsymbol{x}_i - \widetilde{\mathbf{S}}\boldsymbol{x}_j)^{\top}  \mathbf{L}^{\top} \mathbf{L} (\widetilde{\mathbf{S}}\boldsymbol{x}_i-\widetilde{\mathbf{S}}\boldsymbol{x}_j) \Vert
+\mathrm{D}_\mathbf{L}(\boldsymbol{x}_i, \boldsymbol{x}_j) = \Vert \mathbf{L} (\widetilde{\mathbf{S}}\boldsymbol{x}_i-\widetilde{\mathbf{S}}\boldsymbol{x}_j) \Vert_2
 \end{equation}
 between all pairs of samples $(\boldsymbol{x}_i, \boldsymbol{x}_j)$ optimizes some objective function.
 Observe that the Euclidean distance is a particular case of the equation above, in which case $\mathbf{L}$ boils down to identity.
