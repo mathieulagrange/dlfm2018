@@ -154,6 +154,88 @@ We refer to \cite{leman2017chapter} for a recent review of the state of the art.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  TASKS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Tasks}
+In this section, we distinguish taxonomies of musical instruments from taxonomies of musical gestures.
+
+\subsection{Taxonomies}
+
+The Hornbostel-Sachs taxonomy (H-S) strives to organize the diversity of musical instruments according to their manufactural characteristics only, and is purposefully unaffected by sociohistorical background \cite{montagu2009muzyka}.
+Because it offers an unequivocal way of describing any acoustic instrument without any prior knowledge on its applicable IPTs, it serves as a \emph{lingua franca} in ethnomusicology and museology, especially for ancient or rare instruments which may lack available informants.
+The location of the violin in H-S (321.321-71), as depicted in Figure \ref{fig:instrument-dendrogram}, also encompasses the viola and the cello in addition to the violin.
+This is because these three instruments, viewed as inert objects, share a common morphology, despite differences in posture for the performer: both violin and viola are usually played under the jaw whereas the cello is held between the knees.
+Accounting for these differences begs to refine H-S by means a vernacular taxonomy.
+Most instrument taxonomies in music signal processing, including MedleyDB and AudioSet \cite{gemmeke2017icassp}, reach the vernacular level rather than conflating all instruments belonging to the same H-S node.
+In some cases, an even finer level of granularity is attained by the listing of potential alterations to the instrument -- be them permanent or temporary, at the time scale of more than a single note -- that affect its resonant properties after the end of the conventional manufacturing process, \eg{} mutes and other preparations \cite{dianova2007phd}.
+The only example of node in the MedleyDB taxonomy reaching this level is \emph{tack piano} \cite{bittner2014ismir} .
+
+\begin{figure}[t!]
+\centering
+\includegraphics[width=\linewidth]{./figs/dendrograms/instrument-dendrogram.eps}
+\caption{Taxonomy of musical instruments.}
+\label{fig:instrument-dendrogram}
+\end{figure}
+
+Unlike musical instruments, which are approximately amenable to a hierarchical taxonomy of resonating objects, IPTs result from a complex synchronization between multiple gestures, which may involve both hands and arms, as well as diaphragm, vocal tract, and sometimes the whole body.
+As a result, there is no immediate way to interface them with H-S, or indeed any tree-like structure \cite{kolozali2011ismir}.
+Instead, every playing technique is described by a finite collection of categories, each belonging to a different ``name\-space''; Figure \ref{fig:technique-dendrogram} illustrates such namespaces in the case of the violin.
+It therefore appears that, rather than aiming for a mere increase in granularity with respect to H-S, a coherent research program around extended playing techniques should formulate them as belonging to a meronomy, \ie{} a modular entanglement of part-whole relationships, in the fashion of the Visipedia initiative in computer vision \cite{belongie2015pattern}.
+In recent years, some publications have attempted to lay the foundations of such a modular approach, with the aim of making H-S relevant to contemporary music creation \cite{magnusson2017jnmr,weisser2011ytm}; yet, such considerations are still in large part speculative, and offer no definitive procedure for evaluating, let alone training, information retrieval systems.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{./figs/dendrograms/technique-dendrogram.eps}
+\caption{Namespaces of violin playing techniques.}
+\label{fig:technique-dendrogram}
+\end{figure}
+
+
+\subsection{Application setting and evaluation} \label{sec:motivation}
+
+In what follows, we adopt a middle ground position between the two aforementioned approaches: neither a supervised classifier (as in a hierarchical taxonomy), nor a caption generator (as in a meronomy), our system is a query-by-example search engine in a large database of isolated notes.
+This system is meant to provide a small number $k$ of nearest neighbors in the dataset of musical instrument samples to any user-defined audio query $\boldsymbol{x}(t)$.
+In the context of contemporary music creation, this $\boldsymbol{x}(t)$ may be an instrumental or vocal sketch; a sound event recorded from the environment; a computer-generated waveform; or any mixture of the above \cite{maresz2013cmr}.
+Upon inspecting the $k$ nearest neighbors returned by the search engine, the composer may decide to retain one of the retrieved notes, in which case its attributes (pitch and intensity, but also the exact playing technique) are readily available and can be included into the musical score to approximate the query.
+
+Faithfully evaluating such a system is a difficult procedure, and ultimately would rest on its practical usability, as judged by the composers themselves.
+Nevertheless, a useful quantitative metric for this task is the precision at $k$ (P@$k$) of the test set with respect to the training set, both under a instrument taxonomy and an IPT taxonomy.
+In all subsequent experiments, we report $P@k$ after setting the number of retrieved items to $k=5$.
+
+\subsection{Studio On Line dataset (SOL)}
+
+The Studio On Line dataset (SOL) was recorded at Ircam in 2002 and is freely downloadable as part of the Orchids software for computer-assisted orchestration.\footnote{Link to SOL dataset: \url{http://forumnet.ircam.fr/product/orchids-en/}}
+It comprises 16 musical instruments playing $25444$ isolated notes in total.
+The distribution of these notes, shown in Figure \ref{fig:instrument-histogram}, spans the full combinatorial diversity of applicable intensities, pitches, preparations (\ie{} mutes), as well as all applicable playing techniques.
+The distribution of playing techniques -- whose most common are shown in Figure \ref{fig:technique-histogram} -- is heavy-tailed (average $178$, standard deviation $429$): this is because some playing techniques are shared between many instruments (\eg{} \textit{tremolo}) whereas other are instrument-specific (\eg{} \textit{xylophonic} which is specific to the harp).
+The SOL dataset has $143$ IPTs in total, and $469$ applicable instrument-mute-technique triplets.
+
+\begin{figure}[t!]
+\centering
+\includegraphics[width=\linewidth]{./figs/histogram/histogram_instruments.png}
+\caption{Instruments in the SOL dataset.}
+\label{fig:instrument-histogram}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\linewidth]{./figs/histogram/histogram_modes.png}
+\caption{Playing techniques in the SOL dataset.}
+\label{fig:technique-histogram}
+\end{figure}
+
+
+% Bows and mallets are part of the gesture
+% The use of mutes is part of the instrument BUT any gesture while holding the mute (e.g.  trombone) creates a new IPT category that is distinct from ordinary style.
+
+% Out of scope are:
+% Variations in articulation: trill, slide. Unlike vibrato, they have a melodic function.
+% Variations in: artificial harmonics, subharmonics [ref Mari Kimura],
+% Variations in phrasing: arpeggio,
+% analog FX
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACKNOWLEDGMENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{acks}
