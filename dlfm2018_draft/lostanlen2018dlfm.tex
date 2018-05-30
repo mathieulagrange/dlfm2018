@@ -7,7 +7,7 @@
 %\setcopyright{none}
 %\setcopyright{acmcopyright}
 %\setcopyright{acmlicensed}
-\setcopyright{rightsretained}
+%\setcopyright{rightsretained}
 %\setcopyright{usgov}
 %\setcopyright{usgovmixed}
 %\setcopyright{cagov}
@@ -15,102 +15,68 @@
 
 
 % DOI
-\acmDOI{10.475/123_4}
+%\acmDOI{10.475/123_4}
 
 % ISBN
-\acmISBN{123-4567-24-567/08/06}
+%\acmISBN{123-4567-24-567/08/06}
 
 %Conference
-\acmConference[WOODSTOCK'97]{ACM Woodstock conference}{July 1997}{El
-  Paso, Texas USA}
-\acmYear{1997}
-\copyrightyear{2016}
+\acmConference{DLfM}{Sep. 2018}{Paris, France}
+\acmYear{2018}
+\copyrightyear{2018}
 
-\acmPrice{15.00}
+%\acmPrice{15.00}
 
-\acmSubmissionID{123-A12-B3}
+%\acmSubmissionID{123-A12-B3}
 
 \begin{document}
-\title{SIG Proceedings Paper in LaTeX Format}
-\titlenote{Produces the permission block, and
-  copyright information}
-\subtitle{Extended Abstract}
-\subtitlenote{The full version of the author's guide is available as
-  \texttt{acmart.pdf} document}
+\title{Extended playing techniques:\\ the next milestone in musical instrument recognition}
+%\titlenote{Produces the permission block, and
+%  copyright information}
+%\subtitle{Extended Abstract}
+%\subtitlenote{The full version of the author's guide is available as
+%  \texttt{acmart.pdf} document}
 
-
-\author{Ben Trovato}
-\authornote{Dr.~Trovato insisted his name be first.}
-\orcid{1234-5678-9012}
+\author{Vincent Lostanlen}
+\orcid{0000-0003-0580-1651}
 \affiliation{%
-  \institution{Institute for Clarity in Documentation}
-  \streetaddress{P.O. Box 1212}
-  \city{Dublin}
-  \state{Ohio}
+  \institution{New York University}
+  \streetaddress{35 W 4th St}
+  \city{New York}
+  \state{NY, USA}
+  \postcode{10014}
+}
+\email{vincent.lostanlen@nyu.edu}
+
+\author{Joakim And\'{e}n}
+\orcid{0000-0002-3377-813X}
+\affiliation{%
+  \institution{Flatiron Institute}
+  \streetaddress{162 5th Ave}
+  \city{New York}
+  \state{NY, USA}
+  \postcode{10010}
+}
+\email{janden@flatironinstitute.edu}
+
+\author{Mathieu Lagrange}
+\affiliation{%
+  \institution{\'{E}cole Centrale de Nantes, CNRS}
+  \streetaddress{1, rue de la No\"{e}}
+  \city{44321 Nantes}
+  \state{France}
   \postcode{43017-6221}
 }
-\email{trovato@corporation.com}
-
-\author{G.K.M. Tobin}
-\authornote{The secretary disavows any knowledge of this author's actions.}
-\affiliation{%
-  \institution{Institute for Clarity in Documentation}
-  \streetaddress{P.O. Box 1212}
-  \city{Dublin}
-  \state{Ohio}
-  \postcode{43017-6221}
-}
-\email{webmaster@marysville-ohio.com}
-
-\author{Lars Th{\o}rv{\"a}ld}
-\authornote{This author is the
-  one who did all the really hard work.}
-\affiliation{%
-  \institution{The Th{\o}rv{\"a}ld Group}
-  \streetaddress{1 Th{\o}rv{\"a}ld Circle}
-  \city{Hekla}
-  \country{Iceland}}
-\email{larst@affiliation.org}
-
-\author{Lawrence P. Leipuner}
-\affiliation{
-  \institution{Brookhaven Laboratories}
-  \streetaddress{P.O. Box 5000}}
-\email{lleipuner@researchlabs.org}
-
-\author{Sean Fogarty}
-\affiliation{%
-  \institution{NASA Ames Research Center}
-  \city{Moffett Field}
-  \state{California}
-  \postcode{94035}}
-\email{fogartys@amesres.org}
-
-\author{Charles Palmer}
-\affiliation{%
-  \institution{Palmer Research Laboratories}
-  \streetaddress{8600 Datapoint Drive}
-  \city{San Antonio}
-  \state{Texas}
-  \postcode{78229}}
-\email{cpalmer@prl.com}
-
-\author{John Smith}
-\affiliation{\institution{The Th{\o}rv{\"a}ld Group}}
-\email{jsmith@affiliation.org}
-
-\author{Julius P.~Kumquat}
-\affiliation{\institution{The Kumquat Consortium}}
-\email{jpkumquat@consortium.net}
+\email{mathieu.lagrange@cnrs.fr}
 
 % The default list of authors is too long for headers.
-\renewcommand{\shortauthors}{B. Trovato et al.}
+\renewcommand{\shortauthors}{V. Lostanlen et al.}
 
 
 \begin{abstract}
-This paper provides a sample of a \LaTeX\ document which conforms,
-somewhat loosely, to the formatting guidelines for
-ACM SIG Proceedings.\footnote{This is an abstract footnote}
+The expressive variability in which a musical note can be produced conveys some essential information to the modeling of orchestration and style. Yet, although the automatic recognition of a musical instrument from the recording of a single ``ordinary'' note is now considered a solved problem, the ability of a computer to precisely identify instrumental playing techniques (IPT) remains largely underdeveloped.
+In this paper, we conduct a benchmark of machine listening systems for query-by-example browsing among 143 instrumental playing techniques, including the most contemporary, for 16 instruments in the symphonic orchestra, thus amounting to 469 triplets of instrument, mute, and technique. We identify and discuss three necessary conditions for significantly outperforming the classical mel-frequency cepstral coefficients (MFCC) baseline: the inclusion of second-order scattering coefficients to account for the presence of amplitude modulations; the inclusion of long-range temporal dependencies; and the resort to large-margin nearest neighbors (LMNN), a supervised metric learning method that reduces intra-class variability in feature space.
+We report a P@5 of $99.7\%$ for instrument recognition (baseline at $89.0\%$) and of $61.0\%$ for playing technique recognition (baseline at $44.5\%$).
 \end{abstract}
 
 %
@@ -153,6 +119,8 @@ ACM SIG Proceedings.\footnote{This is an abstract footnote}
 
 
 \maketitle
+
+\title{Extended playing techniques: the next milestone in musical instrument recognition}
 
 \input{samplebody-conf}
 
