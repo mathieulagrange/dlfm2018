@@ -341,6 +341,24 @@ In addition, the dissimilarity between two different playing techniques is not a
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CONCLUSION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}
+
+Whereas the MIR literature abounds on the topic of musical instrument recognition in so-called ``ordinary'' isolated notes and solo performances, little is known about the problem of retrieving the instrumental playing technique (IPT) of an audio query within a fine-grained taxonomy.
+Yet, the knowledge of IPT is a precious source of music information, not only to characterize the physical interaction between player and instrument, but also in the realm of contemporary music creation.
+In all likelihood, it also bears an interest for organizing digital libraries, as a mid-level descriptor of musical style.
+To the best of our knowledge, this paper is the first in benchmarking query-by-example MIR systems according to a large-vocabulary IPT reference (143 classes) instead of an instrument reference.
+We find that this new task is considerably more challenging than musical instrument recognition, as it amounts to characterizing spectrotemporal patterns at various scales and rates and comparing them in a highly non-Euclidean way.
+Although the combination of methods presented here -- wavelet scattering and large-margin nearest neighbors -- outperforms the MFCC baseline (even at comparable dimensionalities and number of learnable parameters), its accuracy on the SOL dataset certainly leaves some room for future improvements.
+
+The evaluation methodology presented here uses ground truth IPT labels to quantify the relevance of returned items.
+Despite the advantage of unequivocality, it might be too harsh to reflect practical use.
+Indeed, as it is often the case in MIR, some pairs of labels are subjectively more similar than others: \eg{} \emph{slide} is evidently closer to \emph{glissando} than to \emph{pizzicato-bartok}.
+The collection of subjective ratings of IPT similarity, and its comparison with automated ratings, is left as future work.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACKNOWLEDGMENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{acks}
