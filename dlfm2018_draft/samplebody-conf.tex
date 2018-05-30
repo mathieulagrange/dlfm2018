@@ -236,6 +236,51 @@ The SOL dataset has $143$ IPTs in total, and $469$ applicable instrument-mute-te
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  METHODS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Methods}
+
+In this section, we describe the scattering transform and supervised metric learning used to implement all query-by-example systems in our benchmark.
+
+\subsection{Scattering transform} % Scattering transform
+The scattering transform is a cascade of two wavelet modulus operators, each followed by temporal averaging:
+the first layer extracts the average spectral envelope $\mathbf{S}_1 \boldsymbol{x} (\lambda_1)$ of $\boldsymbol{x}(t)$ at frequencies $\lambda_1$, whereas the second layer $\mathbf{S}_2 \boldsymbol{x} (\lambda_1, \lambda_2)$ extracts amplitude modulations of this spectral envelope at rates $\lambda_2$.
+The set of frequencies discretizes the auditory range according to the mel scale, with $Q_1 = 12$ bins per octave at topmost frequencies; whereas rates $\lambda_2$ follow a geometric sequence between $\lambda_1$ and some minimal rate $T^{-1}$, with $Q_2 = 1$ bin per octave.
+We refer to \cite{anden2014taslp} for a general introduction to scattering transforms in audio classification, and to \cite[sections 3.2 and 4.5]{lostanlen2017phd} for a discussion on its application to musical instrument classification in solo recordings, as well as its close connections with STRF. The scattering transform is theoretically suited to model extended playing techniques, since various values of the rate $\lambda_2$ characterize some of the most common nonstationarities in sound production, including tremolo, vibrato, and dissonance \cite[section 4]{anden2012dafx}.
+In the following, we denote by $\mathbf{S}\boldsymbol{x}(\lambda)$ the concatenation of all scattering coefficients, whether the generic scattering path $\lambda$ corresponds to a singleton $(\lambda_1)$ or a pair $(\lambda_1,\lambda_2)$.
+
+In order to match a decibel-like perception of loudness, we apply the path-adaptive, quasi-logarithmic compression
+\begin{equation}
+\widetilde{\mathbf{S}} \boldsymbol{x}_i(\lambda) =
+\log \left(
+1 + \dfrac{\mathbf{S}\boldsymbol{x}_i(\lambda)}{\varepsilon \times \boldsymbol{\mu}(\lambda)}
+\right)
+\end{equation}
+where $\varepsilon = 10^{-3}$ and $\boldsymbol{\mu}(\lambda)$ is the median value of the scattering coefficient $\mathbf{S}\boldsymbol{x}_i (\lambda)$ for path $\lambda$ across samples $i$.
+
+
+\subsection{Metric learning} % Large-margin nearest neighbors
+
+%As shown in the experiments described in Section \ref{sec:exp}, it is helpful to consider a supervised projection of the scattering coefficients in order to select among the large dimensionality of the resulting feature space, which axes are relevant for the task at hand.
+
+%One standard approach is the use of the linear discriminant analysis (LDA) that linearly projects ($x \rightarrow L x$) the input data into a features space of $C$-1 dimensions that maximizes the amount of between-class variance relative to the amount of within-class variance. The linear transformation $L$ is chosen to maximize the ratio of between-class to within-class variance, subject to the constraint that $L$ defines a projection matrix.
+
+Linear metric learning algorithms generate a matrix $\mathbf{L}$ such that the Mahalanobis distance
+\begin{equation}
+%\mathrm{D}_\mathbf{L}(\boldsymbol{x}_i, \boldsymbol{x}_j) = (\widetilde{\mathbf{S}}\boldsymbol{x}_i - \widetilde{\mathbf{S}}\boldsymbol{x}_j)^{\top}  \mathbf{L}^{\top} \mathbf{L} (\widetilde{\mathbf{S}}\boldsymbol{x}_i-\widetilde{\mathbf{S}}\boldsymbol{x}_j) \Vert
+\mathrm{D}_\mathbf{L}(\boldsymbol{x}_i, \boldsymbol{x}_j) = \Vert \mathbf{L} (\widetilde{\mathbf{S}}\boldsymbol{x}_i-\widetilde{\mathbf{S}}\boldsymbol{x}_j) \Vert_2
+\end{equation}
+between all pairs of samples $(\boldsymbol{x}_i, \boldsymbol{x}_j)$ optimizes some objective function.
+We refer to \cite{bellet2013survey} for a review of the state of the art.
+In particular, the large-margin nearest neighbors (LMNN) algorithm aims at bringing all $k$ nearest neighbors $\boldsymbol{x}_j$ of every $\boldsymbol{x}_i$ closer than the canonical Euclidean distance $\mathrm{D}(\boldsymbol{x}_i, \boldsymbol{x}_j) = \Vert \widetilde{\mathbf{S}}\boldsymbol{x}_i - \widetilde{\mathbf{S}}\boldsymbol{x}_j \Vert_2$ if $\boldsymbol{x}_i$ and $\boldsymbol{x}_j$ belong to the same class, and further apart otherwise.
+The matrix $\mathbf{L}$ is obtained by applying the special-purpose solver of \cite[appendix A]{weinberger2009jmlr}.
+In subsequent experiments, disabling LMNN is equivalent to setting $\mathbf{L}$ to the identity matrix, and retrieving a list of $k$ nearest neighbors from $\boldsymbol{x}_i (t)$ according to the canonical Euclidean distance in feature space rather than the Mahalanobis distance.
+
+As compared to a class-wise generative model (such as Gaussian mixtures), a global linear model ensures some robustness to minor alterations of the taxonomy, which is important in the context of IPT: \eg{} what some instrumentists may call $\emph{slide}$, others will call $\emph{glissando}$.
+Furthermore, although one of its major drawback relies on its strong dependency on the Euclidean neighbors to determine intra-class variability \cite{mcfee2010icml}, this drawback is alleviated in the case of a feature space based on scattering transform coefficients, whose Euclidean metric provably approximates the extent of elastic deformation needed to shear $\boldsymbol{x}_i(t)$ into $\boldsymbol{x}_j(t)$ in the time-frequency domain \cite[Theorem 2.16]{mallat2012cpam}.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACKNOWLEDGMENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{acks}
