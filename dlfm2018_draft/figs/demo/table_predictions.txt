@@ -1,0 +1,38 @@
+cu1_feMf_ne5_prLm_reMofa_sc25_st1
+ Q: Violin/ordinario/Vn-ord-G4-mf-4c
+
+ 1: Violin/ordinario/Vn-ord-G4-ff-4c
+ 2: Violin/sul-ponticello/Vn-pont-C#4-mf-4c
+ 3: Violin/tremolo/Vn-trem-D5-pp-4c
+ 4: Violin/ordinario/Vn-ord-G#4-mf-4c
+ 5: Violin/tremolo/Vn-trem-C#5-pp-4c
+
+
+co1_feSc_me1_ne5_prLm_reMofa_sc1000_st1
+ Q: Violin/ordinario/Vn-ord-G4-mf-4c
+
+ 1: Violin/ordinario/Vn-ord-G4-ff-4c
+ 2: Violin/ordinario/Vn-ord-G4-pp-4c
+ 3: Violin-sordina/ordinario/Vn+S-ord-G4-mf-4c
+ 4: Violin/ordinario/Vn-ord-G4-ff-3c
+ 5: Violin/ordinario/Vn-ord-G4-mf-3c
+
+
+cu1_feMf_ne5_prLm_reMofa_sc25_st1
+ Q: Trumpet-C/flatterzunge/TpC-flatt-G4-mf
+
+ 1: Trumpet-C/flatterzunge/TpC-flatt-F#4-mf
+ 2: Trumpet-C/ordinario/TpC-ord-F4-mf
+ 3: Trumpet-C/ordinario/TpC-ord-F#4-mf
+ 4: Trumpet-C/ordinario-to-flatterzunge/TpC-ord_flatt-F4-f
+ 5: Trumpet-C/ordinario/TpC-ord-G4-mf
+
+
+co1_feSc_me1_ne5_prLm_reMofa_sc1000_st1
+ Q: Trumpet-C/flatterzunge/TpC-flatt-G4-mf
+
+ 1: Trumpet-C/flatterzunge/TpC-flatt-G4-pp
+ 2: Trumpet-C/flatterzunge/TpC-flatt-F#4-mf
+ 3: Trumpet-C-straight/flatterzunge/TpC+S-flatt-G4-mf
+ 4: Trumpet-C/flatterzunge/TpC-flatt-G#4-pp
+ 5: Trumpet-C/flatterzunge/TpC-flatt-F4-pp
