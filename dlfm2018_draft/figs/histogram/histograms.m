@@ -5,10 +5,26 @@ family_keys = unique(family);
 family_values = family_values(sorting_indices);
 family_keys = family_keys(sorting_indices);
 
-family_categories = reordercats(categorical(family_keys), family_keys);
+% "Tenor" means tenor trombone
+family_keys{strcmp(family_keys, 'Tenor')} = 'Tenor trombone';
 
-%%
-bar(family_categories, family_values);
+% "Alto" means alto saxophone
+family_keys{strcmp(family_keys, 'Alto')} = 'Alto saxophone';
+
+% "Bass" means bass tuba
+family_keys{strcmp(family_keys, 'Bass')} = 'Bass tuba';
+
+% "Contrabass" means double bass
+family_keys{strcmp(family_keys, 'Contrabass')} = 'Double bass';
+
+% Horn means French horn
+family_keys{strcmp(family_keys, 'Horn')} = 'French horn';
+
+% Violoncello means Cello
+family_keys{strcmp(family_keys, 'Violoncello')} = 'Cello';
+
+family_categories = reordercats(categorical(family_keys), family_keys);
+bar(family_values);
 
 n_xticks = 5;
 ax = gca();
