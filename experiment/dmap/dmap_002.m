@@ -5,6 +5,7 @@
 
 n_nbor = 50;
 exclude_outliers = false;
+cluster_types = false;
 
 transf = 'sc';
 
@@ -25,7 +26,44 @@ inst_idx = inst_idx(:)';
 [techs, ~, tech_idx] = unique(techs);
 tech_idx = tech_idx(:)';
 
-inst_families = cellfun(@(x)(feval(@(y)(y{1}), strsplit(x, '-'))), insts, 'uniformoutput', false);
+insts = cellfun(@(x)(strrep(x, 'Alto-Sax', 'Sax')), insts, ...
+    'uniformoutput', false);
+insts = cellfun(@(x)(strrep(x, 'Bass-Tuba', 'Tuba')), insts, ...
+    'uniformoutput', false);
+insts = cellfun(@(x)(strrep(x, 'Tenor-Trombone', 'Trombone')), insts, ...
+    'uniformoutput', false);
+
+accordions = {'Accordion'};
+woodwinds = {'Bassoon', 'Clarinet', 'Flute', 'Oboe', 'Sax'};
+brass = {'Horn', 'Trombone', 'Trumpet', 'Tuba'};
+bowed = {'Contrabass', 'Viola', 'Violin', 'Violoncello'};
+plucked = {'Guitar', 'Harp'};
+
+types = {{'Accordion', accordions}, ...
+    {'WindWood', woodwinds}, ...
+    {'WindBrass', brass}, ...
+    {'StringBowed', bowed}, ...
+    {'StringPlucked', plucked}};
+
+for k = 1:numel(insts)
+    family = feval(@(y)(y{1}), strsplit(insts{k}, '-'));
+
+    for ell = 1:numel(types)
+        if any(strcmp(family, types{ell}{2}))
+            insts{k} = [types{ell}{1} '.' insts{k}];
+        end
+    end
+end
+
+if cluster_types
+    family_separator = '.';
+else
+    family_separator = '-';
+end
+
+inst_families = cellfun( ...
+    @(x)(feval(@(y)(y{1}), strsplit(x, family_separator))), insts, ...
+    'uniformoutput', false);
 [inst_families, ~, inst_family_map] = unique(inst_families);
 inst_family_map = inst_family_map(:)';
 
@@ -97,5 +135,21 @@ xticks([]); yticks([]); zticks([]);
 box on;
 view(-15, 15);
 
-hleg = legend(mask_inst_families{:});
+families_legend = mask_inst_families;
+
+if cluster_types
+    families_legend = cellfun(@(x)(strrep(x, 'StringBowed', 'Bowed')), ...
+        families_legend, 'uniformoutput', false);
+    families_legend = cellfun(@(x)(strrep(x, 'StringPlucked', 'Plucked')), ...
+        families_legend, 'uniformoutput', false);
+    families_legend = cellfun(@(x)(strrep(x, 'WindBrass', 'Brass')), ...
+        families_legend, 'uniformoutput', false);
+    families_legend = cellfun(@(x)(strrep(x, 'WindWood', 'Woodwind')), ...
+        families_legend, 'uniformoutput', false);
+else
+    families_legend = cellfun(@(x)(feval(@(y)(y{2}), strsplit(x, '.'))), ...
+        families_legend, 'uniformoutput', false);
+end
+
+hleg = legend(families_legend{:});
 set(hleg, 'fontsize', 36);
