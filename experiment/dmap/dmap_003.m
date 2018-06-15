@@ -1,10 +1,10 @@
 % Do the same thing for techniques, restricted to string instruments.
 % From dmap_002.
 
-n_nbor = 50;
+n_nbor = 300;
 exclude_outliers = false;
 
-transf = 'sc';
+%transf = 'sc';
 
 if strcmp(transf, 'sc')
     f = load('data/co1_feSc_me1_ne5_prLm_reMofa_sc1000_st1.mat');
@@ -74,14 +74,37 @@ phi = bsxfun(@times, 1./d, V(:,2:4));
 mask_tech_family_idx = tech_family_map(tech_idx(mask(good_idx)));
 mask_tech_families = unique(tech_families(mask_tech_family_idx));
 
+family_one = 'ordinario';
+family_two = 'tremolo';
+
+idx_one = find(strcmp('ordinario', tech_families), 1);
+idx_two = find(strcmp('tremolo', tech_families), 1);
+idx_others = find(~ismember(1:numel(tech_families), [idx_one idx_two]));
+
 figure(1+strcmp(transf, 'mf'));
 clf;
 hold on;
-for k = unique(mask_tech_family_idx)
-    mask_k = find(mask_tech_family_idx==k);
+for k = 1:3
+    if k == 1
+        mask_k = find(ismember(mask_tech_family_idx, idx_one));
+        color = [230 158 0]/255;
+        alpha = 1.0;
+    elseif k == 2
+        mask_k = find(ismember(mask_tech_family_idx, idx_two));
+        color = [87 181 232]/255;
+        alpha = 1.0;
+    elseif k == 3
+        mask_k = find(ismember(mask_tech_family_idx, idx_others));
+        color = [64 64 64]/255;
+        alpha = 0.25;
+    end
 
-    scatter3(phi(mask_k,1), phi(mask_k,2), phi(mask_k,3), ...
-        100, k*ones(numel(mask_k), 1), 'filled');
+    h = scatter3(phi(mask_k,1), phi(mask_k,2), phi(mask_k,3), ...
+        100, ones(numel(mask_k), 1)*color, 'filled');
+
+    if ~exist('OCTAVE_VERSION', 'builtin')
+        set(h, 'MarkerFaceAlpha', alpha);
+    end
 end
 hold off;
 colormap('jet');
@@ -89,5 +112,6 @@ xticks([]); yticks([]); zticks([]);
 box on;
 view(-45, 45);
 
-hleg = legend(mask_tech_families{:});
+hleg = legend([upper(family_one(1)) family_one(2:end)], ...
+    [upper(family_two(1)) family_two(2:end)], 'Others');
 set(hleg, 'fontsize', 36);
