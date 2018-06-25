@@ -194,8 +194,12 @@ In recent years, some publications have attempted to lay the foundations of such
 \subsection{Application setting and evaluation} \label{sec:motivation}
 In what follows, we adopt a middle ground position between the two aforementioned approaches: neither a supervised classifier (as in a hierarchical taxonomy), nor a caption generator (as in a meronomy), our system is a query-by-example search engine in a large database of isolated notes.
 This system is meant to provide a small number $k$ of nearest neighbors in the dataset of musical instrument samples to any user-defined audio query $\boldsymbol{x}(t)$.
-In the context of contemporary music creation, this $\boldsymbol{x}(t)$ may be an instrumental or vocal sketch; a sound event recorded from the environment; a computer-generated waveform; or any mixture of the above \cite{maresz2013cmr}.
+The search for nearest neighbors is not performed in the raw waveform domain of $\boldsymbol{x}(t)$, but in a feature space of translation-invariant, spectrotemporal descriptors: in what follows, we use averaged mel-frequency cepstral coefficients (MFCC) as a baseline and scattering coefficients as an improvement upon this baseline.
+Furthermore, although our baseline adopts an Euclidean distance function to underlie the $k$-nearest neighbor algorithm in feature space, we will show that learning a non-Euclidean Mahalanobis metric as a replacement for the canonical Euclidean metric also allows to improve upon the baseline.
+
+In the context of contemporary music creation, $\boldsymbol{x}(t)$ may be an instrumental or vocal sketch; a sound event recorded from the environment; a computer-generated waveform; or any mixture of the above \cite{maresz2013cmr}.
 Upon inspecting the $k$ nearest neighbors returned by the search engine, the composer may decide to retain one of the retrieved notes, in which case its attributes (pitch and intensity, but also the exact playing technique) are readily available and can be included into the musical score to approximate the query.
+% WRITE HERE
 
 Faithfully evaluating such a system is a difficult procedure, and ultimately would rest on its practical usability, as judged by the composers themselves.
 Nevertheless, a useful quantitative metric for this task is the precision at $k$ (P@$k$) of the test set with respect to the training set, both under a instrument taxonomy and an IPT taxonomy.
@@ -277,7 +281,7 @@ Furthermore, although one of its major drawback relies on its strong dependency 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% EXPERIMENTAL RESULTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experimental results} \label{sec:exp}
-In this section, we apply the aforementioned methods to instrument and IPT query-by-example retrieval in the Studio On Line (SOL) dataset.
+In this section, we combine the aforementioned methods to the construction of a query-by-example browsing system in the Studio On Line (SOL) dataset; discuss the factors enabling to improve upon the state of the art; and provide both a qualitative and a quantitative comparison between MFCC-based and scattering-based feature spaces, in the context of timbral similarity between instrumental playing techniques.
 
 %As explained in Section \ref{sec:motivation}, we formulate here the instrument / playing techniques recognition problem as a query by example one as we are \textit{in fine} interested in an application scenario where the user specify a seed sound, be it played by a musical instrument or not, and the system returns several items from the database that have some level of similarity with the seed.
 
@@ -329,10 +333,21 @@ In other words, the monophonic recognition of Western instruments is, all things
 
 \subsection{Evaluation of playing technique recognition}
 
-The situation is different when considering IPT, rather than instrument, as reference for evaluating the reference of the query-by-example search engine.
+The situation is different when considering IPT, rather than instrument, as the reference for evaluating the reference of the query-by-example search engine.
+In this second evaluation setting, a retrieved item is considered relevant if and only if it shares the same IPT as the query, regardless of instrument, mute, pitch, or dynamics.
+
 The MFCC baseline has a relatively low P@5 of $44.5\%$, which indicates that a coarse description of the short-term spectral envelope is rarely ever sufficient to model acoustic similarity in IPT.
 Perhaps more surprisingly, we find that only the system combining all presented improvements, \ie{} log-scattering coefficients with median renormalization, $T=\SI{500}{\milli\second}$, and LMNN, strongly outperforms the MFCC baseline, with a state-of-the-art P@5 of $63.0\%$.
 Indeed, an ablation study of that system reveals that, all other things being equal: reducing $T$ to $\SI{25}{\milli\second}$ brings the P@5 to $53.3\%$; disabling LMNN, $50.0\%$; and replacing scattering coefficients by MFCC, to $48.4\%$.
+
+
+
+
+
+\subsection{Qualitative error analysis}
+
+What stems from these observations is that, unlike instrument similarity, IPT similarity results from long-range temporal dependencies in the audio signal.
+In addition, the dissimilarity between two different playing techniques is not a matter of elastic deformation in the time-frequency domain -- as approximated by Euclidean distance in the feature space of scattering coefficients -- but also involves an adaptive process which combines the saliences of various acoustic frequencies and modulation rates in several nonuniform ways, thus producing a metric that favors certain factors of acoustic variability while mitigating others.
 
 % Describe the IPTs that often appear in the same lists
 \begin{figure}
@@ -495,8 +510,6 @@ Indeed, an ablation study of that system reveals that, all other things being eq
 }\label{fig:demo}
 \end{figure}
 
-What stems from these observations is that, unlike instrument similarity, IPT similarity results from long-range temporal dependencies in the audio signal.
-In addition, the dissimilarity between two different playing techniques is not a matter of elastic deformation in the time-frequency domain -- as approximated by Euclidean distance in the feature space of scattering coefficients -- but also involves an adaptive process which combines the saliences of various acoustic frequencies and modulation rates in several nonuniform ways, thus producing a metric that favors certain factors of acoustic variability while mitigating others.
 
 
 \begin{figure*}       
