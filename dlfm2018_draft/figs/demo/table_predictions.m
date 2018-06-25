@@ -29,8 +29,8 @@ n_systems = length(system_strs);
 systems = cell(1, n_systems);
 clc();
 
-for query_id = 1:n_queries
-    query_str = queries{query_id};
+for q_id = 1:n_queries
+    query_str = queries{q_id};
     
     for system_id = 1:n_systems
         system_str = system_strs{system_id};
@@ -40,15 +40,23 @@ for query_id = 1:n_queries
 
         systems{system_id} = load(system_str);
         system = systems{system_id};
-
-        query_id = find(cellfun(@(x) strcmp(x, query_str), system.d.file));
+        
+        query_id = ...
+            find(cellfun(@(x) strcmp(x, query_str), system.d.file));
         neighbor_ids = system.d.nn(query_id,:);
-        for i = 1:length(neighbor_ids)
-            neighbor_id = neighbor_ids(i);
-            neighbor_str = system.d.file{neighbor_id};
-            disp([' ', num2str(i),': ', neighbor_str]);
-            neighbor_split = strsplit(neighbor_str, '/');
+        
+        for i = 0:length(neighbor_ids)
+            if i > 0
+                neighbor_id = neighbor_ids(i);
+                file_name = system.d.file{neighbor_id};
+                disp([' ', num2str(i),': ', file_name]);
+            else
+                file_name = query_str;
+            end  
+            
+            neighbor_split = strsplit(file_name, '/');
             instrument_str = neighbor_split{1};
+            
             switch instrument_str
                 case 'Trumpet-C'
                     family_str = 'Trumpets';
@@ -61,24 +69,22 @@ for query_id = 1:n_queries
                 otherwise
                     error(['Unknown instrument: ', instrument_str]);
             end
-            wav_path = [data_dir, '/', family_str, '/', ...
-                system.d.file{neighbor_id}, '.wav'];
-            [waveform, sample_rate] = audioread(wav_path);
-            disp([length(waveform)/sample_rate, sample_rate/1000]);
+            wav_path = [data_dir, '/', family_str, '/', file_name, '.wav'];
             
+            [waveform, sample_rate] = audioread(wav_path);
+
             waveform = cat(1, zeros(sample_rate/10, 1), waveform);
             sample_x = waveform(1:65536) .* tukeywin(65536, 0.2);
             [S, U] = sc_propagate(sample_x, archs);
-            
+
             scalogram = display_scalogram(U{1+1});
-            
+
             x_duration = opts{1}.time.size / sample_rate;
             freq_hz = [100, 200, 500, 1000, 2000, 5000, 10000];
             xi = archs{1}.banks{1}.spec.mother_xi * sample_rate;
             freq_semitones = 1 + ...
                 round(log2(xi ./ freq_hz) * opts{1}.time.nFilters_per_octave);
             freq_semitones = sort(unique(freq_semitones));
-
 
             image([-100.0, 900.0], opts{1}.time.gamma_bounds, ...
                 100 * flipud(log1p(1e-2*scalogram(:,1:sample_rate))));
@@ -89,10 +95,12 @@ for query_id = 1:n_queries
             set(gca(), 'YTickLabel', freq_hz/1000);
             xlabel('Time (ms)');
             ylabel('Frequency (kHz)');
-            
+
             drawnow();
             export_fig([neighbor_split{3}, '.png'], '-transparent', ...
                 '-m3');
+            
+        end
             
         end
         disp(' ');
