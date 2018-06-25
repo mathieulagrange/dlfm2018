@@ -2,6 +2,7 @@
 \newcommand*{\eg}{e.g.\@\xspace}
 \newcommand*{\ie}{i.e.\@\xspace}
 \newcommand*{\resp}{resp.\@\xspace}
+\newcommand*{\vs}{vs.\@\xspace}
 
 
 
@@ -365,7 +366,7 @@ Indeed, an ablation study of that system reveals that, all other things being eq
         \begin{subfigure}{0.20\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/demo/Vn-ord-G4-pp-4c.png}
-                \caption{2: \emph{ordinario}, \emph{pp}.}
+                \caption{2: \emph{pp}.}
                 \label{fig:Vn-ord-G4-pp-4c}
         \end{subfigure}%
         
@@ -498,17 +499,18 @@ In addition, the dissimilarity between two different playing techniques is not a
         \begin{subfigure}{0.45\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/embeddings/mf_inst_two_dmap.png}
-                \caption{.}
                 \label{fig:mf_inst_two_dmap}
         \end{subfigure}%
         \begin{subfigure}{0.45\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/embeddings/sc_inst_two_dmap.png}
-                \caption{.}
                 \label{fig:sc_inst_two_dmap}
         \end{subfigure}%
+        \caption{Low-dimensional embeddings of MFCC features (left) \vs{} scattering transform features (right).}
+        \label{fig:instrument-embeddings}
+\end{figure*}
         
-        
+\begin{figure*}
         \begin{subfigure}{0.45\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/embeddings/mf_tech_two_dmap.png}
@@ -522,7 +524,8 @@ In addition, the dissimilarity between two different playing techniques is not a
                 \label{fig:sc_tech_two_dmap}
         \end{subfigure}%
         
-        \caption{.}\label{fig:embeddings}
+        \caption{.}
+        \label{fig:technique-embeddings}
 \end{figure*}
 
 
