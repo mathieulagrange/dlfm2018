@@ -518,10 +518,13 @@ The main difference between these two versions lies in the choice of spectrotemp
 Figure \ref{fig:demo-ordinary} shows the constant-$Q$ scalograms of the five retrieved items for both versions of the search engine, as queried by the same audio signal $\boldsymbol{x}(t)$ : a violin note from the SOL dataset, played with ordinary playing technique, pitch G4, \emph{mf} dynamics, on the G string.
 We find that both versions correctly retrieve five violin notes as nearest neighbors, with certain variations in pitch, dynamics, choice of string, and use of mute, that depart from the original query.
 Therefore, both versions have $100\%$ P@5 in terms of instrument retrieval for this specific query.
-However, although the scattering-based version is also $100\%$ correct in terms of IPT retrieval (as it retrieves five \emph{ordinario} notes), the MFCC-based version is only $40\%$ correct: three of the retrieved items exhibit other playing techniques, namely \emph{tremolo} and \emph{sul ponticello} (bowing on the bridge of the violin).
+However, although the scattering-based version is also $100\%$ correct in terms of IPT retrieval (as it retrieves five \emph{ordinario} notes), the MFCC-based version is only $40\%$ correct: three of the retrieved items exhibit other playing techniques, namely \emph{tremolo} and \emph{sul ponticello}.
+We hypothesize that the confusion between \emph{ordinario} and \emph{tremolo} is caused by the presence of vibrato in the ordinary query, and the fact that MFCC are unadequate to distinguish amplitude modulations (tremolo) from frequency modulations (vibrato) at the same rate \cite{anden2012dafx}.
+Yet, these differences are perceptually small: in some musical contexts, vibrato and tremolo are used interchangeably.
 
 The situation is different when querying both systems with an audio signal $\boldsymbol{x}(t)$ that results from an extended instrumental playing technique rather than the ordinary playing technique.
 Figure \ref{fig:demo-extended} is analogous to Figure \ref{fig:demo-ordinary}, yet with a different audio query: a trumpet note from the SOL dataset, played with \emph{flatterzunge} (flutter-tonguing) technique, pitch G4, and \emph{mf} dynamics.
+Again, we find that the scattering-based version retrieves five nearest neighbors that share both their instrument attribute (trumpet) and their IPT attribute (\emph{flatterzunge}) with the query.
 
 
 
