@@ -257,6 +257,7 @@ In order to match a decibel-like perception of loudness, we apply the path-adapt
 \log \left(
 1 + \dfrac{\mathbf{S}\boldsymbol{x}_i(\lambda)}{\varepsilon \times \boldsymbol{\mu}(\lambda)}
 \right)
+\label{eq:log-scattering}
 \end{equation}
 where $\varepsilon = 10^{-3}$ and $\boldsymbol{\mu}(\lambda)$ is the median value of the scattering coefficient $\mathbf{S}\boldsymbol{x}_i (\lambda)$ for path $\lambda$ across samples $i$.
 
@@ -507,7 +508,15 @@ In particular, it appears that increasing $T$ above \SI{25}{\milli\second} is on
 \end{figure}
 
 \subsection{Qualitative error analysis}
+For demonstration purposes, we arbitrarily select some audio recordings $\boldsymbol{x}(t)$, and run two versions of the proposed query-by-example search using $\boldsymbol{x}(t)$ as query.
+The first version uses MFCC features with $T=\SI{25}{\milli\second}$ and metric learning with LMNN; it has a P@5 of $90.0\%$ for instrument retrieval and $48.4\%$ for IPT retrieval.
+The second version uses scattering features with $T=\SI{1}{\second}$, logarithmic transformation with median renormalization (see Equation \ref{eq:log-scattering}), and metric learning with LMNN; it has a P@5 of $99.7\%$ for instrument retrieval and $63.0\%$ for IPT retrieval.
+The main difference between these two versions lies in the choice of spectrotemporal features.
 
+: a violin note from the SOL dataset, played with ordinary playing technique, pitch G4, \emph{mf} dynamics, on the G string.
+
+
+Figure \ref{fig:demo} shows the constant-$Q$ scalograms of the five retrieved items 
 
 What stems from these observations is that, unlike instrument similarity, IPT similarity results from long-range temporal dependencies in the audio signal.
 In addition, the dissimilarity between two different playing techniques is not a matter of elastic deformation in the time-frequency domain -- as approximated by Euclidean distance in the feature space of scattering coefficients -- but also involves an adaptive process which combines the saliences of various acoustic frequencies and modulation rates in several nonuniform ways, thus producing a metric that favors certain factors of acoustic variability while mitigating others.
