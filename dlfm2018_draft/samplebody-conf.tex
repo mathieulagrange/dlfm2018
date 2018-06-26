@@ -346,13 +346,6 @@ This result contrasts with the previous evaluation setting: whereas the improvem
 In particular, it appears that increasing $T$ above \SI{25}{\milli\second} is only beneficial to IPT similarity retrieval if it is combined with metric learning.
 
 
-
-\subsection{Qualitative error analysis}
-
-What stems from these observations is that, unlike instrument similarity, IPT similarity results from long-range temporal dependencies in the audio signal.
-In addition, the dissimilarity between two different playing techniques is not a matter of elastic deformation in the time-frequency domain -- as approximated by Euclidean distance in the feature space of scattering coefficients -- but also involves an adaptive process which combines the saliences of various acoustic frequencies and modulation rates in several nonuniform ways, thus producing a metric that favors certain factors of acoustic variability while mitigating others.
-
-% Describe the IPTs that often appear in the same lists
 \begin{figure}
 
         \begin{subfigure}{\linewidth}
@@ -513,6 +506,13 @@ In addition, the dissimilarity between two different playing techniques is not a
 }\label{fig:demo}
 \end{figure}
 
+\subsection{Qualitative error analysis}
+
+
+What stems from these observations is that, unlike instrument similarity, IPT similarity results from long-range temporal dependencies in the audio signal.
+In addition, the dissimilarity between two different playing techniques is not a matter of elastic deformation in the time-frequency domain -- as approximated by Euclidean distance in the feature space of scattering coefficients -- but also involves an adaptive process which combines the saliences of various acoustic frequencies and modulation rates in several nonuniform ways, thus producing a metric that favors certain factors of acoustic variability while mitigating others.
+
+\subsection{Feature visualization with diffusion maps}
 
 
 \begin{figure*}       
