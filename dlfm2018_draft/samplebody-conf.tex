@@ -335,12 +335,14 @@ In other words, the monophonic recognition of Western instruments is, all things
 
 The situation is different when considering IPT, rather than instrument, as the reference for evaluating the reference of the query-by-example search engine.
 In this second evaluation setting, a retrieved item is considered relevant if and only if it shares the same IPT as the query, regardless of instrument, mute, pitch, or dynamics.
+Therefore, whereas we trained LMNN with instrument labels as classes in the previous subsection, this second experiment re-trains LMNN with IPTs as classes.
+In other words, the Mahalanobis metric is no longer optimized to distinguish instruments but to distinguish playing techniques.
 
+Figure \ref{fig:results} (right) summarizes our results.
 The MFCC baseline has a relatively low P@5 of $44.5\%$, which indicates that a coarse description of the short-term spectral envelope is rarely ever sufficient to model acoustic similarity in IPT.
-Perhaps more surprisingly, we find that only the system combining all presented improvements, \ie{} log-scattering coefficients with median renormalization, $T=\SI{500}{\milli\second}$, and LMNN, strongly outperforms the MFCC baseline, with a state-of-the-art P@5 of $63.0\%$.
+Perhaps more surprisingly, we find that only the system combining all presented variations, \ie{} log-scattering coefficients with median renormalization, $T=\SI{500}{\milli\second}$, and LMNN, strongly outperforms the MFCC baseline, with a state-of-the-art P@5 of $63.0\%$.
 Indeed, an ablation study of that system reveals that, all other things being equal: reducing $T$ to $\SI{25}{\milli\second}$ brings the P@5 to $53.3\%$; disabling LMNN, $50.0\%$; and replacing scattering coefficients by MFCC, to $48.4\%$.
-
-
+This result contrasts with the previous evaluation setting: whereas the improvements brought by the three aforementioned are approximately additive and independent in terms of P@5 for musical instruments, they cause a super-additive interaction in terms of P@5 for IPTs.
 
 
 
