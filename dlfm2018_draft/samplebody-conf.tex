@@ -342,7 +342,8 @@ Figure \ref{fig:results} (right) summarizes our results.
 The MFCC baseline has a relatively low P@5 of $44.5\%$, which indicates that a coarse description of the short-term spectral envelope is rarely ever sufficient to model acoustic similarity in IPT.
 Perhaps more surprisingly, we find that only the system combining all presented variations, \ie{} log-scattering coefficients with median renormalization, $T=\SI{500}{\milli\second}$, and LMNN, strongly outperforms the MFCC baseline, with a state-of-the-art P@5 of $63.0\%$.
 Indeed, an ablation study of that system reveals that, all other things being equal: reducing $T$ to $\SI{25}{\milli\second}$ brings the P@5 to $53.3\%$; disabling LMNN, $50.0\%$; and replacing scattering coefficients by MFCC, to $48.4\%$.
-This result contrasts with the previous evaluation setting: whereas the improvements brought by the three aforementioned are approximately additive and independent in terms of P@5 for musical instruments, they cause a super-additive interaction in terms of P@5 for IPTs.
+This result contrasts with the previous evaluation setting: whereas the improvements brought by the three aforementioned variations are approximately additive and independent in terms of P@5 for musical instruments, they cause a super-additive interaction in terms of P@5 for IPTs.
+In particular, it appears that increasing $T$ above \SI{25}{\milli\second} is only beneficial to IPT similarity retrieval if it is combined with metric learning.
 
 
 
