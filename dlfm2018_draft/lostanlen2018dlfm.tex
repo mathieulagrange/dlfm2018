@@ -1,4 +1,4 @@
-\documentclass[sigconf, authordraft]{acmart}
+\documentclass[sigconf]{acmart}
 
 \usepackage{booktabs} % For formal tables
 
@@ -88,7 +88,6 @@
 The expressive variability in which a musical note can be produced conveys some essential information to the modeling of orchestration and style.
 As such, it plays a crucial role in computer-assisted browsing of massive digital music corpora.
 Yet, although the automatic recognition of a musical instrument from the recording of a single ``ordinary'' note is now considered a solved problem, the ability of a computer to precisely identify instrumental playing techniques (IPT) remains largely underdeveloped.
-%In this article, we 
 We conduct a benchmark of machine listening systems for query-by-example browsing among 143 instrumental playing techniques, including the most contemporary, for 16 instruments in the symphonic orchestra, thus amounting to 469 triplets of instrument, mute, and technique. We identify and discuss three necessary conditions for significantly outperforming the classical mel-frequency cepstral coefficients (MFCC) baseline: the inclusion of second-order scattering coefficients to account for the presence of amplitude modulations; the inclusion of long-range temporal dependencies; and the resort to large-margin nearest neighbors (LMNN), a supervised metric learning method that reduces intra-class variability in feature space.
 We report a P@5 of $99.7\%$ for instrument recognition (baseline at $89.0\%$) and of $61.0\%$ for playing technique recognition (baseline at $44.5\%$).
 We interpret this quantitative gain by means of a qualitative assessment of practical usability as well as data visualizations resulting from nonlinear dimensionality reduction.
