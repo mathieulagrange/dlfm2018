@@ -127,40 +127,43 @@ Section 5 reports the results from an IPT classification benchmark on the Studio
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  RELATED WORK  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Related work}
-This section reviews some of the recent MIR literature on the audio analysis of instrumental playing techniques,
-with a focus on the available datasets for each formulation of the problem at hand.
+This section reviews recent MIR literature on the audio analysis of IPTs with a focus on the datasets available for the various classification tasks considered.
 
-\subsection{Classification of ordinary isolated notes}
-The earliest works on musical instrument recognition restricted their scope to individual notes played with an ordinary technique -- with datasets such as MUMS \cite{opolko1989dataset}, MIS, RWC \cite{goto2003ismir}, and Philharmonia -- thus eliminating most factors of intra-class variability due to the performer  \cite{martin1998asa,brown1999jasa,eronen2000icassp,herrera2003jnmr,wieczorkowska2003jiis,kaminskyj2005jiis,benetos2006icassp}.
-These works have culminated with the development of a support vector machine (SVM) classifier trained on spectrotemporal receptive fields (STRF), which are idealized computational models of neurophysiological responses in the central auditory system \cite{chi2005jasa}.
-Not only did it attain a near-perfect mean accuracy of $98.7\%$ on the RWC dataset, but the confusion matrix of its automated predictions was closely similar to the confusion matrix of human listeners \cite{patil2012plos}.
-Therefore, the supervised classification of musical instruments from recordings of ordinary notes could arguably be considered a solved problem; we refer to \cite{bhalke2016jiis} for a recent review of the state of the art.
+\subsection{Isolated note instrument classification}
+The earliest works on musical instrument recognition restricted their scope to individual notes played with an ordinary technique, eliminating most factors of intra-class variability due to the performer \cite{martin1998asa,brown1999jasa,eronen2000icassp,herrera2003jnmr,wieczorkowska2003jiis,kaminskyj2005jiis,benetos2006icassp}.
+These results were obtained on datasets such as MUMS \cite{opolko1989dataset}, MIS,\footnote{\url{http://theremin.music.uiowa.edu/MIS.html}} RWC \cite{goto2003ismir}, and samples from the Philharmonia Orchestra.\footnote{\url{http://www.philharmonia.co.uk/explore/sound_samples}}
+This line of work culminated with the development of a support vector machine classifier trained on spectrotemporal receptive fields (STRF), which are idealized computational models of neurophysiological responses in the central auditory system \cite{chi2005jasa}.
+Not only did this classifier attain a near-perfect mean accuracy of $98.7\%$ on the RWC dataset, but the confusion matrix of its predictions was close to that human listeners \cite{patil2012plos}.
+Therefore, supervised classification of instruments from recordings of ordinary notes could arguably be considered a solved problem; we refer to \cite{bhalke2016jiis} for a recent review of the state of the art.
 
-\subsection{Classification of solo recordings}
-One straightforward extension of the problem above is the classification of solo phrases, encompassing some variability in melody \cite{krishna2004icassp}, for which the accuracy of STRF models is around $80\%$ \cite{patil2015eurasip}.
+\subsection{Solo instrument classification}
+A straightforward extension of the problem above is the classification of solo phrases, encompassing some variability in melody \cite{krishna2004icassp}, for which the accuracy of STRF models is around $80\%$ \cite{patil2015eurasip}.
 Since the Western tradition of solo music is essentially limited to a narrow range of instruments (\eg{} piano, classical guitar, violin) and genres (sonatas, contemporary, free jazz, folk), datasets of solo phrases, such as solosDb \cite{joder2009taslp}, are exposed to strong biases.
 This issue is partially mitigated by the recent surge of multitrack datasets, such as MedleyDB \cite{bittner2014ismir}, which has spurred a renewed interest in single-label instrument classification \cite{yip2017ismir}.
-In addition, the cross-collection evaluation methodology \cite{livshin2003ismir} allows to prevent the risk of overfitting caused by the relative homogeneity of these small datasets in terms of artists and recording conditions \cite{bogdanov2016ismir}.
-To this date, the best classifiers of solo recordings is are the joint time-frequency scattering transform \cite{anden2018classification} and a spiral convolutional network \cite{lostanlen2016ismir} trained on the Medley-solos-DB dataset \cite{lostanlen2018msdb}, \ie{} a cross-collection dataset which aggregates MedleyDB and solosDb following the procedure of \cite{donnelly2015icdmw}.
+In addition, the cross-collection evaluation methodology \cite{livshin2003ismir} reduces the risk of overfitting caused by the relative homogeneity of artists and recording conditions in these small datasets \cite{bogdanov2016ismir}.
+To date, the best classifiers of solo recordings is are the joint time-frequency scattering transform \cite{anden2018classification} and the spiral convolutional network \cite{lostanlen2016ismir} trained on the Medley-solos-DB dataset \cite{lostanlen2018msdb}, \ie{}, a cross-collection dataset which aggregates MedleyDB and solosDb following the procedure of \cite{donnelly2015icdmw}.
 We refer to \cite{han2017taslp} for a recent review of the state of the art.
 
 \subsection{Multilabel classification in polyphonic mixtures}
-Because most publicly released musical recordings are polyphonic, the generic formulation of instrument recognition as a multilabel classification task is the most appropriate for large-scale deployment \cite{martins2007ismir,burred2009icassp}.
-However, it suffers from two methodological caveats: first, polyphonic instrumentation is not independent from other attributes of information, such as geographical origin, genre, or key; and secondly, the inter-rater agreement decreases with the number of overlapping sources \cite[chapter 6]{fuhrmann2012phd}.
-Such issues are all the more troublesome that there is, to this date, no  annotated dataset of polyphonic mixtures that is diverse enough to be devoid of artist bias.
-The Open-MIC initiative, from the newly created Community for Open and Sustainable Music and Information Research (COSMIR), might contribute to mitigating them in the near future \cite{mcfee2016ismir}.
+Because most publicly released musical recordings are polyphonic, the generic formulation of instrument recognition as a multilabel classification task is the most relevant for many end-user applications \cite{martins2007ismir,burred2009icassp}.
+However, it suffers from two methodological caveats.
+First, polyphonic instrumentation is not independent from other attributes, such as geographical origin, genre, or key.
+Second, the inter-rater agreement decreases with the number of overlapping sources \cite[chapter 6]{fuhrmann2012phd}.
+These problems are all the more troublesome since there is currently no annotated dataset of polyphonic recordings diverse enough to be devoid of artist bias.
+The Open-MIC initiative, from the newly created Community for Open and Sustainable Music and Information Research (COSMIR), is working to mitigate these issues in the near future \cite{mcfee2016ismir}.
 We refer to \cite{humphrey2018ismir} for a recent review of the state of the art.
 
-\subsection{Single-instrument playing technique classification}
-Lastly, there is a growing interest for studying the role of the performer in musical acoustics, from both perspectives of sound production and sound perception.
-Besides its interest in audio signal processing, this topic is connected to other disciplines, such as biomechanics and gestural interfaces \cite{metcalf2014frontiers}.
-The majority of the available literature focuses on the range of IPTs afforded by a single instrument: recent examples include clarinet \cite{loureiro2004ismir}, percussion \cite{tindale2004ismir}, piano \cite{bernays2013smc}, guitar \cite{foulon2013cmmr,su2014ismir,chen2015ismir}, violin \cite{young2008nime}, cello \cite[chapter 6]{chudy2016phd}, and erhu \cite{yang2014fma}.
+\subsection{Solo playing technique classification}
+Finally, there is a growing interest for studying the role of the performer in musical acoustics, from the perspective of both sound production and perception.
+Apart from its interest in audio signal processing, this topic is connected to other disciplines, such as biomechanics and gestural interfaces \cite{metcalf2014frontiers}.
+The majority of the literature focuses on the range of IPTs afforded by a single instrument.
+Recent examples include clarinet \cite{loureiro2004ismir}, percussion \cite{tindale2004ismir}, piano \cite{bernays2013smc}, guitar \cite{foulon2013cmmr,su2014ismir,chen2015ismir}, violin \cite{young2008nime}, cello \cite[chapter 6]{chudy2016phd}, and erhu \cite{yang2014fma}.
 Some publications frame timbral similarity in a polyphonic setting, yet do so according to a purely perceptual definition of timbre -- with continuous attributes such as brightness, warmth, dullness, roughness, and so forth -- without connecting these attributes to the discrete latent space of IPTs \cite{antoine2018isma}.
-
-In this paper, we formulate the retrieval of expressive parameters of musical timbre at the scale of the symphonic orchestra at large, while expliciting these parameters in terms of sound production (\ie{} through a finite set of instructions, readily interpretable by the performer) rather than by means of perceptual epithets only.
+\ja{What does this sentence mean? How does the polyphonic relate to the solo case? What's the ``discrete latent space'' of IPTs?}
 We refer to \cite{leman2017chapter} for a recent review of the state of the art.
 
-
+In the following, we define the task of retrieving musical timbre parameters across a range of instruments found in the symphonic orchestra.
+These parameters are explicitly defined in terms of sound production (\ie{}, through a finite set of instructions, readily interpretable by the performer), instead of using perceptual definitions.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  TASKS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
