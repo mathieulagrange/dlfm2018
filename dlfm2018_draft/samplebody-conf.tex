@@ -270,40 +270,51 @@ The SOL dataset has $143$ IPTs in total, and $469$ applicable instrument-mute-te
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  METHODS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methods}
 
-In this section, we describe the scattering transform and supervised metric learning used to implement all query-by-example systems in our benchmark.
+In this section, we describe the scattering transform used to capture amplitude modulation structure and supervised metric learning which constructs a similarity measure suited for our query-by-example task.
 
 \subsection{Scattering transform} % Scattering transform
-The scattering transform is a cascade of two wavelet modulus operators, each followed by temporal averaging:
-the first layer extracts the average spectral envelope $\mathbf{S}_1 \boldsymbol{x} (\lambda_1)$ of $\boldsymbol{x}(t)$ at frequencies $\lambda_1$, whereas the second layer $\mathbf{S}_2 \boldsymbol{x} (\lambda_1, \lambda_2)$ extracts amplitude modulations of this spectral envelope at rates $\lambda_2$.
-The set of frequencies discretizes the auditory range according to the mel scale, with $Q_1 = 12$ bins per octave at topmost frequencies; whereas rates $\lambda_2$ follow a geometric sequence between $\lambda_1$ and some minimal rate $T^{-1}$, with $Q_2 = 1$ bin per octave.
-We refer to \cite{anden2014taslp} for a general introduction to scattering transforms in audio classification, and to \cite[sections 3.2 and 4.5]{lostanlen2017phd} for a discussion on its application to musical instrument classification in solo recordings, as well as its close connections with STRF. The scattering transform is theoretically suited to model extended playing techniques, since various values of the rate $\lambda_2$ characterize some of the most common nonstationarities in sound production, including tremolo, vibrato, and dissonance \cite[section 4]{anden2012dafx}.
-In the following, we denote by $\mathbf{S}\boldsymbol{x}(\lambda)$ the concatenation of all scattering coefficients, whether the generic scattering path $\lambda$ corresponds to a singleton $(\lambda_1)$ or a pair $(\lambda_1,\lambda_2)$.
+The scattering transform is a cascade of constant-Q wavelet transforms alternated with modulus operators \cite{mallat2012cpam,anden2014taslp}.
+Given a signal $\boldsymbol{x} (t)$, its first layer outputs the first-order scattering coefficients $\mathbf{S}_1 \boldsymbol{x} (\lambda_1, t)$, which captures the intensity of $\boldsymbol{x} (t)$ at frequency $\lambda_1$.
+Its frequency resolution is logarithmic in $\lambda_1$ and is sampled using $Q_1 = 12$ bins per octave.
+The second layer of the cascade yields the second-order scattering coefficients $\mathbf{S}_2 \boldsymbol{x} (\lambda_1, \lambda_2, t)$, which extract amplitude modulation at frequency $\lambda_2$ in the subband of $\boldsymbol{x} (t)$ at frequency $\lambda_1$.
+Both first- and second-order coefficients are averaged in time over intervals of size $T$.
+The modulation frequencies $\lambda_2$ are logarithmically spaced with $Q_2 = 1$ bin per octave.
+In the following, we denote by $\mathbf{S}\boldsymbol{x}(\lambda, t)$ the concatenation of all scattering coefficients, where $\lambda$ corresponds to either a single $\lambda_1$ for first-order coefficients or a pair $(\lambda_1,\lambda_2)$ for second-order coefficients.
 
-In order to match a decibel-like perception of loudness, we apply the path-adaptive, quasi-logarithmic compression
+The first-order scattering coefficients are equivalent to the mel-frequency spectrogram which forms a basis for MFCCs \cite{anden2014taslp}.
+Second-order coefficients, on the other hand, characterize common non-stationary structures in sound production, such as tremolo, vibrato, and dissonance \cite[section 4]{anden2012dafx}.
+As a result, these coefficients are better suited to model extended IPTs.
+We refer to \cite{anden2014taslp} an introduction on scattering transforms for audio signals and to \cite[sections 3.2 and 4.5]{lostanlen2017phd} for a discussion on its application to musical instrument classification in solo recordings and its connections to STRFs.
+
+To match a decibel-like perception of loudness, we apply the adaptive, quasi-logarithmic compression
 \begin{equation}
-\widetilde{\mathbf{S}} \boldsymbol{x}_i(\lambda) =
+\widetilde{\mathbf{S}} \boldsymbol{x}_i(\lambda, t) =
 \log \left(
-1 + \dfrac{\mathbf{S}\boldsymbol{x}_i(\lambda)}{\varepsilon \times \boldsymbol{\mu}(\lambda)}
+1 + \dfrac{\mathbf{S}\boldsymbol{x}_i(\lambda, t)}{\varepsilon \times \boldsymbol{\mu}(\lambda)}
 \right)
 \label{eq:log-scattering}
 \end{equation}
-where $\varepsilon = 10^{-3}$ and $\boldsymbol{\mu}(\lambda)$ is the median value of the scattering coefficient $\mathbf{S}\boldsymbol{x}_i (\lambda)$ for path $\lambda$ across samples $i$.
-
+where $\varepsilon = 10^{-3}$ and $\boldsymbol{\mu}(\lambda)$ is the median of $\mathbf{S}\boldsymbol{x}_i (\lambda, t)$ across $t$ and $i$.
 
 \subsection{Metric learning} % Large-margin nearest neighbors
-Linear metric learning algorithms generate a matrix $\mathbf{L}$ such that the Mahalanobis distance
+Linear metric learning algorithms construct a matrix $\mathbf{L}$ such that the weighted distance
 \begin{equation}
 %\mathrm{D}_\mathbf{L}(\boldsymbol{x}_i, \boldsymbol{x}_j) = (\widetilde{\mathbf{S}}\boldsymbol{x}_i - \widetilde{\mathbf{S}}\boldsymbol{x}_j)^{\top}  \mathbf{L}^{\top} \mathbf{L} (\widetilde{\mathbf{S}}\boldsymbol{x}_i-\widetilde{\mathbf{S}}\boldsymbol{x}_j) \Vert
 \mathrm{D}_\mathbf{L}(\boldsymbol{x}_i, \boldsymbol{x}_j) = \Vert \mathbf{L} (\widetilde{\mathbf{S}}\boldsymbol{x}_i-\widetilde{\mathbf{S}}\boldsymbol{x}_j) \Vert_2
 \end{equation}
 between all pairs of samples $(\boldsymbol{x}_i, \boldsymbol{x}_j)$ optimizes some objective function.
 We refer to \cite{bellet2013survey} for a review of the state of the art.
-In particular, the large-margin nearest neighbors (LMNN) algorithm aims at bringing all $k$ nearest neighbors $\boldsymbol{x}_j$ of every $\boldsymbol{x}_i$ closer than the canonical Euclidean distance $\mathrm{D}(\boldsymbol{x}_i, \boldsymbol{x}_j) = \Vert \widetilde{\mathbf{S}}\boldsymbol{x}_i - \widetilde{\mathbf{S}}\boldsymbol{x}_j \Vert_2$ if $\boldsymbol{x}_i$ and $\boldsymbol{x}_j$ belong to the same class, and further apart otherwise.
+In the following, we shall consider the large-margin nearest neigbors (LMNN) algorithm.
+It attempts to construct $L$ such that for every signal $\boldsymbol{x}_i (t)$ the distance $\mathrm{D}_\mathbf{L}(\boldsymbol{x}_i, \boldsymbol{x}_j)$ to $\boldsymbol{x}_j (t)$, one of its $k$ nearest neighbors, is small if $\boldsymbol{x}_i (t)$ and $\boldsymbol{x}_j (t)$ belong to the same class and large otherwise.
 The matrix $\mathbf{L}$ is obtained by applying the special-purpose solver of \cite[appendix A]{weinberger2009jmlr}.
-In subsequent experiments, disabling LMNN is equivalent to setting $\mathbf{L}$ to the identity matrix, and retrieving a list of $k$ nearest neighbors from $\boldsymbol{x}_i (t)$ according to the canonical Euclidean distance in feature space rather than the Mahalanobis distance.
+In subsequent experiments, disabling LMNN is equivalent to setting $\mathbf{L}$ to the identity matrix, which yields the standard Euclidean distance on the scattering coefficients $\widetilde{\mathbf{S}} \boldsymbol{x} (\lambda, t)$.
 
-As compared to a class-wise generative model (such as Gaussian mixtures), a global linear model ensures some robustness to minor alterations of the taxonomy, which is important in the context of IPT: \eg{} what some instrumentists may call $\emph{slide}$, others will call $\emph{glissando}$.
-Furthermore, although one of its major drawback relies on its strong dependency on the Euclidean neighbors to determine intra-class variability \cite{mcfee2010icml}, this drawback is alleviated in the case of a feature space based on scattering transform coefficients, whose Euclidean metric provably approximates the extent of elastic deformation needed to shear $\boldsymbol{x}_i(t)$ into $\boldsymbol{x}_j(t)$ in the time-frequency domain \cite[Theorem 2.16]{mallat2012cpam}.
+Compared to a class-wise generative model, such a Gaussian mixture model, a global linear model ensures some robustness to minor alterations of the taxonomy, which is important in the context of IPT.
+For example, one performer's $\emph{slide}$ is another's $\emph{glissando}$.
+\ja{I don't understand this argument. Why does a global linear model ensure robustness? Is it because of fewer parameters so less risk of overfitting?}
+A major drawback of LMNN is its dependency on the standard Euclidean distance for determining nearest neighbors \cite{mcfee2010icml}.
+However, this is alleviated for scattering coefficients, since the scattering transform $\mathbf{S} \boldsymbol{x} (t, \lambda)$ is Lipschitz continuous to elastic deformation in the signal $\boldsymbol{x} (t)$ \cite[Theorem 2.16]{mallat2012cpam}.
+In other words, the Euclidean distance between the scattering transform of $\boldsymbol{x} (t)$ and a deformed version of the same signal is bounded by the extent of that deformation.
 
 
 
