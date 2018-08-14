@@ -320,8 +320,10 @@ In other words, the Euclidean distance between the scattering transform of $\bol
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% EXPERIMENTAL RESULTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Experimental results} \label{sec:exp}
-In this section, we combine the aforementioned methods to the construction of a query-by-example browsing system in the Studio On Line (SOL) dataset; discuss the factors enabling to improve upon the state of the art; and provide both a qualitative and a quantitative comparison between MFCC-based and scattering-based feature spaces, in the context of timbral similarity between instrumental playing techniques.
+\section{Experimental evaluation} \label{sec:exp}
+In this section, we study a query-by-example browsing system for the SOL dataset based on nearest neigbors.
+We discuss how the performance of the system is affected by the choice of feature (MFCCs or scattering transforms) and distance (Euclidean or LMNN), both quantitatively and qualitatively.
+Finally, we visualize the two feature spaces using non-linear dimensionality reduction.
 
 %As explained in Section \ref{sec:motivation}, we formulate here the instrument / playing techniques recognition problem as a query by example one as we are \textit{in fine} interested in an application scenario where the user specify a seed sound, be it played by a musical instrument or not, and the system returns several items from the database that have some level of similarity with the seed.
 
@@ -335,35 +337,39 @@ In this section, we combine the aforementioned methods to the construction of a 
 %For each sound, some features are computed over a given time frame, ranging from 25 ms. to 1 second. The set of frames is averaged to give one feature vector per sound recording. Unless otherwise stated, discussed results are given for a frame size of 25 ms. \ml{please rephrase : While considering a short frame size increases the number of frames and thus stabilizes the averaging}, it reduces the ability of the feature to model long time range modulations.
 
 
-\subsection{Evaluation of instrument recognition}
+\subsection{Instrument recognition}
 
-In the task of instrument recognition, each of the $k$ elements $\boldsymbol{x}_j$ returned by the system is considered relevant to the query $\boldsymbol{x}_i$ if and only if $\boldsymbol{x}_i$ and $\boldsymbol{x}_j$ correspond to the same instrument, regardless of pitch, intensity, mute, and playing technique.
+In the task of instrument recognition, we provide a query $\boldsymbol{x} (t)$ and the system retrieves $k$ recordings $\boldsymbol{x}_1 (t), \ldots, \boldsymbol{x}_k (t)$.
+We consider a retrieved recording to be relevant to the query if it corresponds to the same instrument, regardless of pitch, intensity, mute, and IPT.
+This lets us compute the precision at rank $5$ (P@$5$) for a system by counting the number of relevant recordings for each query.
 
-We compare scattering features to a baseline of mel-frequency cepstral coefficients (MFCC), corresponding to the $13$ lowest quefrencies after applying a discrete cosine transform (DCT) on the logarithm of the $40$-band mel-frequency spectrum.
-In addition, we vary the maximum time scale $T$ of amplitude modulation between \SI{25}{\milli\second} and  \SI{1}{\second}.
-In the case of MFCC, $T=\SI{25}{\milli\second}$ corresponds to the inverse of the lowest audible frequency ($T^{-1}=\SI{40}{\Hz}$).
-Therefore, increasing the frame duration $T$ has no effect on the value of MFCC, because the mel-spectrogram is equivalent to a local averaging of the wavelet scalogram at the time scale $T$, leaving unchanged the global averaging of $\mathbf{S}\boldsymbol{x}(\lambda)$ at the time scale of whole musical notes \cite[section II.B]{anden2012dafx}.
+We compare scattering features to a baseline of MFCCs, defined as the $13$ lowest coefficients of the discrete cosine transform (DCT) applied to the logarithm of the $40$-band mel-frequency spectrum.
+For the scattering transform, we vary the maximum time scale $T$ of amplitude modulation from \SI{25}{\milli\second} to \SI{1}{\second}.
+In the case of the MFCCs, $T=\SI{25}{\milli\second}$ corresponds to the inverse of the lowest audible frequency ($T^{-1}=\SI{40}{\Hz}$).
+Therefore, increasing the frame duration $T$ has no effect on the value of the MFCCs, because the mel-spectrogram is equivalent to a local averaging of the scalogram at the time scale $T$, leaving unchanged the global averaging of $\mathbf{S}\boldsymbol{x}(\lambda, t)$ at the time scale of whole musical notes \cite[section II.B]{anden2012dafx}.
+\ja{I don't understand this part. How does changing $T$ not affect the MFCCs? If it's larger, we average more, no? There are some details missing here, it seems.}
 
-Figure \ref{fig:results} (left) summarizes our results.
-We find that MFCC reach a relatively high P@5 of $89\%$.
-Keeping all $40$ quefrencies rather than the lowest $13$ brings the P@5 down to $84\%$, because the highest quefrencies are the most affected by some spurious factors of intra-class variability, namely pitch and spectral flatness \cite[subsection 2.3.3]{lostanlen2017phd}.
+The left column of Figure \ref{fig:results} summarizes our results.
+MFCCs reach a relatively high P@$5$ of $89\%$.
+Keeping all $40$ DCT coefficients rather than the lowest $13$ brings P@$5$ down to $84\%$, because the DCT coefficients are most affected by spurious factors of intra-class variability, such as pitch and spectral flatness \cite[subsection 2.3.3]{lostanlen2017phd}.
 
-At the smallest time scale $T=\SI{25}{\milli\second}$, the scattering transform reaches a P@5 of $89\%$, thus matching exactly the performance of MFCC.
-This is because the relatively few second-order scattering coefficients whose rate $\lambda_2$ exceeds $\SI{40}{\Hz}$ have a negligible effect on Euclidean distances, as they carry very little energy \cite{anden2014taslp}.
-Moreover, disabling median renormalization -- \ie{} setting $\boldsymbol{\mu}(\lambda) = 1$ for all scattering paths $\lambda$ -- degrades P@5 down to $84\%$, while disabling logarithmic compression altogether -- \ie{} the limit case $\varepsilon \rightarrow \infty$ -- degrades it to $76\%$.
-These results are consistent with another publication \cite{lostanlen2018eurasip}, which applies scattering transform to a query-by-example retrieval task among environmental acoustic scenes.
+At the smallest time scale $T=\SI{25}{\milli\second}$, the scattering transform reaches a P@$5$ of $89\%$, thus matching the performance of the MFCCs.
+This is expected since there is little amplitude modulation below this scale, corresponding to $\lambda_2$ over $\SI{40}{\Hz}$, so the scattering transform is dominated by the first order, which is equivalent to MFCCs \cite{anden2014taslp}.
+Moreover, disabling median renormalization degrades P@$5$ down to $84\%$, while disabling logarithmic compression altogether degrades it to $76\%$.
+This is consistent with \cite{lostanlen2018eurasip}, which applies scattering transform to a query-by-example retrieval task for acoustic scenes.
 
-On one hand, replacing the canonical Euclidean distance by a Mahalanobis distance learned by the LMNN algorithm marginally improve P@5 in the case of the MFCC baseline, from $89.3\%$ to $90.0\%$.
-On the other hand, applying LMNN on scattering features strongly enhances their performance with respect to the Euclidean distance, from $89.1\%$ to $98.0\%$.
+On one hand, replacing the canonical Euclidean distance by a distance learned by LMNN marginally improves P@$5$ for the MFCC baseline, from $89.3\%$ to $90.0\%$.
+Applying LMNN to scattering features, on the other hand, significantly improves their performance with respect to the Euclidean distance, from $89.1\%$ to $98.0\%$.
 
-The gain in precision afforded by scattering coefficients over MFCC could simply be caused by a higher number of dimensions.
+The gain in precision afforded by scattering coefficients over MFCCs could simply be caused by a higher number of dimensions.
 To refute this hypothesis, we supplement the $13$ coefficients resulting from a global averaging at the time scale of full musical notes by higher-order summary statistics, namely polynomial features of degrees $2$ and $3$.
-Instrument retrieval in the resulting feature space, whose dimension ($494$) is comparable to the number of scattering coefficients, has a P@5 of $91\%$, \ie{} slightly above the baseline.
+Instrument retrieval in the resulting feature space, whose dimension ($494$) is comparable to the number of scattering coefficients, has a P@$5$ of $91\%$, \ie{}, slightly above the baseline.
 Therefore, it is more likely the multiresolution structure of scattering coefficients, rather than its dimensionality, that causes a strong boost in performance.
+\ja{I don't understand the objection or the argument here. How could the better performance be caused by a ``higher number of dimensions''? If I add a bunch of coefficients to MFCCs that are just Gaussian white noise, does that improve performance? What if I copy it several times over? How does our particular dimensionality increasing strategy refute that claim? We haven't looked at all possible ways of increasing the dimensions here.}
 
-Lastly, increasing $T$ from $\SI{25}{\milli\second}$ up to $\SI{1}{\second}$ -- that is, including all amplitude modulations between $\SI{1}{\Hz}$ and $\SI{40}{\Hz}$ -- brings LMNN to a near-perfect P@5 of $99.71\%$.
-Not only does this result confirm that well-established methods in audio signal processing (here, wavelet scattering and metric learning) are sufficient to retrieve the instrument from a single ordinary note; it also demonstrates that the results remain excellent despite large intra-class variability within instruments: in pitch and intensity, but also in the usage of mutes and extended IPTs.
-In other words, the monophonic recognition of Western instruments is, all things considered, a solved problem indeed.
+Finally, increasing $T$ from $\SI{25}{\milli\second}$ up to $\SI{1}{\second}$ -- \ie{}, including all amplitude modulations between $\SI{1}{\Hz}$ and $\SI{40}{\Hz}$ -- brings LMNN to a near-perfect P@$5$ of $99.7\%$.
+Not only does this result confirm that straighforward techniques in audio signal processing (here, wavelet scattering and metric learning) are sufficient to retrieve the instrument from a single ordinary note, it also demonstrates that the results remain satisfactory despite large intra-class variability in terms of pitch, intensity, usage of mutes, and extended IPTs.
+In other words, the monophonic recognition of Western instruments is, all things considered, indeed a solved problem.
 
 \begin{figure}
 \includegraphics[width=\linewidth,keepaspectratio]{./figs/results/results.png}
@@ -371,19 +377,20 @@ In other words, the monophonic recognition of Western instruments is, all things
 \label{fig:results}
 \end{figure}
 
-\subsection{Evaluation of playing technique recognition}
+\subsection{Playing technique recognition}
 
-The situation is different when considering IPT, rather than instrument, as the reference for evaluating the reference of the query-by-example search engine.
-In this second evaluation setting, a retrieved item is considered relevant if and only if it shares the same IPT as the query, regardless of instrument, mute, pitch, or dynamics.
-Therefore, whereas we trained LMNN with instrument labels as classes in the previous subsection, this second experiment re-trains LMNN with IPTs as classes.
-In other words, the Mahalanobis metric is no longer optimized to distinguish instruments but to distinguish playing techniques.
+The situation is different when considering IPT, rather than instrument, as the reference for evaluating the query-by-example system.
+In this setting, a retrieved item is considered relevant if and only if it shares the same IPT as the query, regardless of instrument, mute, pitch, or dynamics.
+Therefore, we apply the LMNN with IPTs instead of instruments as class labels, yielding a different distance function optimized to distinguish playing techniques.
+\ja{Need to say before that we train it with instruments as labels.}
 
-Figure \ref{fig:results} (right) summarizes our results.
-The MFCC baseline has a relatively low P@5 of $44.5\%$, which indicates that a coarse description of the short-term spectral envelope is rarely ever sufficient to model acoustic similarity in IPT.
-Perhaps more surprisingly, we find that only the system combining all presented variations, \ie{} log-scattering coefficients with median renormalization, $T=\SI{500}{\milli\second}$, and LMNN, strongly outperforms the MFCC baseline, with a state-of-the-art P@5 of $63.0\%$.
-Indeed, an ablation study of that system reveals that, all other things being equal: reducing $T$ to $\SI{25}{\milli\second}$ brings the P@5 to $53.3\%$; disabling LMNN, $50.0\%$; and replacing scattering coefficients by MFCC, to $48.4\%$.
-This result contrasts with the previous evaluation setting: whereas the improvements brought by the three aforementioned variations are approximately additive and independent in terms of P@5 for musical instruments, they cause a super-additive interaction in terms of P@5 for IPTs.
-In particular, it appears that increasing $T$ above \SI{25}{\milli\second} is only beneficial to IPT similarity retrieval if it is combined with metric learning.
+The right column if Figure \ref{fig:results} summarizes our results.
+The MFCC baseline has a low P@$5$ of $44.5\%$, indicating that its coarse description of the short-term spectral envelope is not sufficient to model acoustic similarity in IPT.
+Perhaps more surprisingly, we find that optimal performance is only achieved by combining all proposed improvenments: log-scattering coefficients with median renormalization, $T=\SI{500}{\milli\second}$, and LMNN.
+This yields a P@$5$ of $63.0\%$.
+Indeed, an ablation study of that system reveals that, all other things being equal, reducing $T$ to $\SI{25}{\milli\second}$ brings the P@$5$ to $53.3\%$, disabling LMNN reduces it to $50.0\%$, and replacing scattering coefficients by MFCCs yields $48.4\%$.
+This result contrasts with the instrument recognition setting: whereas the improvements brought by the three aforementioned modifications are approximately additive in P@$5$ for musical instruments, they interact in a super-additive manner for IPTs.
+In particular, it appears that increasing $T$ above \SI{25}{\milli\second} is only beneficial to IPT similarity retrieval if combined with LMNN.
 
 
 \begin{figure}
@@ -460,8 +467,7 @@ In particular, it appears that increasing $T$ above \SI{25}{\milli\second} is on
                 \label{fig:Vn-ord-G4-mf-3c}
         \end{subfigure}%
         
-        \caption{Five nearest neighbors of the same query (a violin note with ordinary playing technique, at pitch G4, \emph{mf} dynamics, played on the G string), as retrieved by two different versions of our system: with MFCC features (left) and with scattering transform features (right).%
-%The caption of each subfigure denotes the musical attribute(s) that differ from those of the query: mute, playing technique, pitch, and dynamics.
+        \caption{Five nearest neighbors of the same query (a violin note with ordinary playing technique, at pitch G4, \emph{mf} dynamics, played on the G string), as retrieved by two different versions of our system: with MFCC features (left) and with scattering transform features (right). The captions denote the musical attribute(s) that differ from those of the query: mute, playing technique, pitch, and dynamics.
 }\label{fig:demo-ordinary}
 \end{figure}
         
@@ -543,45 +549,50 @@ In particular, it appears that increasing $T$ above \SI{25}{\milli\second} is on
         
         \caption{Five nearest neighbors of the same query (a trumpet note with \emph{flatterzunge} technique, at pitch G4, \emph{mf} dynamics), as retrieved by two different versions of our system: with MFCC features (left) and with scattering transform features (right).%
 %The caption of each subfigure denotes the musical attribute(s) that differ from those of the query: mute, playing technique, pitch, and dynamics.
+\ja{Combine both figures into one big one?}
 }\label{fig:demo-extended}
 \end{figure}
 
 \subsection{Qualitative error analysis}
-For demonstration purposes, we arbitrarily select some audio recordings $\boldsymbol{x}(t)$, and run two versions of the proposed query-by-example search using $\boldsymbol{x}(t)$ as query.
-The first version uses MFCC features with $T=\SI{25}{\milli\second}$ and metric learning with LMNN; it has a P@5 of $90.0\%$ for instrument retrieval and $48.4\%$ for IPT retrieval.
-The second version uses scattering features with $T=\SI{1}{\second}$, logarithmic transformation with median renormalization (see Equation \ref{eq:log-scattering}), and metric learning with LMNN; it has a P@5 of $99.7\%$ for instrument retrieval and $63.0\%$ for IPT retrieval.
+For demonstration purposes, we select an audio recording $\boldsymbol{x}(t)$ to query two versions of the proposed query-by-example system.
+The first version uses MFCCs with $T=\SI{25}{\milli\second}$ and LMNN; it has a P@$5$ of $90.0\%$ for instrument retrieval and $48.4\%$ for IPT retrieval.
+The second version uses scattering coefficients with $T=\SI{1}{\second}$, logarithmic transformation with median renormalization (see Equation \ref{eq:log-scattering}), and LMNN; it has a P@$5$ of $99.7\%$ for instrument retrieval and $63.0\%$ for IPT retrieval.
 Both versions adopt IPT labels as reference for training LMNN.
-The main difference between these two versions lies in the choice of spectrotemporal features.
+\ja{If so, we shouldn't cite the instrument retrieval numbers above, since that concerns a different system.}
+The main difference between the two versions is the choice of spectrotemporal features.
 
-Figure \ref{fig:demo-ordinary} shows the constant-$Q$ scalograms of the five retrieved items for both versions of the search engine, as queried by the same audio signal $\boldsymbol{x}(t)$ : a violin note from the SOL dataset, played with ordinary playing technique, pitch G4, \emph{mf} dynamics, on the G string.
-We find that both versions correctly retrieve five violin notes as nearest neighbors, with certain variations in pitch, dynamics, choice of string, and use of mute, that depart from the original query.
-Therefore, both versions have $100\%$ P@5 in terms of instrument retrieval for this specific query.
-However, although the scattering-based version is also $100\%$ correct in terms of IPT retrieval (as it retrieves five \emph{ordinario} notes), the MFCC-based version is only $40\%$ correct: three of the retrieved items exhibit other playing techniques, namely \emph{tremolo} and \emph{sul ponticello}.
-We hypothesize that the confusion between \emph{ordinario} and \emph{tremolo} is caused by the presence of vibrato in the ordinary query, and the fact that MFCC are unadequate to distinguish amplitude modulations (tremolo) from frequency modulations (vibrato) at the same rate \cite{anden2012dafx}.
-Yet, these differences are perceptually small: in some musical contexts, vibrato and tremolo are used interchangeably.
+Figure \ref{fig:demo-ordinary} shows the constant-$Q$ scalograms of the five retrieved items for both versions of the system as queried by the same audio signal $\boldsymbol{x}(t)$: a violin note from the SOL dataset, played with ordinary playing technique on the G string with pitch G4 and \emph{mf} dynamics.
+Both versions correctly retrieve five violin notes which vary from the query in pitch, dynamics, string, and use of mute.
+Therefore, both systems have an instrument retrieval P@$5$ of $100\%$ for this query.
+However, although the scattering-based version is also $100\%$ correct in terms of IPT retrieval (\ie{}, it retrieves five \emph{ordinario} notes), the MFCC-based version is only $40\%$ correct.
+Indeed, three recordings exhibit on of the \emph{tremolo} or \emph{sul ponticello} playing techniques.
+We hypothesize that the confusion between \emph{ordinario} and \emph{tremolo} is caused by the presence of vibrato in the ordinary query since MFCCs cannot distinguish amplitude modulations (tremolo) from frequency modulations (vibrato) for the same modulation frequency \cite{anden2012dafx}.
+These differences, however, are perceptually small and in some musical contexts vibrato and tremolo are used interchangeably.
 
-The situation is different when querying both systems with an audio signal $\boldsymbol{x}(t)$ that results from an extended instrumental playing technique rather than the ordinary playing technique.
-Figure \ref{fig:demo-extended} is analogous to Figure \ref{fig:demo-ordinary}, yet with a different audio query: a trumpet note from the SOL dataset, played with \emph{flatterzunge} (flutter-tonguing) technique, pitch G4, and \emph{mf} dynamics.
-Again, we find that the scattering-based version retrieves five nearest neighbors that share both their instrument attribute (trumpet) and their IPT attribute (\emph{flatterzunge}) with the query.
-In contrast, out of the five retrieved items by the MFCC-based version, four have an \emph{ordinario} IPT instead of \emph{flatterzunge}.
-This shortcoming has direct implications in the usability of the MFCC-based version for contemporary music creation.
-More generally, it appears that the MFCC-based version is less reliable when queried with extended playing techniques than with ordinary playing techniques.
+The situation is different when querying both systems with recording $\boldsymbol{x}(t)$ exhibiting an extended rather than ordinary IPT.
+Figure \ref{fig:demo-extended} is analogous to Figure \ref{fig:demo-ordinary} but with a different audio query.
+The query is a trumpet note from the SOL dataset, played with the \emph{flatterzunge} (flutter-tonguing) technique, pitch G4, and \emph{mf} dynamics.
+Again, the scattering-based version retrieves five recordings with the same instrument (trumpet) and IPT (\emph{flatterzunge}) as the query.
+In contrast, four out of the five items retrieved by the MFCC system have an \emph{ordinario} IPT instead of \emph{flatterzunge}.
+This shortcoming has direct implications on the usability of the MFCC query-by-example system for contemporary music creation.
+More generally, this system is less reliable when queried with extended IPTs.
 
-What stems from these observations is that, unlike instrument similarity, IPT similarity results from long-range temporal dependencies in the audio signal.
-In addition, the dissimilarity between two different playing techniques is not purely a matter of elastic deformation in the time-frequency domain -- as approximated by Euclidean distance in the feature space of scattering coefficients -- but also involves an adaptive process which combines the saliences of various acoustic frequencies and modulation rates in several nonuniform ways, thus producing a metric that favors certain factors of acoustic variability while mitigating others.
+Unlike instrument similarity, IPT similarity seems to depend on long-range temporal dependencies in the audio signal.
+In addition, it is not enough to capture the raw amplitude modulation provided by the second-order scattering coefficients.
+Instead, an adaptive layer on top of this is needed to extract the discriminative elements from those coefficients.
+Here, that layer consists of the LMNN metric learning algorithm, but other methods may work equally well.
 
-
-\subsection{Feature visualization with diffusion maps}
+\subsection{Feature space visualization}
 
 To visualize the feature space generated by MFCCs and scattering transforms, we embed them using diffusion maps.
-These embeddings preserve local distances while reducing dimensionality by forming a graph using distances in feature space and calculating the eigenvectors of the graph Laplacian \cite{lafon}.
-Diffusion maps have been used to successfully visualize scattering coefficients \cite{chudacek2014low,villoutreix2017synthesizing}.
+These embeddings preserve local distances while reducing dimensionality by forming a graph from those distances and calculating the eigenvectors of its graph Laplacian \cite{lafon}.
+Diffusion maps have previously been used to successfully visualize scattering coefficients \cite{chudacek2014low,villoutreix2017synthesizing}.
 
 Figure \ref{fig:embeddings} shows embeddings of MFCCs and scattering coefficients, both post-processed using LMNN, for different subsets of recordings.
-In Figure \ref{fig:embeddings}(a), we see how the MFCCs fail to separate violin and trumpet notes for the \emph{ordinario} playing technique.
-Scattering coefficients, on the other hand, successfully separate the instruments as seen in Figure \ref{fig:embeddings}(b).
-Similarly, Figures \ref{fig:embeddings}(c,d) show how, restricted to bowed instruments (violin, viola, violoncello, and contrabass), MFCCs do not separate the \emph{ordinario} from \emph{tremolo} playing techniques, while scattering coefficients discriminates well.
-These visualizations partly validate our choice of scattering coefficients for representing single notes.
+In Figure \ref{fig:mf_inst_two_dmap}, we see how the MFCCs fail to separate violin and trumpet notes for the \emph{ordinario} playing technique.
+Scattering coefficients, on the other hand, successfully separate the instruments as seen in Figure \ref{fig:sc_inst_two_dmap}.
+Similarly, Figures \ref{fig:mf_tech_two_dmap} and \ref{fig:sc_tech_two_dmap} show how, restricted to bowed instruments (violin, viola, violoncello, and contrabass), MFCCs do not separate the \emph{ordinario} from \emph{tremolo} playing techniques, while scattering coefficients discriminates well.
+These visualizations provide motivation for our choice of scattering coefficients to represent single notes.
 
 \begin{figure*}       
         \begin{subfigure}{0.45\textwidth}
