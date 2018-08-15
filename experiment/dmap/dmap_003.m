@@ -112,6 +112,25 @@ xticks([]); yticks([]); zticks([]);
 box on;
 view(-45, 45);
 
-hleg = legend([upper(family_one(1)) family_one(2:end)], ...
-    [upper(family_two(1)) family_two(2:end)], 'Others');
-set(hleg, 'fontsize', 36);
+families_legend = {[upper(family_one(1)) family_one(2:end)], ...
+    [upper(family_two(1)) family_two(2:end)]};
+
+[legh, objh] = legend(families_legend{:}, 'Others');
+
+xpos = objh(4).Children.Vertices(1)-1;
+
+for k = 1:3
+    objh(k+3).Children.MarkerSize = 20;
+    objh(k+3).Children.Vertices(1) = xpos;
+    objh(k+3).Children.Vertices(2) = objh(4).Children.Vertices(2)-1*(k-1);
+end
+
+xpos = objh(1).Position(1)-1;
+
+for k = 1:3
+    objh(k).FontSize = 36;
+    objh(k).Position(1) = xpos;
+    objh(k).Position(2) = objh(1).Position(2)-1*(k-1);
+end
+
+legh.Box = 'off';
