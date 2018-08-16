@@ -160,12 +160,11 @@ Finally, there is a growing interest for studying the role of the performer in m
 Apart from its interest in audio signal processing, this topic is connected to other disciplines, such as biomechanics and gestural interfaces \cite{metcalf2014frontiers}.
 The majority of the literature focuses on the range of IPTs afforded by a single instrument.
 Recent examples include clarinet \cite{loureiro2004ismir}, percussion \cite{tindale2004ismir}, piano \cite{bernays2013smc}, guitar \cite{foulon2013cmmr,su2014ismir,chen2015ismir}, violin \cite{young2008nime}, cello \cite[chapter 6]{chudy2016phd}, and erhu \cite{yang2014fma}.
-Some publications frame timbral similarity in a polyphonic setting, yet do so according to a purely perceptual definition of timbre -- with continuous attributes such as brightness, warmth, dullness, roughness, and so forth -- without connecting these attributes to the discrete latent space of IPTs \cite{antoine2018isma}.
-\ja{What does this sentence mean? How does the polyphonic relate to the solo case? What's the ``discrete latent space'' of IPTs?}
+Some publications frame timbral similarity in a polyphonic setting, yet do so according to a purely perceptual definition of timbre -- with continuous attributes such as brightness, warmth, dullness, roughness, and so forth -- without connecting these attributes to the discrete latent space of IPTs (\ie{}, through a finite set of instructions, readily interpretable by the performer) \cite{antoine2018isma}.
 We refer to \cite{leman2017chapter} for a recent review of the state of the art.
 
 In the following, we define the task of retrieving musical timbre parameters across a range of instruments found in the symphonic orchestra.
-These parameters are explicitly defined in terms of sound production (\ie{}, through a finite set of instructions, readily interpretable by the performer), instead of using perceptual definitions.
+These parameters are explicitly defined in terms of sound production rather than by means of perceptual definitions.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  TASKS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -177,7 +176,6 @@ We also describe the dataset of instrument samples used in our benchmark.
 
 The Hornbostel-Sachs taxonomy (H-S) organizes musical instruments only according to their physical characteristics and purposefully ignores sociohistorical background \cite{montagu2009muzyka}.
 Since it offers an unequivocal way of describing any acoustic instrument without any prior knowledge of its applicable IPTs, it serves as a \emph{lingua franca} in ethnomusicology and museology, especially for ancient or rare instruments which may lack available informants.
-\ja{What's an ``informant'' here?}
 The classification of the violin in H-S (321.322-71), as depicted in Figure \ref{fig:instrument-dendrogram}, additionally encompasses the viola and the cello.
 The reason is that these three instruments possess a common morphology.
 Indeed, both violin and viola are usually played under the jaw and the cello is held between the knees, these differences in performer posture are ignored by the H-S classification.
@@ -185,7 +183,7 @@ Accounting for these differences begs to refine H-S by means a vernacular taxono
 Most instrument taxonomies in music signal processing, including MedleyDB \cite{bittner2014ismir} and AudioSet \cite{gemmeke2017icassp}, adopt the vernacular level rather than conflating all instruments belonging to the same H-S class.
 A further refinement includes potential alterations to the manufactured instrument -- permanent or temporary, at the time scale one or several notes -- that affect its resonant properties, \eg{}, mutes and other preparations \cite{dianova2007phd}.
 The only node in the MedleyDB taxonomy which reaches this level of granularity is \emph{tack piano} \cite{bittner2014ismir} .
-\ja{So which taxonomy do we use in the current work? Do we include mutes or not? We should specify this here or later.}
+In this work, we will not consider variability due to the presence of mutes as discriminative, both for musical instruments and IPTs.
 
 \begin{figure}[t!]
 \centering
