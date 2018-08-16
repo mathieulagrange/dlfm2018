@@ -89,12 +89,13 @@ for q_id = 1:n_queries
             image([-100.0, 900.0], opts{1}.time.gamma_bounds, ...
                 100 * flipud(log1p(1e-2*scalogram(:,1:sample_rate))));
             colormap rev_magma;
-            set(gca, 'YDir', 'normal');
-            set(gca(), 'Xtick', [-100.0:100:900.0]);
-            set(gca(), 'Ytick', freq_semitones);
-            set(gca(), 'YTickLabel', freq_hz/1000);
-            xlabel('Time (ms)');
-            ylabel('Frequency (kHz)');
+            axis off;
+            %set(gca, 'YDir', 'normal');
+            %set(gca(), 'Xtick', [-100.0:100:900.0]);
+            %set(gca(), 'Ytick', freq_semitones);
+            %set(gca(), 'YTickLabel', freq_hz/1000);
+            %xlabel('Time (ms)');
+            %ylabel('Frequency (kHz)');
 
             drawnow();
             export_fig([neighbor_split{3}, '.png'], '-transparent', ...
