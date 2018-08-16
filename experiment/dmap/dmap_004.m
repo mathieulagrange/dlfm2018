@@ -128,11 +128,11 @@ hold on;
 for k = 1:3
     if k == 1
         mask_k = find(ismember(mask_inst_family_idx, idx_one));
-        color = [230 158 0]/255;
+        color = [230 115 0]/255;
         alpha = 1.0;
     elseif k == 2
         mask_k = find(ismember(mask_inst_family_idx, idx_two));
-        color = [87 181 232]/255;
+        color = [0 0 178]/255;
         alpha = 1.0;
     elseif k == 3
         mask_k = find(ismember(mask_inst_family_idx, idx_others));
@@ -158,5 +158,22 @@ families_legend = {family_one, family_two};
 families_legend = cellfun(@(x)(feval(@(y)(y{2}), strsplit(x, '.'))), ...
     families_legend, 'uniformoutput', false);
 
-hleg = legend(families_legend{:}, 'Others');
-set(hleg, 'fontsize', 36);
+[legh, objh] = legend(families_legend{:}, 'Others');
+
+xpos = objh(4).Children.Vertices(1)-1;
+
+for k = 1:3
+    objh(k+3).Children.MarkerSize = 20;
+    objh(k+3).Children.Vertices(1) = xpos;
+    objh(k+3).Children.Vertices(2) = objh(4).Children.Vertices(2)-1*(k-1);
+end
+
+xpos = objh(1).Position(1)-1;
+
+for k = 1:3
+    objh(k).FontSize = 36;
+    objh(k).Position(1) = xpos;
+    objh(k).Position(2) = objh(1).Position(2)-1*(k-1);
+end
+
+legh.Box = 'off';
