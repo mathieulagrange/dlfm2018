@@ -211,8 +211,7 @@ However, such considerations are still in large part speculative and offer no de
 
 
 \subsection{Application setting and evaluation} \label{sec:motivation}
-In what follows, we adopt a middle ground position between the two aforementioned approaches: neither a supervised classifier (as in a hierarchical taxonomy), nor a caption generator (as in a meronomy), our system is a query-by-example search engine in a large database of isolated notes.
-\ja{This doesn't make any sense to me. We're not ``adopting a middle ground''. We're effectively using a taxonomy for both instruments and IPTs, but we're not considering the classification problem and instead looking at the retrieval problem. The ground truth could be something else but in our case, we are using the taxonomy.}
+In what follows, we adopt a middle ground position between the two aforementioned approaches: neither a top-down multistage classifier (as in a hierarchical taxonomy), nor a caption generator (as in a meronomy), our system is a query-by-example search engine in a large database of isolated notes.
 Given a query recording $\boldsymbol{x}(t)$, such a system retrieves a small number $k$ of recordings judged similar to the query.
 In our system, we implement this using a $k$-nearest neighbors (k-NN) algorithm.
 The nearest neighbor search is not performed in the raw waveform domain of $\boldsymbol{x}(t)$, but in a feature space of translation-invariant, spectrotemporal descriptors.
