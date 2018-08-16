@@ -106,7 +106,6 @@ for q_id = 1:n_queries
         end
         disp(' ');
         disp(' ');
-    end
 end
 
 %%
