@@ -13,6 +13,8 @@
 
 \section{Introduction}
 
+\ml{fix ccs and keywords}
+
 \begin{figure}
         \begin{subfigure}{0.25\textwidth}
                 \centering
@@ -39,15 +41,15 @@
                 \caption{Intensity (\emph{pianissimo}).}
                 \label{fig:TpC-ord-G4-pp_withaxes}
         \end{subfigure}%
-        
+
         \begin{subfigure}[b]{0.25\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC+H-ord-G4-mf_withaxes.eps}
                 \caption{Mute (\emph{harmon}).}
                 \label{fig:TpC+H-ord-G4-mf_withaxes}
         \end{subfigure}
-        
-        
+
+
         \begin{subfigure}{0.25\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-brassy-G4-ff_withaxes.eps}
@@ -340,14 +342,14 @@ Finally, we visualize the two feature spaces using non-linear dimensionality red
 \subsection{Instrument recognition}
 
 In the task of instrument recognition, we provide a query $\boldsymbol{x} (t)$ and the system retrieves $k$ recordings $\boldsymbol{x}_1 (t), \ldots, \boldsymbol{x}_k (t)$.
-We consider a retrieved recording to be relevant to the query if it corresponds to the same instrument, regardless of pitch, intensity, mute, and IPT.
-This lets us compute the precision at rank $5$ (P@$5$) for a system by counting the number of relevant recordings for each query.
+We consider a retrieved recording to be relevant to the query if it corresponds to the same instrument, regardless of pitch, intensity, mute, and IPT. We therefore apply the LMNN with instruments as class labels. This lets us compute the precision at rank $5$ (P@$5$) for a system by counting the number of relevant recordings for each query.
 
 We compare scattering features to a baseline of MFCCs, defined as the $13$ lowest coefficients of the discrete cosine transform (DCT) applied to the logarithm of the $40$-band mel-frequency spectrum.
 For the scattering transform, we vary the maximum time scale $T$ of amplitude modulation from \SI{25}{\milli\second} to \SI{1}{\second}.
 In the case of the MFCCs, $T=\SI{25}{\milli\second}$ corresponds to the inverse of the lowest audible frequency ($T^{-1}=\SI{40}{\Hz}$).
 Therefore, increasing the frame duration $T$ has no effect on the value of the MFCCs, because the mel-spectrogram is equivalent to a local averaging of the scalogram at the time scale $T$, leaving unchanged the global averaging of $\mathbf{S}\boldsymbol{x}(\lambda, t)$ at the time scale of whole musical notes \cite[section II.B]{anden2012dafx}.
 \ja{I don't understand this part. How does changing $T$ not affect the MFCCs? If it's larger, we average more, no? There are some details missing here, it seems.}
+\ml{ce n'est pas la meme chose de calculer des mfccs a 25 ms et de moyenner sur 30 sec, que de faire une dct sur 30 sec, mais en pratique je n'ai jamais observé de difference, voir figure 6. peut etre nuancer le propos}
 
 The left column of Figure \ref{fig:results} summarizes our results.
 MFCCs reach a relatively high P@$5$ of $89\%$.
@@ -361,11 +363,11 @@ This is consistent with \cite{lostanlen2018eurasip}, which applies scattering tr
 On one hand, replacing the canonical Euclidean distance by a distance learned by LMNN marginally improves P@$5$ for the MFCC baseline, from $89.3\%$ to $90.0\%$.
 Applying LMNN to scattering features, on the other hand, significantly improves their performance with respect to the Euclidean distance, from $89.1\%$ to $98.0\%$.
 
-The gain in precision afforded by scattering coefficients over MFCCs could simply be caused by a higher number of dimensions.
-To refute this hypothesis, we supplement the $13$ coefficients resulting from a global averaging at the time scale of full musical notes by higher-order summary statistics, namely polynomial features of degrees $2$ and $3$.
+The gain in precision afforded by scattering coefficients over MFCCs could simply be caused by a higher number of dimensions which could give more flexibility to the LMNN algorithm. To refute this hypothesis, we supplement the $13$ coefficients resulting from a global averaging at the time scale of full musical notes by higher-order summary statistics, namely polynomial combination of those features of degrees $2$ and $3$.
 Instrument retrieval in the resulting feature space, whose dimension ($494$) is comparable to the number of scattering coefficients, has a P@$5$ of $91\%$, \ie{}, slightly above the baseline.
 Therefore, it is more likely the multiresolution structure of scattering coefficients, rather than its dimensionality, that causes a strong boost in performance.
 \ja{I don't understand the objection or the argument here. How could the better performance be caused by a ``higher number of dimensions''? If I add a bunch of coefficients to MFCCs that are just Gaussian white noise, does that improve performance? What if I copy it several times over? How does our particular dimensionality increasing strategy refute that claim? We haven't looked at all possible ways of increasing the dimensions here.}
+\ml{l'idee ici est de montrer que ce n'est pas le lmnn avec un nombre de degré de liberté suffisant qui overfit. Si le nombre de features est egal au nombre de points le probleme est trivial. J'ai reformuler un peu le par. Peut etre a liser un peu}
 
 Finally, increasing $T$ from $\SI{25}{\milli\second}$ up to $\SI{1}{\second}$ -- \ie{}, including all amplitude modulations between $\SI{1}{\Hz}$ and $\SI{40}{\Hz}$ -- brings LMNN to a near-perfect P@$5$ of $99.7\%$.
 Not only does this result confirm that straighforward techniques in audio signal processing (here, wavelet scattering and metric learning) are sufficient to retrieve the instrument from a single ordinary note, it also demonstrates that the results remain satisfactory despite large intra-class variability in terms of pitch, intensity, usage of mutes, and extended IPTs.
@@ -383,7 +385,7 @@ The situation is different when considering IPT, rather than instrument, as the 
 In this setting, a retrieved item is considered relevant if and only if it shares the same IPT as the query, regardless of instrument, mute, pitch, or dynamics.
 Therefore, we apply the LMNN with IPTs instead of instruments as class labels, yielding a different distance function optimized to distinguish playing techniques.
 \ja{Need to say before that we train it with instruments as labels.}
-
+\ml{done}
 The right column if Figure \ref{fig:results} summarizes our results.
 The MFCC baseline has a low P@$5$ of $44.5\%$, indicating that its coarse description of the short-term spectral envelope is not sufficient to model acoustic similarity in IPT.
 Perhaps more surprisingly, we find that optimal performance is only achieved by combining all proposed improvenments: log-scattering coefficients with median renormalization, $T=\SI{500}{\milli\second}$, and LMNN.
@@ -414,7 +416,7 @@ In particular, it appears that increasing $T$ above \SI{25}{\milli\second} is on
                 \caption*{1: \emph{ff}.}
                 \label{fig:Vn-ord-G4-ff-4c-bis}
         \end{subfigure}%
-        
+
         \begin{subfigure}{0.20\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/demo/Vn-pont-Csh4-mf-4c.png}
@@ -427,7 +429,7 @@ In particular, it appears that increasing $T$ above \SI{25}{\milli\second} is on
                 \caption*{2: \emph{pp}.}
                 \label{fig:Vn-ord-G4-pp-4c}
         \end{subfigure}%
-        
+
         \begin{subfigure}{0.20\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/demo/Vn-trem-D5-pp-4c.png}
@@ -440,7 +442,7 @@ In particular, it appears that increasing $T$ above \SI{25}{\milli\second} is on
                 \caption*{3: \emph{sordina}.}
                 \label{fig:Vn+S-ord-G4-mf-4c}
         \end{subfigure}%
-        
+
         \begin{subfigure}{0.20\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/demo/Vn-ord-Gsh4-mf-4c.png}
@@ -453,7 +455,7 @@ In particular, it appears that increasing $T$ above \SI{25}{\milli\second} is on
                 \caption*{4: \emph{ff}, on D string.}
                 \label{fig:Vn-ord-G4-ff-3c}
         \end{subfigure}%
-        
+
         \begin{subfigure}{0.20\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/demo/Vn-trem-Csh5-pp-4c.png}
@@ -466,20 +468,20 @@ In particular, it appears that increasing $T$ above \SI{25}{\milli\second} is on
                 \caption*{5: on D string.}
                 \label{fig:Vn-ord-G4-mf-3c}
         \end{subfigure}%
-        
+
         \caption{Five nearest neighbors of the same query (a violin note with ordinary playing technique, at pitch G4, \emph{mf} dynamics, played on the G string), as retrieved by two different versions of our system: with MFCC features (left) and with scattering transform features (right). The captions denote the musical attribute(s) that differ from those of the query: mute, playing technique, pitch, and dynamics.
 }\label{fig:demo-ordinary}
 \end{figure}
-        
-        
-\begin{figure}       
+
+
+\begin{figure}
         \begin{subfigure}{\linewidth}
                 \centering
                 \includegraphics[width=0.4\textwidth]{./figs/demo/TpC-flatt-G4-mf.png}
                 \caption*{Query: Trumpet in C, \emph{flatterzunge}, G4, \emph{mf}.}
                 \label{fig:TpC-flatt-G4-mf}
         \end{subfigure}%
-        
+
         \begin{subfigure}{0.20\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/demo/TpC-flatt-Fsh4-mf.png}
@@ -492,7 +494,7 @@ In particular, it appears that increasing $T$ above \SI{25}{\milli\second} is on
                 \caption*{1: \emph{pp}.}
                 \label{fig:TpC-flatt-G4-pp}
         \end{subfigure}%
-        
+
         \begin{subfigure}{0.20\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/demo/TpC-ord-F4-mf.png}
@@ -505,7 +507,7 @@ In particular, it appears that increasing $T$ above \SI{25}{\milli\second} is on
                 \caption*{2: F$\sharp$4.}
                 \label{fig:TpC-flatt-Fsh4-mf-right}
         \end{subfigure}%
-        
+
         \begin{subfigure}{0.20\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/demo/TpC-ord-Fsh4-mf.png}
@@ -518,7 +520,7 @@ In particular, it appears that increasing $T$ above \SI{25}{\milli\second} is on
                 \caption*{3: straight mute.}
                 \label{fig:TpC+S-flatt-G4-mf}
         \end{subfigure}%
-        
+
         \begin{subfigure}{0.20\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/demo/TpC-ord_flatt-F4-f.png}
@@ -533,7 +535,7 @@ In particular, it appears that increasing $T$ above \SI{25}{\milli\second} is on
                 \caption*{4: G$\sharp$4, \emph{pp}.}
                 \label{fig:TpC-flatt-Gsh4-pp}
         \end{subfigure}%
-        
+
         \begin{subfigure}{0.20\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/demo/TpC-ord-G4-mf.png}
@@ -546,7 +548,7 @@ In particular, it appears that increasing $T$ above \SI{25}{\milli\second} is on
                 \caption*{5: F4, \emph{pp}.}
                 \label{fig:TpC-flatt-F4-pp}
         \end{subfigure}%
-        
+
         \caption{Five nearest neighbors of the same query (a trumpet note with \emph{flatterzunge} technique, at pitch G4, \emph{mf} dynamics), as retrieved by two different versions of our system: with MFCC features (left) and with scattering transform features (right).%
 %The caption of each subfigure denotes the musical attribute(s) that differ from those of the query: mute, playing technique, pitch, and dynamics.
 \ja{Combine both figures into one big one?}
@@ -559,6 +561,7 @@ The first version uses MFCCs with $T=\SI{25}{\milli\second}$ and LMNN; it has a 
 The second version uses scattering coefficients with $T=\SI{1}{\second}$, logarithmic transformation with median renormalization (see Equation \ref{eq:log-scattering}), and LMNN; it has a P@$5$ of $99.7\%$ for instrument retrieval and $63.0\%$ for IPT retrieval.
 Both versions adopt IPT labels as reference for training LMNN.
 \ja{If so, we shouldn't cite the instrument retrieval numbers above, since that concerns a different system.}
+\ml{je suis d'accord.}
 The main difference between the two versions is the choice of spectrotemporal features.
 
 Figure \ref{fig:demo-ordinary} shows the constant-$Q$ scalograms of the five retrieved items for both versions of the system as queried by the same audio signal $\boldsymbol{x}(t)$: a violin note from the SOL dataset, played with ordinary playing technique on the G string with pitch G4 and \emph{mf} dynamics.
@@ -594,7 +597,7 @@ Scattering coefficients, on the other hand, successfully separate the instrument
 Similarly, Figures \ref{fig:mf_tech_two_dmap} and \ref{fig:sc_tech_two_dmap} show how, restricted to bowed instruments (violin, viola, violoncello, and contrabass), MFCCs do not separate the \emph{ordinario} from \emph{tremolo} playing techniques, while scattering coefficients discriminates well.
 These visualizations provide motivation for our choice of scattering coefficients to represent single notes.
 
-\begin{figure*}       
+\begin{figure*}
         \begin{subfigure}{0.45\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/embeddings/mf_inst_two_dmap.png}
@@ -620,7 +623,7 @@ These visualizations provide motivation for our choice of scattering coefficient
                 \caption{Playing technique embedding with scattering transform.}
                 \label{fig:sc_tech_two_dmap}
         \end{subfigure}%
-        
+
         \caption{Diffusion maps produce low-dimensional embeddings of MFCC features (left) \vs{} scattering transform features (right).
 In the two top plots, each dot represents a different musical note, after restricting the SOL dataset to the \emph{ordinario} playing technique of each of the $31$ different instrument-mute couples. Blue (\resp{} orange) dots denote violin (\resp{} trumpet in C) notes, including notes played with a mute: \emph{sordina} and \emph{sordina piombo} (\resp{} \emph{cup}, \emph{harmon}, \emph{straight}, and \emph{wah}).
 In the two bottom plots, each dot corresponds to a different musical note, after restricting the SOL dataset to $4$ bowed instruments (violin, viola, violoncello, and contrabass), and keeping all $38$ applicable techniques. Blue (\resp{} orange) dots denote tremolo (\resp{} ordinary) notes.
