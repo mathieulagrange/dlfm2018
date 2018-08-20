@@ -215,8 +215,8 @@ In what follows, we adopt a middle ground position between the two aforementione
 Given a query recording $\boldsymbol{x}(t)$, such a system retrieves a small number $k$ of recordings judged similar to the query.
 In our system, we implement this using a $k$-nearest neighbors (k-NN) algorithm.
 The nearest neighbor search is not performed in the raw waveform domain of $\boldsymbol{x}(t)$, but in a feature space of translation-invariant, spectrotemporal descriptors.
-In what follows, we use averaged mel-frequency cepstral coefficients (MFCCs) as a baseline, which we extend using second-order scattering coefficients \cite{mallat2012cpam,anden2014taslp}.
-\ja{Averaged MFCCs?}
+In what follows, we use mel-frequency cepstral coefficients (MFCCs) as a baseline, which we extend using second-order scattering coefficients \cite{mallat2012cpam,anden2014taslp}.
+All features over averaged over the entire recording to create single feature vector.
 The baseline $k$-NN algorithm is applied using the standard Euclidean distance in feature space.
 To improve performance, we also apply it using a weighted Euclidean distance with a learned weight matrix.
 
