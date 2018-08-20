@@ -304,7 +304,7 @@ Linear metric learning algorithms construct a matrix $\mathbf{L}$ such that the 
 \end{equation}
 between all pairs of samples $(\boldsymbol{x}_i, \boldsymbol{x}_j)$ optimizes some objective function.
 We refer to \cite{bellet2013survey} for a review of the state of the art.
-In the following, we shall consider the large-margin nearest neigbors (LMNN) algorithm.
+In the following, we shall consider the large-margin nearest neighbors (LMNN) algorithm.
 It attempts to construct $L$ such that for every signal $\boldsymbol{x}_i (t)$ the distance $\mathrm{D}_\mathbf{L}(\boldsymbol{x}_i, \boldsymbol{x}_j)$ to $\boldsymbol{x}_j (t)$, one of its $k$ nearest neighbors, is small if $\boldsymbol{x}_i (t)$ and $\boldsymbol{x}_j (t)$ belong to the same class and large otherwise.
 The matrix $\mathbf{L}$ is obtained by applying the special-purpose solver of \cite[appendix A]{weinberger2009jmlr}.
 In subsequent experiments, disabling LMNN is equivalent to setting $\mathbf{L}$ to the identity matrix, which yields the standard Euclidean distance on the scattering coefficients $\widetilde{\mathbf{S}} \boldsymbol{x} (\lambda, t)$.
@@ -321,7 +321,7 @@ In other words, the Euclidean distance between the scattering transform of $\bol
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% EXPERIMENTAL RESULTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experimental evaluation} \label{sec:exp}
-In this section, we study a query-by-example browsing system for the SOL dataset based on nearest neigbors.
+In this section, we study a query-by-example browsing system for the SOL dataset based on nearest neighbors.
 We discuss how the performance of the system is affected by the choice of feature (MFCCs or scattering transforms) and distance (Euclidean or LMNN), both quantitatively and qualitatively.
 Finally, we visualize the two feature spaces using non-linear dimensionality reduction.
 
@@ -368,7 +368,7 @@ Therefore, it is more likely the multiresolution structure of scattering coeffic
 \ml{l'idee ici est de montrer que ce n'est pas le lmnn avec un nombre de degré de liberté suffisant qui overfit. Si le nombre de features est egal au nombre de points le probleme est trivial. J'ai reformuler un peu le par. Peut etre a liser un peu}
 
 Finally, increasing $T$ from $\SI{25}{\milli\second}$ up to $\SI{1}{\second}$ -- \ie{}, including all amplitude modulations between $\SI{1}{\Hz}$ and $\SI{40}{\Hz}$ -- brings LMNN to a near-perfect P@$5$ of $99.7\%$.
-Not only does this result confirm that straighforward techniques in audio signal processing (here, wavelet scattering and metric learning) are sufficient to retrieve the instrument from a single ordinary note, it also demonstrates that the results remain satisfactory despite large intra-class variability in terms of pitch, intensity, usage of mutes, and extended IPTs.
+Not only does this result confirm that straightforward techniques in audio signal processing (here, wavelet scattering and metric learning) are sufficient to retrieve the instrument from a single ordinary note, it also demonstrates that the results remain satisfactory despite large intra-class variability in terms of pitch, intensity, usage of mutes, and extended IPTs.
 In other words, the monophonic recognition of Western instruments is, all things considered, indeed a solved problem.
 
 \begin{figure}
@@ -386,7 +386,7 @@ Therefore, we apply the LMNN with IPTs instead of instruments as class labels, y
 \ml{done}
 The right column if Figure \ref{fig:results} summarizes our results.
 The MFCC baseline has a low P@$5$ of $44.5\%$, indicating that its coarse description of the short-term spectral envelope is not sufficient to model acoustic similarity in IPT.
-Perhaps more surprisingly, we find that optimal performance is only achieved by combining all proposed improvenments: log-scattering coefficients with median renormalization, $T=\SI{500}{\milli\second}$, and LMNN.
+Perhaps more surprisingly, we find that optimal performance is only achieved by combining all proposed improvements: log-scattering coefficients with median renormalization, $T=\SI{500}{\milli\second}$, and LMNN.
 This yields a P@$5$ of $63.0\%$.
 Indeed, an ablation study of that system reveals that, all other things being equal, reducing $T$ to $\SI{25}{\milli\second}$ brings the P@$5$ to $53.3\%$, disabling LMNN reduces it to $50.0\%$, and replacing scattering coefficients by MFCCs yields $48.4\%$.
 This result contrasts with the instrument recognition setting: whereas the improvements brought by the three aforementioned modifications are approximately additive in P@$5$ for musical instruments, they interact in a super-additive manner for IPTs.
@@ -644,7 +644,7 @@ Although the combination of methods presented here -- wavelet scattering and lar
 For example, we could replace the standard time scattering transform with the more discriminative joint time-frequency scattering transform \cite{anden2018tsp}.
 
 The evaluation methodology presented here uses ground truth IPT labels to quantify the relevance of returned items.
-This approach is useful in that the labels are unambigious, but it might be too coarse to reflect practical use.
+This approach is useful in that the labels are unambiguous, but it might be too coarse to reflect practical use.
 Indeed, as it is often the case in MIR, some pairs of labels are subjectively more similar than others.
 For example, \emph{slide} is evidently closer to \emph{glissando} than to \emph{pizzicato-bartok}.
 The collection of subjective ratings for IPT similarity, and its comparison with automated ratings, is left as future work.
