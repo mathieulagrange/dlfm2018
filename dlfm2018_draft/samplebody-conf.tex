@@ -235,11 +235,10 @@ In all subsequent experiments, we report P@$k$ for the number of retrieved items
 The Studio On Line dataset (SOL) was recorded at IRCAM in 2002 and is freely downloadable as part of the Orchids software for computer-assisted orchestration.\footnote{\url{http://forumnet.ircam.fr/product/orchids-en/}}
 It comprises 16 musical instruments playing $25444$ isolated notes in total.
 The distribution of these notes, shown in Figure \ref{fig:instrument-histogram}, spans the full combinatorial diversity of intensities, pitches, preparations (\ie{}, mutes), and all applicable playing techniques.
-The distribution of playing techniques -- the most common of which are shown in Figure \ref{fig:technique-histogram} -- is heavy-tailed (average $178$, standard deviation $429$).
-\ja{What does this mean? What distribution?}
+The distribution of playing techniques is unbalanced.
 This is because some playing techniques are shared between many instruments (\eg{}, \textit{tremolo}) whereas other are instrument-specific (\eg{}, \textit{xylophonic}, which is specific to the harp).
 The SOL dataset has $143$ IPTs in total, and $469$ applicable instrument-mute-technique triplets.
-\ja{Why is this last number important? Also, since we don't seem to consider ``mutes'' in any taxonomy, why mention them here?}
+As such, the dataset has considerable intra-class variability under both the instrument and IPTs taxonomies.
 
 \begin{figure}[t!]
 \centering
