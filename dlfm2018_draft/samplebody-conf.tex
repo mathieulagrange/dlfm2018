@@ -383,11 +383,13 @@ This is consistent with \cite{lostanlen2018eurasip}, which applies scattering tr
 On one hand, replacing the canonical Euclidean distance by a distance learned by LMNN marginally improves P@$5$ for the MFCC baseline, from $89.3\%$ to $90.0\%$.
 Applying LMNN to scattering features, on the other hand, significantly improves their performance with respect to the Euclidean distance, from $89.1\%$ to $98.0\%$.
 
-The gain in precision afforded by scattering coefficients over MFCCs could simply be caused by a higher number of dimensions which could give more flexibility to the LMNN algorithm. To refute this hypothesis, we supplement the $13$ coefficients resulting from a global averaging at the time scale of full musical notes by higher-order summary statistics, namely polynomial combination of those features of degrees $2$ and $3$.
-Instrument retrieval in the resulting feature space, whose dimension ($494$) is comparable to the number of scattering coefficients, has a P@$5$ of $91\%$, \ie{}, slightly above the baseline.
-Therefore, it is more likely the multiresolution structure of scattering coefficients, rather than its dimensionality, that causes a strong boost in performance.
-\ja{I don't understand the objection or the argument here. How could the better performance be caused by a ``higher number of dimensions''? If I add a bunch of coefficients to MFCCs that are just Gaussian white noise, does that improve performance? What if I copy it several times over? How does our particular dimensionality increasing strategy refute that claim? We haven't looked at all possible ways of increasing the dimensions here.}
-\ml{l'idee ici est de montrer que ce n'est pas le lmnn avec un nombre de degré de liberté suffisant qui overfit. Si le nombre de features est egal au nombre de points le probleme est trivial. J'ai reformuler un peu le par. Peut etre a liser un peu}
+The dimensionality of scattering coefficients is significantly higher than that of MFCCs, which only consists of $13$ coefficients.
+A concern is therefore that the higher dimensionality of the scattering coefficients may result in overfitting of the metric learning algorithm, artificially inflating its performance.
+To address this, we supplement the averaged MFCCs by higher-order summary statistics.
+In addition the $13$ average coefficients, we also compute the average of all polynomial combinations of degree less than three.
+The resulting vector is of dimension $494$, comparable to the that of the scattering vector.
+This achieves a P@$5$ of $91\%$, that is, slightly above the baseline.
+The increased performance of the scattering transform is therefore not likely due overfitting but to its better characterization of multiresolution structure.
 
 Finally, increasing $T$ from $\SI{25}{\milli\second}$ up to $\SI{1}{\second}$ -- \ie{}, including all amplitude modulations between $\SI{1}{\Hz}$ and $\SI{40}{\Hz}$ -- brings LMNN to a near-perfect P@$5$ of $99.7\%$.
 Not only does this result confirm that straightforward techniques in audio signal processing (here, wavelet scattering and metric learning) are sufficient to retrieve the instrument from a single ordinary note, it also demonstrates that the results remain satisfactory despite large intra-class variability in terms of pitch, intensity, usage of mutes, and extended IPTs.
