@@ -22,34 +22,32 @@
                 \caption{Trumpet note (\emph{ordinario}).}
                 \label{fig:TpC-ord-G4-mf_withaxes}
         \end{subfigure}%
-        \begin{subfigure}[b]{0.25\textwidth}
+        \begin{subfigure}{0.25\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/trumpet_variations/Vn-ord-G4-mf-4c_withaxes.eps}
                 \caption{Instrument (violin).}
                 \label{fig:Vn-ord-G4-mf-4c_withaxes}
         \end{subfigure}
+
         \begin{subfigure}{0.25\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-ord-G3-mf_withaxes.eps}
                 \caption{Pitch (G3).}
                 \label{fig:TpC-ord-G3-mf_withaxes}
         \end{subfigure}%
-
         \begin{subfigure}{0.25\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-ord-G4-pp_withaxes.eps}
                 \caption{Intensity (\emph{pianissimo}).}
                 \label{fig:TpC-ord-G4-pp_withaxes}
-        \end{subfigure}%
+        \end{subfigure}
 
-        \begin{subfigure}[b]{0.25\textwidth}
+        \begin{subfigure}{0.25\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC+H-ord-G4-mf_withaxes.eps}
                 \caption{Mute (\emph{harmon}).}
                 \label{fig:TpC+H-ord-G4-mf_withaxes}
-        \end{subfigure}
-
-
+        \end{subfigure}%
         \begin{subfigure}{0.25\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-brassy-G4-ff_withaxes.eps}
@@ -70,15 +68,13 @@
                 \label{fig:TpC-flatt-G4-mf_withaxes}
         \end{subfigure}
 
-
-        \begin{subfigure}[b]{0.25\textwidth}
+        \begin{subfigure}{0.25\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-trill-maj2-G4-mf_withaxes.eps}
                 \caption{Articulation (\emph{trill}).}
                 \label{fig:TpC-trill-maj2-G4-mf_withaxes}
         \end{subfigure}%
-
-        \begin{subfigure}[b]{0.25\textwidth}
+        \begin{subfigure}{0.25\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-voc-harms-C4-mf_withaxes.eps}
                 \caption{Phrasing (\emph{d\'{e}tach\'{e}}).}
@@ -116,10 +112,9 @@ In this work, we capitalize on the availability of this data to formulate a new 
 These include at what pitch and intensity the music was recorded, but also where, when, why, by whom, and for whom it was created.
 
 Figure \ref{fig:TpC-ord-G4-mf_withaxes} shows the constant-$Q$ wavelet scalogram (\ie{} the complex modulus of the constant-$Q$ wavelet transform) of a trumpet musical note, as played with an ordinary technique.
-Unlike most existing publications on instrument classification (\eg{} \ref{fig:TpC-ord-G4-mf_withaxes} \vs{} \ref{fig:Vn-ord-G4-mf-4c_withaxes}), which exclusively focus on intra-class variability due to pitch (Figure \ref{fig:TpC-ord-G3-mf_withaxes}) and intensity (Figure \ref{fig:TpC-ord-G4-pp_withaxes}), and mute (\ref{fig:TpC+H-ord-G4-mf_withaxes}), this work aims to also account for the presence of instrumental playing techniques (IPTs), such as changes in tone quality (Figure \ref{fig:TpC-brassy-G4-mf_withaxes}), attack (Figure \ref{fig:TpC-sfz-G4-fp_withaxes}), tonguing (Figure \ref{fig:TpC-flatt-G4-mf_withaxes}), and articulation (Figure \ref{fig:TpC+H-ord-G4-mf_withaxes}).
+Unlike most existing publications on instrument classification (\eg{} \ref{fig:TpC-ord-G4-mf_withaxes} \vs{} \ref{fig:Vn-ord-G4-mf-4c_withaxes}), which exclusively focus on intra-class variability due to pitch (Figure \ref{fig:TpC-ord-G3-mf_withaxes}) and intensity (Figure \ref{fig:TpC-ord-G4-pp_withaxes}), and mute (\ref{fig:TpC+H-ord-G4-mf_withaxes}), this work aims to also account for the presence of instrumental playing techniques (IPTs), such as changes in tone quality (Figure \ref{fig:TpC-brassy-G4-mf_withaxes}), attack (Figure \ref{fig:TpC-sfz-G4-fp_withaxes}), tonguing (Figure \ref{fig:TpC-flatt-G4-mf_withaxes}), and articulation (Figure \ref{fig:TpC-trill-maj2-G4-mf_withaxes}).
 These factors are considered either as intra-class variability, for the instrument recognition task, or as inter-class variability, for the IPT recognition task.
 The analysis of IPTs whose definition involves more than a single musical event, such as phrasing (Figure \ref{fig:TpC+voc-harms-G4-mf_withaxes}), is beyond the scope of this paper.
-\ja{What about 1h and 1i?}
 
 Section 2 reviews the existing literature on the topic.
 Section 3 defines taxonomies of instruments and gestures from which the IPT classification task is derived.
@@ -211,13 +206,12 @@ However, such considerations are still in large part speculative and offer no de
 
 
 \subsection{Application setting and evaluation} \label{sec:motivation}
-In what follows, we adopt a middle ground position between the two aforementioned approaches: neither a supervised classifier (as in a hierarchical taxonomy), nor a caption generator (as in a meronomy), our system is a query-by-example search engine in a large database of isolated notes.
-\ja{This doesn't make any sense to me. We're not ``adopting a middle ground''. We're effectively using a taxonomy for both instruments and IPTs, but we're not considering the classification problem and instead looking at the retrieval problem. The ground truth could be something else but in our case, we are using the taxonomy.}
+In what follows, we adopt a middle ground position between the two aforementioned approaches: neither a top-down multistage classifier (as in a hierarchical taxonomy), nor a caption generator (as in a meronomy), our system is a query-by-example search engine in a large database of isolated notes.
 Given a query recording $\boldsymbol{x}(t)$, such a system retrieves a small number $k$ of recordings judged similar to the query.
 In our system, we implement this using a $k$-nearest neighbors (k-NN) algorithm.
 The nearest neighbor search is not performed in the raw waveform domain of $\boldsymbol{x}(t)$, but in a feature space of translation-invariant, spectrotemporal descriptors.
-In what follows, we use averaged mel-frequency cepstral coefficients (MFCCs) as a baseline, which we extend using second-order scattering coefficients \cite{mallat2012cpam,anden2014taslp}.
-\ja{Averaged MFCCs?}
+In what follows, we use mel-frequency cepstral coefficients (MFCCs) as a baseline, which we extend using second-order scattering coefficients \cite{mallat2012cpam,anden2014taslp}.
+All features over averaged over the entire recording to create single feature vector.
 The baseline $k$-NN algorithm is applied using the standard Euclidean distance in feature space.
 To improve performance, we also apply it using a weighted Euclidean distance with a learned weight matrix.
 
@@ -236,11 +230,10 @@ In all subsequent experiments, we report P@$k$ for the number of retrieved items
 The Studio On Line dataset (SOL) was recorded at IRCAM in 2002 and is freely downloadable as part of the Orchids software for computer-assisted orchestration.\footnote{\url{http://forumnet.ircam.fr/product/orchids-en/}}
 It comprises 16 musical instruments playing $25444$ isolated notes in total.
 The distribution of these notes, shown in Figure \ref{fig:instrument-histogram}, spans the full combinatorial diversity of intensities, pitches, preparations (\ie{}, mutes), and all applicable playing techniques.
-The distribution of playing techniques -- the most common of which are shown in Figure \ref{fig:technique-histogram} -- is heavy-tailed (average $178$, standard deviation $429$).
-\ja{What does this mean? What distribution?}
+The distribution of playing techniques is unbalanced.
 This is because some playing techniques are shared between many instruments (\eg{}, \textit{tremolo}) whereas other are instrument-specific (\eg{}, \textit{xylophonic}, which is specific to the harp).
 The SOL dataset has $143$ IPTs in total, and $469$ applicable instrument-mute-technique triplets.
-\ja{Why is this last number important? Also, since we don't seem to consider ``mutes'' in any taxonomy, why mention them here?}
+As such, the dataset has considerable intra-class variability under both the instrument and IPTs taxonomies.
 
 \begin{figure}[t!]
 \centering
@@ -306,7 +299,7 @@ Linear metric learning algorithms construct a matrix $\mathbf{L}$ such that the 
 \end{equation}
 between all pairs of samples $(\boldsymbol{x}_i, \boldsymbol{x}_j)$ optimizes some objective function.
 We refer to \cite{bellet2013survey} for a review of the state of the art.
-In the following, we shall consider the large-margin nearest neigbors (LMNN) algorithm.
+In the following, we shall consider the large-margin nearest neighbors (LMNN) algorithm.
 It attempts to construct $L$ such that for every signal $\boldsymbol{x}_i (t)$ the distance $\mathrm{D}_\mathbf{L}(\boldsymbol{x}_i, \boldsymbol{x}_j)$ to $\boldsymbol{x}_j (t)$, one of its $k$ nearest neighbors, is small if $\boldsymbol{x}_i (t)$ and $\boldsymbol{x}_j (t)$ belong to the same class and large otherwise.
 The matrix $\mathbf{L}$ is obtained by applying the special-purpose solver of \cite[appendix A]{weinberger2009jmlr}.
 In subsequent experiments, disabling LMNN is equivalent to setting $\mathbf{L}$ to the identity matrix, which yields the standard Euclidean distance on the scattering coefficients $\widetilde{\mathbf{S}} \boldsymbol{x} (\lambda, t)$.
@@ -323,7 +316,7 @@ In other words, the Euclidean distance between the scattering transform of $\bol
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% EXPERIMENTAL RESULTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experimental evaluation} \label{sec:exp}
-In this section, we study a query-by-example browsing system for the SOL dataset based on nearest neigbors.
+In this section, we study a query-by-example browsing system for the SOL dataset based on nearest neighbors.
 We discuss how the performance of the system is affected by the choice of feature (MFCCs or scattering transforms) and distance (Euclidean or LMNN), both quantitatively and qualitatively.
 Finally, we visualize the two feature spaces using non-linear dimensionality reduction.
 
@@ -370,7 +363,7 @@ Therefore, it is more likely the multiresolution structure of scattering coeffic
 \ml{l'idee ici est de montrer que ce n'est pas le lmnn avec un nombre de degré de liberté suffisant qui overfit. Si le nombre de features est egal au nombre de points le probleme est trivial. J'ai reformuler un peu le par. Peut etre a liser un peu}
 
 Finally, increasing $T$ from $\SI{25}{\milli\second}$ up to $\SI{1}{\second}$ -- \ie{}, including all amplitude modulations between $\SI{1}{\Hz}$ and $\SI{40}{\Hz}$ -- brings LMNN to a near-perfect P@$5$ of $99.7\%$.
-Not only does this result confirm that straighforward techniques in audio signal processing (here, wavelet scattering and metric learning) are sufficient to retrieve the instrument from a single ordinary note, it also demonstrates that the results remain satisfactory despite large intra-class variability in terms of pitch, intensity, usage of mutes, and extended IPTs.
+Not only does this result confirm that straightforward techniques in audio signal processing (here, wavelet scattering and metric learning) are sufficient to retrieve the instrument from a single ordinary note, it also demonstrates that the results remain satisfactory despite large intra-class variability in terms of pitch, intensity, usage of mutes, and extended IPTs.
 In other words, the monophonic recognition of Western instruments is, all things considered, indeed a solved problem.
 
 \begin{figure}
@@ -388,7 +381,7 @@ Therefore, we apply the LMNN with IPTs instead of instruments as class labels, y
 \ml{done}
 The right column if Figure \ref{fig:results} summarizes our results.
 The MFCC baseline has a low P@$5$ of $44.5\%$, indicating that its coarse description of the short-term spectral envelope is not sufficient to model acoustic similarity in IPT.
-Perhaps more surprisingly, we find that optimal performance is only achieved by combining all proposed improvenments: log-scattering coefficients with median renormalization, $T=\SI{500}{\milli\second}$, and LMNN.
+Perhaps more surprisingly, we find that optimal performance is only achieved by combining all proposed improvements: log-scattering coefficients with median renormalization, $T=\SI{500}{\milli\second}$, and LMNN.
 This yields a P@$5$ of $63.0\%$.
 Indeed, an ablation study of that system reveals that, all other things being equal, reducing $T$ to $\SI{25}{\milli\second}$ brings the P@$5$ to $53.3\%$, disabling LMNN reduces it to $50.0\%$, and replacing scattering coefficients by MFCCs yields $48.4\%$.
 This result contrasts with the instrument recognition setting: whereas the improvements brought by the three aforementioned modifications are approximately additive in P@$5$ for musical instruments, they interact in a super-additive manner for IPTs.
@@ -646,7 +639,7 @@ Although the combination of methods presented here -- wavelet scattering and lar
 For example, we could replace the standard time scattering transform with the more discriminative joint time-frequency scattering transform \cite{anden2018tsp}.
 
 The evaluation methodology presented here uses ground truth IPT labels to quantify the relevance of returned items.
-This approach is useful in that the labels are unambigious, but it might be too coarse to reflect practical use.
+This approach is useful in that the labels are unambiguous, but it might be too coarse to reflect practical use.
 Indeed, as it is often the case in MIR, some pairs of labels are subjectively more similar than others.
 For example, \emph{slide} is evidently closer to \emph{glissando} than to \emph{pizzicato-bartok}.
 The collection of subjective ratings for IPT similarity, and its comparison with automated ratings, is left as future work.
