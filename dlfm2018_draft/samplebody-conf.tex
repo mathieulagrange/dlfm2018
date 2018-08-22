@@ -373,8 +373,6 @@ In other words, the monophonic recognition of Western instruments is, all things
 The situation is different when considering IPT, rather than instrument, as the reference for evaluating the query-by-example system.
 In this setting, a retrieved item is considered relevant if and only if it shares the same IPT as the query, regardless of instrument, mute, pitch, or dynamics.
 Therefore, we apply the LMNN with IPTs instead of instruments as class labels, yielding a different distance function optimized to distinguish playing techniques.
-\ja{Need to say before that we train it with instruments as labels.}
-\ml{done}
 The right column if Figure \ref{fig:results} summarizes our results.
 The MFCC baseline has a low P@$5$ of $44.5\%$, indicating that its coarse description of the short-term spectral envelope is not sufficient to model acoustic similarity in IPT.
 Perhaps more surprisingly, we find that optimal performance is only achieved by combining all proposed improvements: log-scattering coefficients with median renormalization, $T=\SI{500}{\milli\second}$, and LMNN.
