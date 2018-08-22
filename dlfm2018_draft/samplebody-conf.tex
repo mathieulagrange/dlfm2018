@@ -213,7 +213,7 @@ However, such considerations are still in large part speculative and offer no de
 \def\iptarray{{"ordinario","non-vibrato","tremolo","flatterzunge","sforzando","crescendo","note-lasting","pizzicato-l-vib","glissando","decrescendo","pizzicato-secco","staccato","crescendo-to-decrescendo","ordinario-1q","trill-minor-second-up","trill-major-second-up","sul-ponticello","pizzicato-bartok","sul-tasto","sul-ponticello-tremolo","multiphonics","sul-tasto-tremolo","col-legno-battuto","col-legno-tratto","harmonic-fingering","bisbigliando","lip-glissando","artificial-harmonic","ordinario-to-flatterzunge","artificial-harmonic-tremolo","flatterzunge-to-ordinario","vibrato","crushed-to-ordinario","ordinario-to-sul-tasto","ordinario-to-crushed","slap-pitched","sul-ponticello-to-ordinario","sul-ponticello-to-sul-tasto","ordinario-to-tremolo","sul-tasto-to-ordinario","tremolo-to-ordinario","near-the-board","sul-tasto-to-sul-ponticello","ordinario-to-sul-ponticello","aeolian-and-ordinario","brassy","backwards","ordinario-high-register","brassy-to-ordinario","natural-harmonics-glissandi"}}%
 \node[anchor=north west] at (2, 0) {\includegraphics[height=13.5cm]{./figs/histogram/histogram_modes.pdf}};
 \foreach \x in {0,...,49}
-    \node[anchor=east] at (2, -0.40 - 0.235*\x) {\footnotesize \textsf{\pgfmathparse{\iptarray[\x]}\pgfmathresult}};
+    \node[anchor=east] at (2, -0.40 - 0.235*\x) {\footnotesize {\fontfamily{phv}\selectfont\pgfmathparse{\iptarray[\x]}\pgfmathresult}};
 \end{tikzpicture}
 \caption{The $50$ most common IPTs in the SOL dataset.}
 \label{fig:technique-histogram}
