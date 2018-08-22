@@ -543,11 +543,9 @@ In particular, it appears that increasing $T$ above \SI{25}{\milli\second} is on
 
 \subsection{Qualitative error analysis}
 For demonstration purposes, we select an audio recording $\boldsymbol{x}(t)$ to query two versions of the proposed query-by-example system.
-The first version uses MFCCs with $T=\SI{25}{\milli\second}$ and LMNN; it has a P@$5$ of $90.0\%$ for instrument retrieval and $48.4\%$ for IPT retrieval.
-The second version uses scattering coefficients with $T=\SI{1}{\second}$, logarithmic transformation with median renormalization (see Equation \ref{eq:log-scattering}), and LMNN; it has a P@$5$ of $99.7\%$ for instrument retrieval and $63.0\%$ for IPT retrieval.
+The first version uses MFCCs with $T=\SI{25}{\milli\second}$ and LMNN; it has a P@$5$ of $48.4\%$ for IPT retrieval.
+The second version uses scattering coefficients with $T=\SI{1}{\second}$, logarithmic transformation with median renormalization (see Equation \ref{eq:log-scattering}), and LMNN; it has a P@$5$ of $63.0\%$ for IPT retrieval.
 Both versions adopt IPT labels as reference for training LMNN.
-\ja{If so, we shouldn't cite the instrument retrieval numbers above, since that concerns a different system.}
-\ml{je suis d'accord.}
 The main difference between the two versions is the choice of spectrotemporal features.
 
 Figure \ref{fig:demo-ordinary} shows the constant-$Q$ scalograms of the five retrieved items for both versions of the system as queried by the same audio signal $\boldsymbol{x}(t)$: a violin note from the SOL dataset, played with ordinary playing technique on the G string with pitch G4 and \emph{mf} dynamics.
