@@ -341,9 +341,7 @@ We consider a retrieved recording to be relevant to the query if it corresponds 
 We compare scattering features to a baseline of MFCCs, defined as the $13$ lowest coefficients of the discrete cosine transform (DCT) applied to the logarithm of the $40$-band mel-frequency spectrum.
 For the scattering transform, we vary the maximum time scale $T$ of amplitude modulation from \SI{25}{\milli\second} to \SI{1}{\second}.
 In the case of the MFCCs, $T=\SI{25}{\milli\second}$ corresponds to the inverse of the lowest audible frequency ($T^{-1}=\SI{40}{\Hz}$).
-Therefore, increasing the frame duration $T$ has no effect on the value of the MFCCs, because the mel-spectrogram is equivalent to a local averaging of the scalogram at the time scale $T$, leaving unchanged the global averaging of $\mathbf{S}\boldsymbol{x}(\lambda, t)$ at the time scale of whole musical notes \cite[section II.B]{anden2012dafx}.
-\ja{I don't understand this part. How does changing $T$ not affect the MFCCs? If it's larger, we average more, no? There are some details missing here, it seems.}
-\ml{ce n'est pas la meme chose de calculer des mfccs a 25 ms et de moyenner sur 30 sec, que de faire une dct sur 30 sec, mais en pratique je n'ai jamais observé de difference, voir figure 6. peut etre nuancer le propos}
+Therefore, increasing the frame duration beyond this scale has little effect since no useful frequency information would be obtained.
 
 The left column of Figure \ref{fig:results} summarizes our results.
 MFCCs reach a relatively high P@$5$ of $89\%$.
