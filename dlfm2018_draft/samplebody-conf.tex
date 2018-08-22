@@ -333,9 +333,9 @@ It attempts to construct $L$ such that for every signal $\boldsymbol{x}_i (t)$ t
 The matrix $\mathbf{L}$ is obtained by applying the special-purpose solver of \cite[appendix A]{weinberger2009jmlr}.
 In subsequent experiments, disabling LMNN is equivalent to setting $\mathbf{L}$ to the identity matrix, which yields the standard Euclidean distance on the scattering coefficients $\widetilde{\mathbf{S}} \boldsymbol{x} (\lambda, t)$.
 
-Compared to a class-wise generative model, such a Gaussian mixture model, a global linear model ensures some robustness to minor alterations of the taxonomy, which is important in the context of IPT.
-For example, one performer's $\emph{slide}$ is another's $\emph{glissando}$.
-\ja{I don't understand this argument. Why does a global linear model ensure robustness? Is it because of fewer parameters so less risk of overfitting?}
+Compared to a class-wise generative model, such a Gaussian mixture model, a global linear model ensures some robustness to minor alterations of the taxonomy.
+Indeed, the same learned metric can be applied to similarity measures in related taxonomies without retraining.
+This stability is important in the context of IPT, where one performer's $\emph{slide}$ is another's $\emph{glissando}$.
 A major drawback of LMNN is its dependency on the standard Euclidean distance for determining nearest neighbors \cite{mcfee2010icml}.
 However, this is alleviated for scattering coefficients, since the scattering transform $\mathbf{S} \boldsymbol{x} (t, \lambda)$ is Lipschitz continuous to elastic deformation in the signal $\boldsymbol{x} (t)$ \cite[Theorem 2.16]{mallat2012cpam}.
 In other words, the Euclidean distance between the scattering transform of $\boldsymbol{x} (t)$ and a deformed version of the same signal is bounded by the extent of that deformation.
