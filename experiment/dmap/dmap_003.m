@@ -87,7 +87,7 @@ hold on;
 for k = 1:3
     if k == 1
         mask_k = find(ismember(mask_tech_family_idx, idx_one));
-        color = [230 115 0]/255;
+        color = [219 109 0]/255;
         alpha = 1.0;
     elseif k == 2
         mask_k = find(ismember(mask_tech_family_idx, idx_two));
