@@ -273,7 +273,7 @@ The scattering transform is a cascade of constant-Q wavelet transforms alternate
 Given a signal $\boldsymbol{x} (t)$, its first layer outputs the first-order scattering coefficients $\mathbf{S}_1 \boldsymbol{x} (\lambda_1, t)$, which captures the intensity of $\boldsymbol{x} (t)$ at frequency $\lambda_1$.
 Its frequency resolution is logarithmic in $\lambda_1$ and is sampled using $Q_1 = 12$ bins per octave.
 The second layer of the cascade yields the second-order scattering coefficients $\mathbf{S}_2 \boldsymbol{x} (\lambda_1, \lambda_2, t)$, which extract amplitude modulation at frequency $\lambda_2$ in the subband of $\boldsymbol{x} (t)$ at frequency $\lambda_1$.
-Both first- and second-order coefficients are averaged in time over intervals of size $T$.
+Both first- and second-order coefficients are averaged in time over the duration of the whole signal.
 The modulation frequencies $\lambda_2$ are logarithmically spaced with $Q_2 = 1$ bin per octave.
 In the following, we denote by $\mathbf{S}\boldsymbol{x}(\lambda, t)$ the concatenation of all scattering coefficients, where $\lambda$ corresponds to either a single $\lambda_1$ for first-order coefficients or a pair $(\lambda_1,\lambda_2)$ for second-order coefficients.
 
