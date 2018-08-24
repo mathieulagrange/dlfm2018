@@ -166,7 +166,7 @@ A straightforward extension of the problem above is the classification of solo p
 Since the Western tradition of solo music is essentially limited to a narrow range of instruments (\eg{} piano, classical guitar, violin) and genres (sonatas, contemporary, free jazz, folk), datasets of solo phrases, such as solosDb \cite{joder2009taslp}, are exposed to strong biases.
 This issue is partially mitigated by the recent surge of multitrack datasets, such as MedleyDB \cite{bittner2014ismir}, which has spurred a renewed interest in single-label instrument classification \cite{yip2017ismir}.
 In addition, the cross-collection evaluation methodology \cite{livshin2003ismir} reduces the risk of overfitting caused by the relative homogeneity of artists and recording conditions in these small datasets \cite{bogdanov2016ismir}.
-To date, the best classifiers of solo recordings are the joint time-frequency scattering transform \cite{anden2015mlsp} and the spiral convolutional network \cite{lostanlen2016ismir} trained on the Medley-solos-DB dataset \cite{lostanlen2018msdb}, \ie{}, a cross-collection dataset which aggregates MedleyDB and solosDb following the procedure of \cite{donnelly2015icdmw}.
+To date, the best classifiers of solo recordings are the joint time-frequency scattering transform \cite{anden2018tsp} and the spiral convolutional network \cite{lostanlen2016ismir} trained on the Medley-solos-DB dataset \cite{lostanlen2018msdb}, \ie{}, a cross-collection dataset which aggregates MedleyDB and solosDb following the procedure of \cite{donnelly2015icdmw}.
 We refer to \cite{han2017taslp} for a recent review of the state of the art.
 
 \subsection{Multilabel classification in polyphonic mixtures}
@@ -182,7 +182,8 @@ We refer to \cite{humphrey2018ismir} for a recent review of the state of the art
 Finally, there is a growing interest for studying the role of the performer in musical acoustics, from the perspective of both sound production and perception.
 Apart from its interest in audio signal processing, this topic is connected to other disciplines, such as biomechanics and gestural interfaces \cite{metcalf2014frontiers}.
 The majority of the literature focuses on the range of IPTs afforded by a single instrument.
-Recent examples include clarinet \cite{loureiro2004ismir}, percussion \cite{tindale2004ismir}, piano \cite{bernays2013smc}, guitar \cite{foulon2013cmmr,su2014ismir,chen2015ismir}, violin \cite{young2008nime}, cello \cite[chapter 6]{chudy2016phd}, and erhu \cite{yang2014fma}.
+Recent examples include clarinet \cite{loureiro2004ismir}, percussion \cite{tindale2004ismir}, piano \cite{bernays2013smc}, guitar \cite{foulon2013cmmr,su2014ismir,chen2015ismir}, violin \cite{young2008nime}, %cello \cite[chapter 6]{chudy2016phd}
+and erhu \cite{yang2014fma}.
 Some publications frame timbral similarity in a polyphonic setting, yet do so according to a purely perceptual definition of timbre -- with continuous attributes such as brightness, warmth, dullness, roughness, and so forth -- without connecting these attributes to the discrete latent space of IPTs (\ie{}, through a finite set of instructions, readily interpretable by the performer) \cite{antoine2018isma}.
 We refer to \cite{leman2017chapter} for a recent review of the state of the art.
 
@@ -347,7 +348,7 @@ In other words, the Euclidean distance between the scattering transform of $\bol
 \section{Experimental evaluation} \label{sec:exp}
 In this section, we study a query-by-example browsing system for the SOL dataset based on nearest neighbors.
 We discuss how the performance of the system is affected by the choice of feature (MFCCs or scattering transforms) and distance (Euclidean or LMNN), both quantitatively and qualitatively.
-Finally, we visualize the two feature spaces using non-linear dimensionality reduction.
+Finally, we visualize the two feature spaces using nonlinear dimensionality reduction.
 
 %As explained in Section \ref{sec:motivation}, we formulate here the instrument / playing techniques recognition problem as a query by example one as we are \textit{in fine} interested in an application scenario where the user specify a seed sound, be it played by a musical instrument or not, and the system returns several items from the database that have some level of similarity with the seed.
 
@@ -667,7 +668,9 @@ It also bears an interest for organizing digital libraries as a mid-level descri
 To the best of our knowledge, this paper is the first to benchmark query-by-example MIR systems according to a large-vocabulary, multi-instrument IPT reference ($143$ classes) instead of an instrument reference.
 We find that this new task is considerably more challenging than musical instrument recognition as it amounts to characterizing spectrotemporal patterns at various scales and comparing them in a non-Euclidean way.
 Although the combination of methods presented here -- wavelet scattering and large-margin nearest neighbors -- outperforms the MFCC baseline, its accuracy on the SOL dataset certainly leaves room for future improvements.
-For example, we could replace the standard time scattering transform with the more discriminative joint time-frequency scattering transform \cite{anden2018tsp}.
+For example, we could replace the standard time scattering transform with
+%the more discriminative
+joint time-frequency scattering transform \cite{anden2018tsp}.
 
 The evaluation methodology presented here uses ground truth IPT labels to quantify the relevance of returned items.
 This approach is useful in that the labels are unambiguous, but it might be too coarse to reflect practical use.
@@ -681,8 +684,10 @@ Another promising avenue of research is to formulate a structured prediction tas
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACKNOWLEDGMENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{acks}
-The authors wish to thank Philippe Brandeis, \'{E}tienne Graindorge, St\'{e}phane Mallat, Adrien Mamou-Mani, and Yan Maresz for fruitful discussions on contemporary music creation as part of the TICEL research project (``Trait\'{e} instrumental collaboratif en ligne''),
-Andrew Farnsworth and Grant Van Horn for fruitful discussions on Visipedia,
-and Katherine Crocker for helpful suggestions on the title of this article.
-This work is supported by the ERC InvariantClass grant 320959, the NSF award 1633259 (BIRDVOX), the Leon Levy Foundation, and a Google faculty award.
+The authors wish to thank Philippe Brandeis, \'{E}tienne Graindorge, St\'{e}phane Mallat, Adrien Mamou-Mani, and Yan Maresz for contributing to the TICEL research project
+%(``Trait\'{e} instrumental collaboratif en ligne''),
+%Andrew Farnsworth and Grant Van Horn for fruitful discussions on Visipedia
+, and Katherine Crocker for a helpful suggestion on the title of this article.
+This work is supported by the ERC InvariantClass grant 320959.
+%, the NSF award 1633259 (BIRDVOX), the Leon Levy Foundation, and a Google faculty award.
 \end{acks}
