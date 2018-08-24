@@ -111,7 +111,7 @@ ax.Box = 'off';
 set(gca(), 'YDir', 'reverse');
 
 fig = gcf();
-fig.Position = [1 1 300 900];
+fig.Position = [1 1 300 993];
 
 drawnow();
 

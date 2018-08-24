@@ -8,73 +8,101 @@
 \newcommand{\ja}[1]{\textcolor{magenta}{Joakim: #1}}
 \renewcommand{\ml}[1]{\textcolor{blue}{Mathieu: #1}}
 
+%%% SCAL MACRO                                                             %%%
+% Used for generating time and log-frequency axes and adding them to a       %
+% scalogram image. Note that the variables \scalwidth, \scalheight, and      %
+% \arrowextra must be defined before it is invoked.                          %
+
+\newcommand{\scal}[1]{%
+\tikzset{>={Stealth[width=1.5mm,length=2mm]}}%
+\begin{tikzpicture}%
+    \node[anchor=south west,inner sep=0] at (0, 0) {\includegraphics[width=\scalwidth]{#1}};%
+    \draw[->] (0, 0) -- (\scalwidth + \arrowextra, 0);%
+    \node[anchor=west] at (\scalwidth + \arrowextra, 0) {\footnotesize $t$};%
+    \draw[->] (0, 0) -- (0, \scalheight + \arrowextra);%
+    \node[anchor=east] at (0, \scalheight) {\footnotesize $\lambda_1$};%
+\end{tikzpicture}%
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INTRODUCTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Introduction}
 
 \begin{figure}
+        \newcommand{\scalwidth}{35.0mm}
+        \newcommand{\scalheight}{27.7mm}
+        \newcommand{\arrowextra}{2mm}
+
         \begin{subfigure}{0.25\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-ord-G4-mf_withaxes.eps}
+                \scal{./figs/trumpet_variations/TpC-ord-G4-mf.png}
                 \caption{Trumpet note (\emph{ordinario}).}
                 \label{fig:TpC-ord-G4-mf_withaxes}
         \end{subfigure}%
         \begin{subfigure}{0.25\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/trumpet_variations/Vn-ord-G4-mf-4c_withaxes.eps}
+                \scal{./figs/trumpet_variations/Vn-ord-G4-mf-4c.png}
                 \caption{Instrument (violin).}
                 \label{fig:Vn-ord-G4-mf-4c_withaxes}
         \end{subfigure}
 
+        \vspace{3mm}
+
         \begin{subfigure}{0.25\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-ord-G3-mf_withaxes.eps}
+                \scal{./figs/trumpet_variations/TpC-ord-G3-mf.png}
                 \caption{Pitch (G3).}
                 \label{fig:TpC-ord-G3-mf_withaxes}
         \end{subfigure}%
         \begin{subfigure}{0.25\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-ord-G4-pp_withaxes.eps}
+                \scal{./figs/trumpet_variations/TpC-ord-G4-pp.png}
                 \caption{Intensity (\emph{pianissimo}).}
                 \label{fig:TpC-ord-G4-pp_withaxes}
         \end{subfigure}
 
+        \vspace{3mm}
+
         \begin{subfigure}{0.25\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC+H-ord-G4-mf_withaxes.eps}
+                \scal{./figs/trumpet_variations/TpC+H-ord-G4-mf.png}
                 \caption{Mute (\emph{harmon}).}
                 \label{fig:TpC+H-ord-G4-mf_withaxes}
         \end{subfigure}%
         \begin{subfigure}{0.25\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-brassy-G4-ff_withaxes.eps}
+                \scal{./figs/trumpet_variations/TpC-brassy-G4-ff.png}
                 \caption{Tone quality (brassy).}
                 \label{fig:TpC-brassy-G4-mf_withaxes}
         \end{subfigure}%
 
+        \vspace{3mm}
+
         \begin{subfigure}{0.25\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-sfz-G4-fp_withaxes.eps}
+                \scal{./figs/trumpet_variations/TpC-sfz-G4-fp.png}
                 \caption{Attack (\emph{sfzorzando}).}
                 \label{fig:TpC-sfz-G4-fp_withaxes}
         \end{subfigure}%
         \begin{subfigure}{0.25\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-flatt-G4-mf_withaxes.eps}
+                \scal{./figs/trumpet_variations/TpC-flatt-G4-mf.png}
                 \caption{Tonguing (\emph{flatterzunge}).}
                 \label{fig:TpC-flatt-G4-mf_withaxes}
         \end{subfigure}
 
+        \vspace{3mm}
+
         \begin{subfigure}{0.25\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-trill-maj2-G4-mf_withaxes.eps}
+                \scal{./figs/trumpet_variations/TpC-trill-maj2-G4-mf.png}
                 \caption{Articulation (\emph{trill}).}
                 \label{fig:TpC-trill-maj2-G4-mf_withaxes}
         \end{subfigure}%
         \begin{subfigure}{0.25\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/trumpet_variations/TpC-voc-harms-C4-mf_withaxes.eps}
+                \scal{./figs/trumpet_variations/TpC-voc-harms-C4-mf.png}
                 \caption{Phrasing (\emph{d\'{e}tach\'{e}}).}
                 \label{fig:TpC+voc-harms-G4-mf_withaxes}
         \end{subfigure}%
@@ -211,9 +239,9 @@ However, such considerations are still in large part speculative and offer no de
 \centering
 \begin{tikzpicture}
 \def\iptarray{{"ordinario","non-vibrato","tremolo","flatterzunge","sforzando","crescendo","note-lasting","pizzicato-l-vib","glissando","decrescendo","pizzicato-secco","staccato","crescendo-to-decrescendo","ordinario-1q","trill-minor-second-up","trill-major-second-up","sul-ponticello","pizzicato-bartok","sul-tasto","sul-ponticello-tremolo","multiphonics","sul-tasto-tremolo","col-legno-battuto","col-legno-tratto","harmonic-fingering","bisbigliando","lip-glissando","artificial-harmonic","ordinario-to-flatterzunge","artificial-harmonic-tremolo","flatterzunge-to-ordinario","vibrato","crushed-to-ordinario","ordinario-to-sul-tasto","ordinario-to-crushed","slap-pitched","sul-ponticello-to-ordinario","sul-ponticello-to-sul-tasto","ordinario-to-tremolo","sul-tasto-to-ordinario","tremolo-to-ordinario","near-the-board","sul-tasto-to-sul-ponticello","ordinario-to-sul-ponticello","aeolian-and-ordinario","brassy","backwards","ordinario-high-register","brassy-to-ordinario","natural-harmonics-glissandi"}}%
-\node[anchor=north west] at (2, 0) {\includegraphics[height=13.5cm]{./figs/histogram/histogram_modes.pdf}};
+\node[anchor=north west] at (2, 0) {\includegraphics[height=149mm]{./figs/histogram/histogram_modes.pdf}};
 \foreach \x in {0,...,49}
-    \node[anchor=east] at (2, -0.40 - 0.235*\x) {\footnotesize {\fontfamily{phv}\selectfont\pgfmathparse{\iptarray[\x]}\pgfmathresult}};
+    \node[anchor=east] at (2, -0.42 - 0.262*\x) {\footnotesize {\fontfamily{phv}\selectfont\pgfmathparse{\iptarray[\x]}\pgfmathresult}};
 \end{tikzpicture}
 \caption{The $50$ most common IPTs in the SOL dataset.}
 \label{fig:technique-histogram}
@@ -305,9 +333,9 @@ It attempts to construct $L$ such that for every signal $\boldsymbol{x}_i (t)$ t
 The matrix $\mathbf{L}$ is obtained by applying the special-purpose solver of \cite[appendix A]{weinberger2009jmlr}.
 In subsequent experiments, disabling LMNN is equivalent to setting $\mathbf{L}$ to the identity matrix, which yields the standard Euclidean distance on the scattering coefficients $\widetilde{\mathbf{S}} \boldsymbol{x} (\lambda, t)$.
 
-Compared to a class-wise generative model, such a Gaussian mixture model, a global linear model ensures some robustness to minor alterations of the taxonomy, which is important in the context of IPT.
-For example, one performer's $\emph{slide}$ is another's $\emph{glissando}$.
-\ja{I don't understand this argument. Why does a global linear model ensure robustness? Is it because of fewer parameters so less risk of overfitting?}
+Compared to a class-wise generative model, such a Gaussian mixture model, a global linear model ensures some robustness to minor alterations of the taxonomy.
+Indeed, the same learned metric can be applied to similarity measures in related taxonomies without retraining.
+This stability is important in the context of IPT, where one performer's $\emph{slide}$ is another's $\emph{glissando}$.
 A major drawback of LMNN is its dependency on the standard Euclidean distance for determining nearest neighbors \cite{mcfee2010icml}.
 However, this is alleviated for scattering coefficients, since the scattering transform $\mathbf{S} \boldsymbol{x} (t, \lambda)$ is Lipschitz continuous to elastic deformation in the signal $\boldsymbol{x} (t)$ \cite[Theorem 2.16]{mallat2012cpam}.
 In other words, the Euclidean distance between the scattering transform of $\boldsymbol{x} (t)$ and a deformed version of the same signal is bounded by the extent of that deformation.
@@ -341,9 +369,7 @@ We consider a retrieved recording to be relevant to the query if it corresponds 
 We compare scattering features to a baseline of MFCCs, defined as the $13$ lowest coefficients of the discrete cosine transform (DCT) applied to the logarithm of the $40$-band mel-frequency spectrum.
 For the scattering transform, we vary the maximum time scale $T$ of amplitude modulation from \SI{25}{\milli\second} to \SI{1}{\second}.
 In the case of the MFCCs, $T=\SI{25}{\milli\second}$ corresponds to the inverse of the lowest audible frequency ($T^{-1}=\SI{40}{\Hz}$).
-Therefore, increasing the frame duration $T$ has no effect on the value of the MFCCs, because the mel-spectrogram is equivalent to a local averaging of the scalogram at the time scale $T$, leaving unchanged the global averaging of $\mathbf{S}\boldsymbol{x}(\lambda, t)$ at the time scale of whole musical notes \cite[section II.B]{anden2012dafx}.
-\ja{I don't understand this part. How does changing $T$ not affect the MFCCs? If it's larger, we average more, no? There are some details missing here, it seems.}
-\ml{ce n'est pas la meme chose de calculer des mfccs a 25 ms et de moyenner sur 30 sec, que de faire une dct sur 30 sec, mais en pratique je n'ai jamais observé de difference, voir figure 6. peut etre nuancer le propos}
+Therefore, increasing the frame duration beyond this scale has little effect since no useful frequency information would be obtained.
 
 The left column of Figure \ref{fig:results} summarizes our results.
 MFCCs reach a relatively high P@$5$ of $89\%$.
@@ -357,11 +383,13 @@ This is consistent with \cite{lostanlen2018eurasip}, which applies scattering tr
 On one hand, replacing the canonical Euclidean distance by a distance learned by LMNN marginally improves P@$5$ for the MFCC baseline, from $89.3\%$ to $90.0\%$.
 Applying LMNN to scattering features, on the other hand, significantly improves their performance with respect to the Euclidean distance, from $89.1\%$ to $98.0\%$.
 
-The gain in precision afforded by scattering coefficients over MFCCs could simply be caused by a higher number of dimensions which could give more flexibility to the LMNN algorithm. To refute this hypothesis, we supplement the $13$ coefficients resulting from a global averaging at the time scale of full musical notes by higher-order summary statistics, namely polynomial combination of those features of degrees $2$ and $3$.
-Instrument retrieval in the resulting feature space, whose dimension ($494$) is comparable to the number of scattering coefficients, has a P@$5$ of $91\%$, \ie{}, slightly above the baseline.
-Therefore, it is more likely the multiresolution structure of scattering coefficients, rather than its dimensionality, that causes a strong boost in performance.
-\ja{I don't understand the objection or the argument here. How could the better performance be caused by a ``higher number of dimensions''? If I add a bunch of coefficients to MFCCs that are just Gaussian white noise, does that improve performance? What if I copy it several times over? How does our particular dimensionality increasing strategy refute that claim? We haven't looked at all possible ways of increasing the dimensions here.}
-\ml{l'idee ici est de montrer que ce n'est pas le lmnn avec un nombre de degré de liberté suffisant qui overfit. Si le nombre de features est egal au nombre de points le probleme est trivial. J'ai reformuler un peu le par. Peut etre a liser un peu}
+The dimensionality of scattering coefficients is significantly higher than that of MFCCs, which only consists of $13$ coefficients.
+A concern is therefore that the higher dimensionality of the scattering coefficients may result in overfitting of the metric learning algorithm, artificially inflating its performance.
+To address this, we supplement the averaged MFCCs by higher-order summary statistics.
+In addition the $13$ average coefficients, we also compute the average of all polynomial combinations of degree less than three.
+The resulting vector is of dimension $494$, comparable to the that of the scattering vector.
+This achieves a P@$5$ of $91\%$, that is, slightly above the baseline.
+The increased performance of the scattering transform is therefore not likely due overfitting but to its better characterization of multiresolution structure.
 
 Finally, increasing $T$ from $\SI{25}{\milli\second}$ up to $\SI{1}{\second}$ -- \ie{}, including all amplitude modulations between $\SI{1}{\Hz}$ and $\SI{40}{\Hz}$ -- brings LMNN to a near-perfect P@$5$ of $99.7\%$.
 Not only does this result confirm that straightforward techniques in audio signal processing (here, wavelet scattering and metric learning) are sufficient to retrieve the instrument from a single ordinary note, it also demonstrates that the results remain satisfactory despite large intra-class variability in terms of pitch, intensity, usage of mutes, and extended IPTs.
@@ -388,75 +416,78 @@ In particular, it appears that increasing $T$ above \SI{25}{\milli\second} is on
 
 
 \begin{figure}
+        \newcommand{\scalwidth}{28.0mm}
+        \newcommand{\scalheight}{22.1mm}
+        \newcommand{\arrowextra}{2mm}
 
         \begin{subfigure}{\linewidth}
                 \centering
-                \includegraphics[width=0.4\textwidth]{./figs/demo/Vn-ord-G4-mf-4c.png}
+                \scal{./figs/demo/Vn-ord-G4-mf-4c.png}
                 \caption*{Query: Violin, \emph{ordinario}, G4, \emph{mf}, on G string.}
                 \label{fig:Vn-ord-G4-mf-4c}
         \end{subfigure}%
 
         \begin{subfigure}{0.20\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/demo/Vn-ord-G4-ff-4c.png}
+                \scal{./figs/demo/Vn-ord-G4-ff-4c.png}
                 \caption*{1: \emph{ff}.}
                 \label{fig:Vn-ord-G4-ff-4c}
         \end{subfigure}%
         \begin{subfigure}{0.20\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/demo/Vn-ord-G4-ff-4c.png}
+                \scal{./figs/demo/Vn-ord-G4-ff-4c.png}
                 \caption*{1: \emph{ff}.}
                 \label{fig:Vn-ord-G4-ff-4c-bis}
         \end{subfigure}%
 
         \begin{subfigure}{0.20\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/demo/Vn-pont-Csh4-mf-4c.png}
+                \scal{./figs/demo/Vn-pont-Csh4-mf-4c.png}
                 \caption*{2: \emph{sul ponticello}, C\#4.}
                 \label{fig:Vn-pont-Csh4-mf-4c}
         \end{subfigure}%
         \begin{subfigure}{0.20\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/demo/Vn-ord-G4-pp-4c.png}
+                \scal{./figs/demo/Vn-ord-G4-pp-4c.png}
                 \caption*{2: \emph{pp}.}
                 \label{fig:Vn-ord-G4-pp-4c}
         \end{subfigure}%
 
         \begin{subfigure}{0.20\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/demo/Vn-trem-D5-pp-4c.png}
+                \scal{./figs/demo/Vn-trem-D5-pp-4c.png}
                 \caption*{3: \emph{tremolo}, D5, \emph{pp}.}
                 \label{fig:Vn-trem-D5-pp-4c}
         \end{subfigure}%
         \begin{subfigure}{0.20\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/demo/Vn+S-ord-G4-mf-4c.png}
+                \scal{./figs/demo/Vn+S-ord-G4-mf-4c.png}
                 \caption*{3: \emph{sordina}.}
                 \label{fig:Vn+S-ord-G4-mf-4c}
         \end{subfigure}%
 
         \begin{subfigure}{0.20\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/demo/Vn-ord-Gsh4-mf-4c.png}
+                \scal{./figs/demo/Vn-ord-Gsh4-mf-4c.png}
                 \caption*{4: G\#4.}
                 \label{fig:Vn-ord-Gsh4-mf-4c}
         \end{subfigure}%
         \begin{subfigure}{0.20\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/demo/Vn-ord-G4-ff-3c.png}
+                \scal{./figs/demo/Vn-ord-G4-ff-3c.png}
                 \caption*{4: \emph{ff}, on D string.}
                 \label{fig:Vn-ord-G4-ff-3c}
         \end{subfigure}%
 
         \begin{subfigure}{0.20\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/demo/Vn-trem-Csh5-pp-4c.png}
+                \scal{./figs/demo/Vn-trem-Csh5-pp-4c.png}
                 \caption*{5: \emph{tremolo}, C$\sharp$5, \emph{pp}.}
                 \label{fig:Vn-trem-Csh5-pp-4c}
         \end{subfigure}%
         \begin{subfigure}{0.20\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/demo/Vn-ord-G4-mf-3c.png}
+                \scal{./figs/demo/Vn-ord-G4-mf-3c.png}
                 \caption*{5: on D string.}
                 \label{fig:Vn-ord-G4-mf-3c}
         \end{subfigure}%
@@ -467,55 +498,59 @@ In particular, it appears that increasing $T$ above \SI{25}{\milli\second} is on
 
 
 \begin{figure}
+        \newcommand{\scalwidth}{28.0mm}
+        \newcommand{\scalheight}{22.1mm}
+        \newcommand{\arrowextra}{2mm}
+
         \begin{subfigure}{\linewidth}
                 \centering
-                \includegraphics[width=0.4\textwidth]{./figs/demo/TpC-flatt-G4-mf.png}
+                \scal{./figs/demo/TpC-flatt-G4-mf.png}
                 \caption*{Query: Trumpet in C, \emph{flatterzunge}, G4, \emph{mf}.}
                 \label{fig:TpC-flatt-G4-mf}
         \end{subfigure}%
 
         \begin{subfigure}{0.20\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/demo/TpC-flatt-Fsh4-mf.png}
+                \scal{./figs/demo/TpC-flatt-Fsh4-mf.png}
                 \caption*{1: F$\sharp$4.}
                 \label{fig:TpC-flatt-Fsh4-mf-left}
         \end{subfigure}%
         \begin{subfigure}{0.20\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/demo/TpC-flatt-G4-pp.png}
+                \scal{./figs/demo/TpC-flatt-G4-pp.png}
                 \caption*{1: \emph{pp}.}
                 \label{fig:TpC-flatt-G4-pp}
         \end{subfigure}%
 
         \begin{subfigure}{0.20\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/demo/TpC-ord-F4-mf.png}
+                \scal{./figs/demo/TpC-ord-F4-mf.png}
                 \caption*{2: \emph{ordinario}, F4.}
                 \label{fig:TpC-ord-F4-mf}
         \end{subfigure}%
         \begin{subfigure}{0.20\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/demo/TpC-flatt-Fsh4-mf.png}
+                \scal{./figs/demo/TpC-flatt-Fsh4-mf.png}
                 \caption*{2: F$\sharp$4.}
                 \label{fig:TpC-flatt-Fsh4-mf-right}
         \end{subfigure}%
 
         \begin{subfigure}{0.20\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/demo/TpC-ord-Fsh4-mf.png}
+                \scal{./figs/demo/TpC-ord-Fsh4-mf.png}
                 \caption*{3: \emph{ordinario}, F$\sharp$4.}
                 \label{fig:TpC-ord-Fsh4-mf}
         \end{subfigure}%
         \begin{subfigure}{0.20\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/demo/TpC+S-flatt-G4-mf.png}
+                \scal{./figs/demo/TpC+S-flatt-G4-mf.png}
                 \caption*{3: straight mute.}
                 \label{fig:TpC+S-flatt-G4-mf}
         \end{subfigure}%
 
         \begin{subfigure}{0.20\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/demo/TpC-ord_flatt-F4-f.png}
+                \scal{./figs/demo/TpC-ord_flatt-F4-f.png}
                 \caption*{4: \emph{ordinario}%
                 %to \emph{flatterzunge}
                 , \emph{f}.}
@@ -523,26 +558,26 @@ In particular, it appears that increasing $T$ above \SI{25}{\milli\second} is on
         \end{subfigure}%
         \begin{subfigure}{0.20\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/demo/TpC-flatt-Gsh4-pp.png}
+                \scal{./figs/demo/TpC-flatt-Gsh4-pp.png}
                 \caption*{4: G$\sharp$4, \emph{pp}.}
                 \label{fig:TpC-flatt-Gsh4-pp}
         \end{subfigure}%
 
         \begin{subfigure}{0.20\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/demo/TpC-ord-G4-mf.png}
+                \scal{./figs/demo/TpC-ord-G4-mf.png}
                 \caption*{5: \emph{ordinario}.}
                 \label{fig:TpC-ord-G4-mf}
         \end{subfigure}%
         \begin{subfigure}{0.20\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{./figs/demo/TpC-flatt-F4-pp.png}
+                \scal{./figs/demo/TpC-flatt-F4-pp.png}
                 \caption*{5: F4, \emph{pp}.}
                 \label{fig:TpC-flatt-F4-pp}
         \end{subfigure}%
 
         \caption{Five nearest neighbors of the same query (a trumpet note with \emph{flatterzunge} technique, at pitch G4, \emph{mf} dynamics), as retrieved by two different versions of our system: with MFCC features (left) and with scattering transform features (right).%
-%The caption of each subfigure denotes the musical attribute(s) that differ from those of the query: mute, playing technique, pitch, and dynamics.
+The caption of each subfigure denotes the musical attribute(s) that differ from those of the query: mute, playing technique, pitch, and dynamics.
 }\label{fig:demo-extended}
 \end{figure}
 
