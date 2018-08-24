@@ -98,7 +98,7 @@ for q_id = 1:n_queries
             %ylabel('Frequency (kHz)');
 
             drawnow();
-            export_fig([neighbor_split{3}, '.png'], '-transparent', '-m2');
+            export_fig([neighbor_split{3}, '.png'], '-transparent');
             
         end
             
