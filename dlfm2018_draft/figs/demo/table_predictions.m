@@ -90,7 +90,7 @@ for q_id = 1:n_queries
                 100 * flipud(log1p(1e-2*scalogram(:,1:sample_rate))));
             colormap rev_magma;
             axis off;
-            %set(gca, 'YDir', 'normal');
+            set(gca, 'YDir', 'normal');
             %set(gca(), 'Xtick', [-100.0:100:900.0]);
             %set(gca(), 'Ytick', freq_semitones);
             %set(gca(), 'YTickLabel', freq_hz/1000);
@@ -98,8 +98,7 @@ for q_id = 1:n_queries
             %ylabel('Frequency (kHz)');
 
             drawnow();
-            export_fig([neighbor_split{3}, '.eps'], '-transparent', ...
-                '-m3');
+            export_fig([neighbor_split{3}, '.png'], '-transparent', '-m2');
             
         end
             
