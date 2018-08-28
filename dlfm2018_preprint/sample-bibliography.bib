@@ -1,0 +1,916 @@
+%%% ====================================================================
+%%%  BibTeX-file{
+%%%     author          = "Gerry Murray",
+%%%     version         = "1.2",
+%%%     date            = "2 April 2012",
+%%%     filename        = "acmsmall-sample-bibfile.bib",
+%%%     address         = "ACM, NY",
+%%%     email           = "murray at hq.acm.org",
+%%%     codetable       = "ISO/ASCII",
+%%%     keywords        = "ACM Reference Format, bibliography, citation, references",
+%%%     supported       = "yes",
+%%%     docstring       = "This BibTeX database file contains 'bibdata' entries
+%%%                        that 'match' the examples provided in the Specifications Document
+%%%                        AND, also, 'legacy'-type bibs. It should assist authors in
+%%%                        choosing the 'correct' at-bibtype and necessary bib-fields
+%%%                        so as to obtain the appropriate ACM Reference Format output.
+%%%                        It also contains many 'Standard Abbreviations'. "
+%%%  }
+%%% ====================================================================
+
+% Journals
+
+% First the Full Name is given, then the abbreviation used in the AMS Math
+% Reviews, with an indication if it could not be found there.
+% Note the 2nd overwrites the 1st, so swap them if you want the full name.
+
+ %{AMS}
+ @String{AMSTrans = "American Mathematical Society Translations" }
+ @String{AMSTrans = "Amer. Math. Soc. Transl." }
+ @String{BullAMS = "Bulletin of the American Mathematical Society" }
+ @String{BullAMS = "Bull. Amer. Math. Soc." }
+ @String{ProcAMS = "Proceedings of the American Mathematical Society" }
+ @String{ProcAMS = "Proc. Amer. Math. Soc." }
+ @String{TransAMS = "Transactions of the American Mathematical Society" }
+ @String{TransAMS = "Trans. Amer. Math. Soc." }
+
+ %ACM
+ @String{CACM = "Communications of the {ACM}" }
+ @String{CACM = "Commun. {ACM}" }
+ @String{CompServ = "Comput. Surveys" }
+ @String{JACM = "J. ACM" }
+ @String{ACMMathSoft = "{ACM} Transactions on Mathematical Software" }
+ @String{ACMMathSoft = "{ACM} Trans. Math. Software" }
+ @String{SIGNUM = "{ACM} {SIGNUM} Newsletter" }
+ @String{SIGNUM = "{ACM} {SIGNUM} Newslett." }
+
+ @String{AmerSocio = "American Journal of Sociology" }
+ @String{AmerStatAssoc = "Journal of the American Statistical Association" }
+ @String{AmerStatAssoc = "J. Amer. Statist. Assoc." }
+ @String{ApplMathComp = "Applied Mathematics and Computation" }
+ @String{ApplMathComp = "Appl. Math. Comput." }
+ @String{AmerMathMonthly = "American Mathematical Monthly" }
+ @String{AmerMathMonthly = "Amer. Math. Monthly" }
+ @String{BIT = "{BIT}" }
+ @String{BritStatPsych = "British Journal of Mathematical and Statistical
+          Psychology" }
+ @String{BritStatPsych = "Brit. J. Math. Statist. Psych." }
+ @String{CanMathBull = "Canadian Mathematical Bulletin" }
+ @String{CanMathBull = "Canad. Math. Bull." }
+ @String{CompApplMath = "Journal of Computational and Applied Mathematics" }
+ @String{CompApplMath = "J. Comput. Appl. Math." }
+ @String{CompPhys = "Journal of Computational Physics" }
+ @String{CompPhys = "J. Comput. Phys." }
+ @String{CompStruct = "Computers and Structures" }
+ @String{CompStruct = "Comput. \& Structures" }
+ @String{CompJour = "The Computer Journal" }
+ @String{CompJour = "Comput. J." }
+ @String{CompSysSci = "Journal of Computer and System Sciences" }
+ @String{CompSysSci = "J. Comput. System Sci." }
+ @String{Computing = "Computing" }
+ @String{ContempMath = "Contemporary Mathematics" }
+ @String{ContempMath = "Contemp. Math." }
+ @String{Crelle = "Crelle's Journal" }
+ @String{GiornaleMath = "Giornale di Mathematiche" }
+ @String{GiornaleMath = "Giorn. Mat." } % didn't find in AMS MR., ibid.
+
+ %IEEE
+ @String{Computer = "{IEEE} Computer" }
+ @String{IEEETransComp = "{IEEE} Transactions on Computers" }
+ @String{IEEETransComp = "{IEEE} Trans. Comput." }
+ @String{IEEETransAC = "{IEEE} Transactions on Automatic Control" }
+ @String{IEEETransAC = "{IEEE} Trans. Automat. Control" }
+ @String{IEEESpec = "{IEEE} Spectrum" } % didn't find in AMS MR
+ @String{ProcIEEE = "Proceedings of the {IEEE}" }
+ @String{ProcIEEE = "Proc. {IEEE}" } % didn't find in AMS MR
+ @String{IEEETransAeroElec = "{IEEE} Transactions on Aerospace and Electronic
+     Systems" }
+ @String{IEEETransAeroElec = "{IEEE} Trans. Aerospace Electron. Systems" }
+
+ @String{IMANumerAna = "{IMA} Journal of Numerical Analysis" }
+ @String{IMANumerAna = "{IMA} J. Numer. Anal." }
+ @String{InfProcLet = "Information Processing Letters" }
+ @String{InfProcLet = "Inform. Process. Lett." }
+ @String{InstMathApp = "Journal of the Institute of Mathematics and
+     its Applications" }
+ @String{InstMathApp = "J. Inst. Math. Appl." }
+ @String{IntControl = "International Journal of Control" }
+ @String{IntControl = "Internat. J. Control" }
+ @String{IntNumerEng = "International Journal for Numerical Methods in
+     Engineering" }
+ @String{IntNumerEng = "Internat. J. Numer. Methods Engrg." }
+ @String{IntSuper = "International Journal of Supercomputing Applications" }
+ @String{IntSuper = "Internat. J. Supercomputing Applic." } % didn't find
+%% in AMS MR
+ @String{Kibernetika = "Kibernetika" }
+ @String{JResNatBurStand = "Journal of Research of the National Bureau
+     of Standards" }
+ @String{JResNatBurStand = "J. Res. Nat. Bur. Standards" }
+ @String{LinAlgApp = "Linear Algebra and its Applications" }
+ @String{LinAlgApp = "Linear Algebra Appl." }
+ @String{MathAnaAppl = "Journal of Mathematical Analysis and Applications" }
+ @String{MathAnaAppl = "J. Math. Anal. Appl." }
+ @String{MathAnnalen = "Mathematische Annalen" }
+ @String{MathAnnalen = "Math. Ann." }
+ @String{MathPhys = "Journal of Mathematical Physics" }
+ @String{MathPhys = "J. Math. Phys." }
+ @String{MathComp = "Mathematics of Computation" }
+ @String{MathComp = "Math. Comp." }
+ @String{MathScand = "Mathematica Scandinavica" }
+ @String{MathScand = "Math. Scand." }
+ @String{TablesAidsComp = "Mathematical Tables and Other Aids to Computation" }
+ @String{TablesAidsComp = "Math. Tables Aids Comput." }
+ @String{NumerMath = "Numerische Mathematik" }
+ @String{NumerMath = "Numer. Math." }
+ @String{PacificMath = "Pacific Journal of Mathematics" }
+ @String{PacificMath = "Pacific J. Math." }
+ @String{ParDistComp = "Journal of Parallel and Distributed Computing" }
+ @String{ParDistComp = "J. Parallel and Distrib. Comput." } % didn't find
+%% in AMS MR
+ @String{ParComputing = "Parallel Computing" }
+ @String{ParComputing = "Parallel Comput." }
+ @String{PhilMag = "Philosophical Magazine" }
+ @String{PhilMag = "Philos. Mag." }
+ @String{ProcNAS = "Proceedings of the National Academy of Sciences
+                    of the USA" }
+ @String{ProcNAS = "Proc. Nat. Acad. Sci. U. S. A." }
+ @String{Psychometrika = "Psychometrika" }
+ @String{QuartMath = "Quarterly Journal of Mathematics, Oxford, Series (2)" }
+ @String{QuartMath = "Quart. J. Math. Oxford Ser. (2)" }
+ @String{QuartApplMath = "Quarterly of Applied Mathematics" }
+ @String{QuartApplMath = "Quart. Appl. Math." }
+ @String{RevueInstStat = "Review of the International Statisical Institute" }
+ @String{RevueInstStat = "Rev. Inst. Internat. Statist." }
+
+ %SIAM
+ @String{JSIAM = "Journal of the Society for Industrial and Applied
+     Mathematics" }
+ @String{JSIAM = "J. Soc. Indust. Appl. Math." }
+ @String{JSIAMB = "Journal of the Society for Industrial and Applied
+     Mathematics, Series B, Numerical Analysis" }
+ @String{JSIAMB = "J. Soc. Indust. Appl. Math. Ser. B Numer. Anal." }
+ @String{SIAMAlgMeth = "{SIAM} Journal on Algebraic and Discrete Methods" }
+ @String{SIAMAlgMeth = "{SIAM} J. Algebraic Discrete Methods" }
+ @String{SIAMAppMath = "{SIAM} Journal on Applied Mathematics" }
+ @String{SIAMAppMath = "{SIAM} J. Appl. Math." }
+ @String{SIAMComp = "{SIAM} Journal on Computing" }
+ @String{SIAMComp = "{SIAM} J. Comput." }
+ @String{SIAMMatrix = "{SIAM} Journal on Matrix Analysis and Applications" }
+ @String{SIAMMatrix = "{SIAM} J. Matrix Anal. Appl." }
+ @String{SIAMNumAnal = "{SIAM} Journal on Numerical Analysis" }
+ @String{SIAMNumAnal = "{SIAM} J. Numer. Anal." }
+ @String{SIAMReview = "{SIAM} Review" }
+ @String{SIAMReview = "{SIAM} Rev." }
+ @String{SIAMSciStat = "{SIAM} Journal on Scientific and Statistical
+     Computing" }
+ @String{SIAMSciStat = "{SIAM} J. Sci. Statist. Comput." }
+
+ @String{SoftPracExp = "Software Practice and Experience" }
+ @String{SoftPracExp = "Software Prac. Experience" } % didn't find in AMS MR
+ @String{StatScience = "Statistical Science" }
+ @String{StatScience = "Statist. Sci." }
+ @String{Techno = "Technometrics" }
+ @String{USSRCompMathPhys = "{USSR} Computational Mathematics and Mathematical
+     Physics" }
+ @String{USSRCompMathPhys = "{U. S. S. R.} Comput. Math. and Math. Phys." }
+ @String{VLSICompSys = "Journal of {VLSI} and Computer Systems" }
+ @String{VLSICompSys = "J. {VLSI} Comput. Syst." }
+ @String{ZAngewMathMech = "Zeitschrift fur Angewandte Mathematik und
+     Mechanik" }
+ @String{ZAngewMathMech = "Z. Angew. Math. Mech." }
+ @String{ZAngewMathPhys = "Zeitschrift fur Angewandte Mathematik und Physik" }
+ @String{ZAngewMathPhys = "Z. Angew. Math. Phys." }
+
+% Publishers % ================================================= |
+
+ @String{Academic = "Academic Press" }
+ @String{ACMPress = "{ACM} Press" }
+ @String{AdamHilger = "Adam Hilger" }
+ @String{AddisonWesley = "Addison-Wesley" }
+ @String{AllynBacon = "Allyn and Bacon" }
+ @String{AMS = "American Mathematical Society" }
+ @String{Birkhauser = "Birkha{\"u}ser" }
+ @String{CambridgePress = "Cambridge University Press" }
+ @String{Chelsea = "Chelsea" }
+ @String{ClaredonPress = "Claredon Press" }
+ @String{DoverPub = "Dover Publications" }
+ @String{Eyolles = "Eyolles" }
+ @String{HoltRinehartWinston = "Holt, Rinehart and Winston" }
+ @String{Interscience = "Interscience" }
+ @String{JohnsHopkinsPress = "The Johns Hopkins University Press" }
+ @String{JohnWileySons = "John Wiley and Sons" }
+ @String{Macmillan = "Macmillan" }
+ @String{MathWorks = "The Math Works Inc." }
+ @String{McGrawHill = "McGraw-Hill" }
+ @String{NatBurStd = "National Bureau of Standards" }
+ @String{NorthHolland = "North-Holland" }
+ @String{OxfordPress = "Oxford University Press" }  %address Oxford or London?
+ @String{PergamonPress = "Pergamon Press" }
+ @String{PlenumPress = "Plenum Press" }
+ @String{PrenticeHall = "Prentice-Hall" }
+ @String{SIAMPub = "{SIAM} Publications" }
+ @String{Springer = "Springer-Verlag" }
+ @String{TexasPress = "University of Texas Press" }
+ @String{VanNostrand = "Van Nostrand" }
+ @String{WHFreeman = "W. H. Freeman and Co." }
+
+%Entries
+
+@inproceedings{anden2012dafx,
+  title={Scattering representation of modulated sounds},
+  author={And{\'e}n, Joakim and Mallat, St{\'e}phane},
+  booktitle={Proc. DAFx},
+  year={2012}
+}
+
+
+@article{anden2014taslp,
+  title={Deep scattering spectrum},
+  author={And{\'e}n, Joakim and Mallat, St{\'e}phane},
+  journal={IEEE Trans. Sig. Proc.},
+  volume={62},
+  number={16},
+  pages={4114--4128},
+  year={2014},
+  publisher={IEEE}
+}
+
+
+@inproceedings{anden2015mlsp,
+  title={Joint time-frequency scattering for audio classification},
+  author={And{\'e}n, Joakim and Lostanlen, Vincent and Mallat, St{\'e}phane},
+  booktitle={Proc. MLSP},
+  year={2015},
+}
+
+
+@inproceedings{antoine2018isma,
+  title={Musical Acoustics, Timbre, and Computer-Aided Orchestration Challenges},
+  author={Aur\'{e}lien Antoine and Eduardo R. Miranda},
+  booktitle={Proc. ISMA},
+  year={2018}
+}
+
+
+@article{atlas2003eurasip,
+  title={Joint acoustic and modulation frequency},
+  author={Atlas, Les and Shamma, Shihab A.},
+  journal={EURASIP J. Appl. Signal Process.},
+  volume={2003},
+  pages={668--675},
+  year={2003},
+  publisher={Hindawi Publishing Corp.}
+}
+
+
+@inproceedings{bandiera2016ismir,
+  title={Good-sounds.org: A framework to explore goodness in instrumental sounds},
+  author={Bandiera, Giuseppe and Romani Picas, Oriol and Tokuda, Hiroshi and Hariya, Wataru and Oishi, Koji and Serra, Xavier},
+  booktitle={Proc. ISMIR},
+  year={2016},
+  organization={Proc. ISMIR}
+}
+
+
+@article{bellet2013survey,
+  title={A survey on metric learning for feature vectors and structured data},
+  author={Bellet, Aur{\'e}lien and Habrard, Amaury and Sebban, Marc},
+  eprint={1306.6709},
+  year={2013}
+}
+
+
+@article{belongie2015pattern,
+  title = "Visipedia circa 2015",
+  journal = "Pattern Recognition Letters",
+  volume = "72",
+  pages = "15--24",
+  year = "2016",
+  author = "Serge Belongie and Pietro Perona",
+}
+
+
+@inproceedings{benetos2006icassp,
+  title={Musical instrument classification using non-negative matrix factorization algorithms and subset feature selection},
+  author={Benetos, Emmanouil and Kotti, Margarita and Kotropoulos, Constantine},
+  booktitle={Proc. IEEE ICASSP},
+  year={2006},
+}
+
+
+@inproceedings{bernays2013smc,
+  title={Expressive production of piano timbre: touch and playing techniques for timbre control in piano performance},
+  author={Bernays, Michel and Traube, Caroline},
+  booktitle={Proc. SMC},
+  year={2013}
+}
+
+
+@article{bhalke2016jiis,
+  title={{Automatic musical instrument classification using fractional Fourier transform based-MFCC features and counter propagation neural network}},
+  author={Bhalke, D.G. and Rao, C.B. Rama and Bormane, Dattatraya S.},
+  journal={J. Intell. Inf. Syst.},
+  volume={46},
+  number={3},
+  pages={425--446},
+  year={2016},
+  publisher={Springer}
+}
+
+
+@inproceedings{bittner2014ismir,
+  title={{MedleyDB: A multitrack dataset for annotation-intensive MIR research}},
+  author={Bittner, Rachel M. and Salamon, Justin and Tierney, Mike and Mauch, Matthias and Cannam, Chris and Bello, Juan Pablo},
+  booktitle={Proc. ISMIR},
+  year={2014}
+}
+
+
+@inproceedings{bogdanov2016ismir,
+  title={Cross-collection evaluation for music classification tasks},
+  author={Bogdanov, Dimitry and Porter, Alastair and Herrera Boyer, Perfecto and Serra, Xavier},
+  booktitle={Proc. ISMIR},
+  year={2016},
+}
+
+
+@article{brown1999jasa,
+  title={Computer identification of musical instruments using pattern recognition with cepstral coefficients as features},
+  author={Brown, Judith C.},
+  journal={J. Acoust. Soc. Am.},
+  volume={105},
+  number={3},
+  pages={1933--1941},
+  year={1999},
+  publisher={ASA}
+}
+
+
+@inproceedings{burred2009icassp,
+  title={Polyphonic musical instrument recognition based on a dynamic model of the spectral envelope},
+  author={Burred, Juan Jos{\'e} and Robel, Axel and Sikora, Thomas},
+  booktitle={Proc. IEEE ICASSP},
+  pages={173--176},
+  year={2009},
+}
+
+
+
+@inproceedings{chen2015ismir,
+  title={Electric Guitar Playing Technique Detection in Real-World Recording Based on F0 Sequence Pattern Recognition},
+  author={Chen, Yuan-Ping and Su, Li and Yang, Yi-Hsuan},
+  booktitle={Proc. ISMIR},
+  year={2015}
+}
+
+
+@article{chi2005jasa,
+  title={Multiresolution spectrotemporal analysis of complex sounds},
+  author={Chi, Taishih and Ru, Powen and Shamma, Shihab A.},
+  journal={J. Acoust. Soc. Am.},
+  volume={118},
+  number={2},
+  pages={887--906},
+  year={2005},
+  publisher={ASA}
+}
+
+
+@phdthesis{dianova2007phd,
+  title={John Cage's Prepared Piano: The Nuts and Bolts},
+  author={Dianova, Tzenka},
+  year={2007},
+  school={U. Auckland}
+}
+
+
+@inproceedings{donnelly2015icdmw,
+  title={Cross-Dataset Validation of Feature Sets in Musical Instrument Classification},
+  author={Donnelly, Patrick J. and Sheppard, John W.},
+  booktitle={Proc. IEEE ICDMW},
+  pages={94--101},
+  year={2015},
+}
+
+
+@inproceedings{eronen2000icassp,
+  title={Musical instrument recognition using cepstral coefficients and temporal features},
+  author={Eronen, Antti and Klapuri, Anssi},
+  booktitle={Proc. IEEE ICASSP},
+  year={2000},
+}
+
+
+@article{essid2006taslp,
+  title={Instrument recognition in polyphonic music based on automatic taxonomies},
+  author={Essid, Slim and Richard, Ga{\"e}l and David, Bertrand},
+  journal={IEEE Trans. Audio Speech Lang. Process.},
+  volume={14},
+  number={1},
+  pages={68--80},
+  year={2006},
+  publisher={IEEE}
+}
+
+
+@inproceedings{foulon2013cmmr,
+  title={Automatic classification of guitar playing modes},
+  author={Foulon, Raphael and Roy, Pierre and Pachet, Fran{\c{c}}ois},
+  booktitle={Proc. CMMR},
+  year={2013},
+  organization={Springer}
+}
+
+
+@phdthesis{fuhrmann2012phd,
+  title={Automatic musical instrument recognition from polyphonic music audio signals},
+  author={Fuhrmann, Ferdinand},
+  school={Universitat Pompeu Fabra},
+  year={2012}
+}
+
+
+@inproceedings{gemmeke2017icassp,
+title = {Audio Set: An ontology and human-labeled dataset for audio events},
+author  = {Jort F. Gemmeke and Daniel P. W. Ellis and Dylan Freedman and Aren Jansen and Wade Lawrence and others},
+year  = {2017},
+booktitle = {Proc. IEEE ICASSP}
+}
+
+
+@book{godoy2009book,
+  title={Musical Gestures: Sound, Movement, and Meaning},
+  author={God{\o}y, Rolf Inge and Leman, Marc},
+  year={2009},
+  publisher={Taylor \& Francis}
+}
+
+
+@article{goto2003ismir,
+  title={{RWC music database: music genre database and musical instrument sound database}},
+  author={Goto, Masataka and Hashiguchi, Hiroki and Nishimura, Takuichi and Oka, Ryuichi},
+  booktitle={Proc. ISMIR},
+  year={2003},
+}
+
+
+@article{han2017taslp,
+  title={Deep convolutional neural networks for predominant instrument recognition in polyphonic music},
+  author={Han, Yoonchang and Kim, Jaehun and Lee, Kyogu},
+  journal={IEEE Trans. Audio Speech Lang. Process.},
+  volume={25},
+  number={1},
+  pages={208--221},
+  year={2017},
+  publisher={IEEE Press}
+}
+
+
+@article{handel2001musicperception,
+  title={A rule of thumb: The bandwidth for timbre invariance is one octave},
+  author={Handel, Stephen and Erickson, Molly L.},
+  journal={Music Perception},
+  volume={19},
+  number={1},
+  pages={121--126},
+  year={2001},
+  publisher={University of California Press Journals}
+}
+
+
+@article{herrera2003jnmr,
+  title={Automatic classification of musical instrument sounds},
+  author={Herrera Boyer, Perfecto and Peeters, Geoffroy and Dubnov, Shlomo},
+  journal={J. New Music Res.},
+  volume={32},
+  number={1},
+  pages={3--21},
+  year={2003},
+  publisher={Taylor \& Francis}
+}
+
+
+@article{joder2009taslp,
+  title={Temporal integration for audio classification with application to musical instrument classification},
+  author={Joder, Cyril and Essid, Slim and Richard, Ga{\"e}l},
+  journal={IEEE Trans. Audio Speech Lang. Process.},
+  volume={17},
+  number={1},
+  pages={174--186},
+  year={2009},
+  publisher={IEEE}
+}
+
+
+@inproceedings{humphrey2018ismir,
+  title={OpenMIC-2018: an open dataset for multiple instrument recognition},
+  author={Humphrey, Eric and Durand, Simon and McFee, Brian},
+  booktitle={Proc. ISMIR},
+  year={2018}
+}
+
+
+@article{kaminskyj2005jiis,
+  title={{Automatic recognition of isolated monophonic musical instrument sounds using kNNC}},
+  author={Kaminskyj, Ian and Czaszejko, Tadeusz},
+  journal={J. Intell. Inf. Syst.},
+  volume={24},
+  number={2-3},
+  pages={199--221},
+  year={2005},
+  publisher={Springer}
+}
+
+
+@inproceedings{kolozali2011ismir,
+  title={Knowledge Representation Issues in Musical Instrument Ontology Design.},
+  author={Kolozali, Sefki and Barthet, Mathieu and Fazekas, Gy{\"o}rgy and Sandler, Mark B.},
+  booktitle={Proc. ISMIR},
+  year={2011}
+}
+
+
+@book{kostka2016book,
+  title={Materials and Techniques of Post Tonal Music},
+  author={Kostka, Stefan},
+  year={2016},
+  publisher={Taylor \& Francis}
+}
+
+
+@inproceedings{krishna2004icassp,
+  title={Music instrument recognition: from isolated notes to solo phrases},
+  author={Krishna, A.G. and Sreenivas, Thippur V.},
+  booktitle={Proc. IEEE ICASSP},
+  year={2004},
+}
+
+
+@article{lagrange2015jasa,
+  title={The bag-of-frames approach: a not-so-sufficient model for urban soundscapes},
+  author={Lagrange, Mathieu and Lafay, Gr{\'e}goire and D{\'e}fr{\'e}ville, Boris and Aucouturier, Jean-Julien},
+  journal={J. Acoust. Soc. Am.},
+  volume={138},
+  number={5},
+  pages={EL487--EL492},
+  year={2015},
+  publisher={ASA}
+}
+
+
+@inbook{leman2017chapter,
+author="Leman, Marc
+and Nijs, Luc
+and Di Stefano, Nicola",
+editor="Bertolaso, Marta
+and Di Stefano, Nicola",
+title="On the Role of the Hand in the Expression of Music",
+bookTitle="The Hand: Perception, Cognition, Action",
+year="2017",
+publisher="Springer International Publishing",
+address="Cham",
+pages="175--192",
+isbn="978-3-319-66881-9",
+}
+
+
+@inproceedings{livshin2003ismir,
+  title={The importance of cross database evaluation in sound classification},
+  author={Livshin, Arie and Rodet, Xavier},
+  booktitle={Proc. ISMIR},
+  year={2003}
+}
+
+
+@inproceedings{lostanlen2016ismir,
+  title={Deep convolutional networks on the pitch spiral for musical instrument recognition},
+  author={Lostanlen, Vincent and Cella, Carmine Emanuele},
+  booktitle={Proc. ISMIR},
+  year={2016}}
+
+
+@phdthesis{lostanlen2017phd,
+  TITLE = {{Convolutional operators in the time-frequency domain}},
+  AUTHOR = {Lostanlen, Vincent},
+  SCHOOL = {{\'{E}cole normale sup\'{e}rieure}},
+  YEAR = {2017}
+}
+
+
+@article{lostanlen2018eurasip,
+  title = {Relevance-based Quantization of Scattering Features for Unsupervised Mining of Environmental Audio},
+  author = {Lostanlen, Vincent and Lafay, Gr\'{e}goire and And\'{e}n, Joakim and Lagrange, Mathieu},
+  journal = {In review, EURASIP J. Audio Speech Music Process.},
+  year = {2018}
+}
+
+
+@misc{lostanlen2018msdb,
+  title = {{Medley-solos-DB: a cross-collection dataset of solo musical phrases}},
+  author = {Lostanlen, Vincent and Bittner, Rachel M. and Essid, Slim},
+  doi = {10.5281/zenodo.1344103},
+  url = {https://doi.org/10.5281/zenodo.1344103},
+  month = Aug,
+  year = 2018}
+
+
+@inproceedings{loureiro2004ismir,
+  title={Timbre Classification Of A Single Musical Instrument},
+  author={Loureiro, Mauricio A. and de Paula, Hugo Bastos and Yehia, Hani C.},
+  booktitle = {Proc. ISMIR},
+  year={2004}
+}
+
+
+@article{magnusson2017jnmr,
+author = {Thor Magnusson},
+title = {Musical Organics: A Heterarchical Approach to Digital Organology},
+journal = {J. New Music Res.},
+volume = {46},
+number = {3},
+pages = {286-303},
+year  = {2017}
+}
+
+
+@article{mallat2012cpam,
+  title={Group invariant scattering},
+  author={Mallat, St{\'e}phane},
+  journal={Comm. Pure Appl. Math.},
+  volume={65},
+  number={10},
+  pages={1331--1398},
+  year={2012},
+  publisher={Wiley Online Library}
+}
+
+
+@article{maresz2013cmr,
+  title={On computer-assisted orchestration},
+  author={Maresz, Yan},
+  journal={Contemp. Music Rev.},
+  volume={32},
+  number={1},
+  pages={99--109},
+  year={2013}
+}
+
+
+@inproceedings{martin1998asa,
+  title={Musical instrument identification: A pattern recognition approach},
+  author={Martin, Keith D. and Kim, Youngmoo E.},
+  booktitle={Proc. ASA},
+  year={1998}
+}
+
+
+@inproceedings{martins2007ismir,
+  title={Polyphonic instrument recognition using spectral clustering.},
+  author={Martins, Luis Gustavo and Burred, Juan Jos{\'e} and Tzanetakis, George and Lagrange, Mathieu},
+  booktitle = {Proc. ISMIR},
+  year = {2007}
+}
+
+
+@inproceedings{mcfee2010icml,
+  title={Metric learning to rank},
+  author={McFee, Brian and Lanckriet, Gert R.},
+  booktitle={Proc. ICML},
+  year={2010}
+}
+
+
+@inproceedings{mcfee2016ismir,
+  title={{A plan for sustainable {MIR} evaluation}},
+  author={McFee, Brian and Humphrey, Eric J. and Urbano, Juli{\'a}n},
+  booktitle={Proc. ISMIR},
+  year={2016}
+}
+
+
+@article{metcalf2014frontiers,
+  title={Complex hand dexterity: a review of biomechanical methods for measuring musical performance},
+  author={Metcalf, Cheryl D. and Irvine, Thomas A. and Sims, Jennifer L. and Wang, Yu L. and Su, Alvin W.Y. and Norris, David O.},
+  journal={Front. Psychol.},
+  volume={5},
+  pages={414},
+  year={2014},
+  publisher={Frontiers}
+}
+
+
+@article{montagu2009muzyka,
+  title={{It's time to look at Hornbostel-Sachs again}},
+  author={Montagu, Jeremy},
+  journal={Muzyka (Music)},
+  volume={1},
+  number={54},
+  pages={7--28},
+  year={2009}
+}
+
+
+@misc{opolko1989dataset,
+  title={{McGill University Master Samples (MUMS)}},
+  author={Opolko, Frank J. and Wapnick, Joel},
+  year={1989},
+  publisher={McGill U.}
+}
+
+
+@article{patil2012plos,
+  title={Music in our ears: the biological bases of musical timbre perception},
+  author={Patil, Kailash and Pressnitzer, Daniel and Shamma, Shihab and Elhilali, Mounya},
+  journal={PLOS Comput. Biol.},
+  volume={8},
+  number={11},
+  pages={e1002759},
+  year={2012},
+  publisher={Public Library of Science}
+}
+
+
+@article{patil2015eurasip,
+  title={Biomimetic spectro-temporal features for music instrument recognition in isolated notes and solo phrases},
+  author={Patil, Kailash and Elhilali, Mounya},
+  journal={EURASIP J. Audio Speech Music Process.},
+  volume={2015},
+  number={1},
+  pages={27},
+  year={2015},
+  publisher={Nature Publishing Group}
+}
+
+
+@book{sachs2012book,
+  title={The History of Musical Instruments},
+  author={Sachs, Curt},
+  isbn={9780486171517},
+  series={Dover Books on Music},
+  year={2012},
+  publisher={Dover Publications}
+}
+
+
+@book{schoenberg2010book,
+  title={Theory of Harmony},
+  author={Schoenberg, Arnold},
+  isbn={9780520266087},
+  lccn={77073502},
+  year={2010},
+  publisher={University of California}
+}
+
+
+@article{steele2006musicperception,
+  title={Is the bandwidth for timbre invariance only one octave?},
+  author={Steele, Kenneth M. and Williams, Amber K.},
+  journal={Music Perception},
+  volume={23},
+  number={3},
+  pages={215--220},
+  year={2006},
+  publisher={JSTOR}
+}
+
+
+@inproceedings{su2014ismir,
+  title={Sparse Cepstral, Phase Codes for Guitar Playing Technique Classification.},
+  author={Su, Li and Yu, Li-Fan and Yang, Yi-Hsuan},
+  booktitle={Proc. ISMIR},
+  year={2014}
+}
+
+
+@inproceedings{tindale2004ismir,
+  title={Retrieval of percussion gestures using timbre classification techniques.},
+  author={Tindale, Adam R. and Kapur, Ajay and Tzanetakis, George and Fujinaga, Ichiro},
+  booktitle = {Proc. ISMIR},
+  year={2004}
+}
+
+
+@inproceedings{tjoa2010ismir,
+  title={Musical Instrument Recognition using Biologically Inspired Filtering of Temporal Dictionary Atoms.},
+  author={Tjoa, Steven K. and Liu, K.J. Ray},
+  booktitle={Proc. ISMIR},
+  year={2010}
+}
+
+
+@inproceedings{weinberger2006nips,
+  title={Distance metric learning for large margin nearest neighbor classification},
+  author={Weinberger, Kilian Q. and Blitzer, John and Saul, Lawrence K.},
+  booktitle={Proc. NIPS},
+  pages={1473--1480},
+  year={2006}
+}
+
+
+@article{weinberger2009jmlr,
+  title={Distance metric learning for large margin nearest neighbor classification},
+  author={Weinberger, Kilian Q. and Saul, Lawrence K.},
+  journal={J. Mach. Learn. Res.},
+  volume={10},
+  number={Feb},
+  pages={207--244},
+  year={2009}
+}
+
+
+@article{weisser2011ytm,
+  title={{Rethinking musical instrument classification: towards a modular approach to the Hornbostel-Sachs system}},
+  author={Weisser, St{\'e}phanie and Quanten, Maarten},
+  journal={Yearb. Tradit. Music},
+  volume={43},
+  pages={122--146},
+  year={2011},
+}
+
+
+@article{wieczorkowska2003jiis,
+  title={Analysis of feature dependencies in sound description},
+  author={Wieczorkowska, Alicja A. and {\.Z}ytkow, Jan M.},
+  journal={J. Intell. Inf. Syst.},
+  volume={20},
+  number={3},
+  pages={285--302},
+  year={2003},
+  publisher={Springer}
+}
+
+
+@inproceedings{yang2014fma,
+  title={Cross-cultural Comparisons of Expressivity in Recorded Erhu and Violin Music: Performer Vibrato Styles},
+  author={Yang, Luwei and Chew, Elaine and Rajab, Sayid-Khalid},
+  year={2014},
+  booktitle={Proc. Int. Workshop on Folk Music Analysis (FMA)}
+}
+
+
+@inproceedings{yip2017ismir,
+  title={An accurate open-source solo musical instrument classifier},
+  author={Yip, Hanna and Bittner, Rachel M.},
+  booktitle={Proc. ISMIR, Late-Breaking / Demo session (LBD)},
+  year={2017}
+}
+
+
+@inproceedings{young2008nime,
+  title={Classification of Common Violin Bowing Techniques Using Gesture Data from a Playable Measurement System.},
+  author={Young, Diana},
+  booktitle={Proc. NIME},
+  year={2008},
+  organization={Citeseer}
+}
+
+
+@book{zolzer2011dafx,
+  title={DAFX: Digital Audio Effects},
+  author={Z{\"o}lzer, Udo},
+  year={2011},
+  publisher={Wiley}
+}
+
+@article{lafon2006acha,
+  title={Diffusion maps},
+  journal={Appl. and Comput. Harmon. Anal.},
+  volume={21},
+  number={1},
+  pages={5--30},
+  year={2006},
+  issn={1063-5203},
+  author={Ronald R. Coifman and St\'ephane Lafon}
+}
+
+@inproceedings{chudacek2014embc,
+  author={V{\'a}clav Chud{\'a}cek and Ronen Talmon and Joakim And\'en and St\'ephane Mallat and Ronald R. Coifman and others},
+  booktitle={Proc. IEEE EMBC},
+  title={Low dimensional manifold embedding for scattering coefficients of intrapartum fetal heart rate variability},
+  year={2014},
+  volume={},
+  number={},
+  pages={6373--6376},
+  ISSN={1094-687X},
+  month={Aug}
+}
+
+@article{villoutreix2017plos,
+  author={Villoutreix, Paul AND And\'en, Joakim AND Lim, Bomyi AND Lu, Hang AND Kevrekidis, Ioannis G. AND Singer, Amit AND Shvartsman, Stas Y.},
+  journal={PLOS Comput. Biol.},
+  publisher={Public Library of Science},
+  title={Synthesizing developmental trajectories},
+  year={2017},
+  month={09},
+  volume={13},
+  pages={1--15},
+  number={9}
+}
+
+@article{anden2018tsp,
+  author={And{\'e}n, Joakim and Lostanlen, Vincent and Mallat, St\'{e}phane},
+  title={Classification with Joint Time-Frequency Scattering},
+  eprint={1807.08869},
+  year={2018},
+  month={Jul}
+}
