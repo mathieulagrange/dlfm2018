@@ -115,7 +115,7 @@ fig.Position = [1 1 300 993];
 
 drawnow();
 
-export_fig -transparent histogram_modes.pdf
+%export_fig -transparent histogram_modes.pdf
 
 mfamily_keys_str = cellfun(@(x)(['"' x '",']), mfamily_keys, ...
     'uniformoutput', false);
